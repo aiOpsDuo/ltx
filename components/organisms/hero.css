@@ -1,0 +1,109 @@
+/* ==========================================================================
+   HERO SECTION ORGANISM
+   ========================================================================== */
+
+.hero {
+  padding: var(--spacing-16) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background glow effect */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, var(--color-brand-primary-alpha-15) 0%, var(--color-bg-base-transparent) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-10);
+  align-items: center;
+}
+
+/* Hero Content Area */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  text-align: center;
+}
+
+.hero-title {
+  font-size: var(--text-4xl);
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+.hero-title .highlight {
+  color: var(--color-brand-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  align-items: center;
+}
+
+/* Hero Media Area */
+.hero-media {
+  position: relative;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg), 0 0 40px var(--color-brand-primary-alpha-20);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.hero-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Media Queries --- */
+@media (min-width: 768px) { /* --breakpoint-md */
+  .hero {
+    padding: calc(var(--spacing-16) * 1.5) 0;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-12);
+  }
+  
+  .hero-content {
+    text-align: left;
+  }
+  
+  .hero-subtitle {
+    margin: 0;
+  }
+  
+  .hero-actions {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) { /* --breakpoint-lg */
+  .hero-title {
+    font-size: var(--text-5xl);
+  }
+}

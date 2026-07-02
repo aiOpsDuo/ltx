@@ -1,0 +1,76 @@
+/* ==========================================================================
+   LAYOUT UTILITIES
+   ========================================================================== */
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+}
+
+@media (min-width: 768px) { /* --breakpoint-md */
+  .container {
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+  }
+}
+
+@media (min-width: 1024px) { /* --breakpoint-lg */
+  .container {
+    padding-left: var(--spacing-8);
+    padding-right: var(--spacing-8);
+  }
+}
+
+/* Margin Utilities */
+.mt-0 { margin-top: 0; }
+.mt-2 { margin-top: var(--spacing-2); }
+.mt-4 { margin-top: var(--spacing-4); }
+.mt-8 { margin-top: var(--spacing-8); }
+.mb-0 { margin-bottom: 0; }
+.mb-2 { margin-bottom: var(--spacing-2); }
+.mb-4 { margin-bottom: var(--spacing-4); }
+.mb-8 { margin-bottom: var(--spacing-8); }
+
+/* Padding Utilities */
+.p-0 { padding: 0; }
+.p-4 { padding: var(--spacing-4); }
+.p-8 { padding: var(--spacing-8); }
+
+.pt-0 { padding-top: 0; }
+.pt-16 { padding-top: var(--spacing-16); }
+
+/* Width & Max Width Utilities */
+.w-100 { width: 100%; }
+.max-w-400 { max-width: 400px; }
+.w-320 { width: 320px; }
+
+/* Border & Overflow */
+.border-none { border: none !important; }
+.overflow-hidden { overflow: hidden; }
+
+/* Text Color Utilities */
+.text-brand-primary { color: var(--color-brand-primary); }
+
+/* Background Color Utilities */
+.bg-surface-elevated { background-color: var(--color-bg-surface-elevated); }
+.bg-transparent { background-color: transparent; }
+
+/* Flexbox Utilities */
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-2 { gap: var(--spacing-2); }
+.gap-4 { gap: var(--spacing-4); }
+
+/* Text Alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }

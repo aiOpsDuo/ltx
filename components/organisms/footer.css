@@ -1,0 +1,117 @@
+/* ==========================================================================
+   FOOTER ORGANISM
+   ========================================================================== */
+
+.footer {
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-12) 0 var(--spacing-6) 0;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-10);
+  margin-bottom: var(--spacing-12);
+}
+
+/* Brand & Newsletter Column */
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.footer-desc {
+  color: var(--color-text-secondary);
+  max-width: 300px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+/* Links Columns */
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.footer-title {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.footer-nav-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-nav-link:hover {
+  color: var(--color-brand-primary);
+}
+
+/* Bottom Footer (Copyright) */
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  text-align: center;
+}
+
+.footer-copyright {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.footer-socials {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.footer-social-link {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-social-link:hover {
+  color: var(--color-text-primary);
+}
+
+/* --- Media Queries --- */
+@media (min-width: 768px) { /* --breakpoint-md */
+  .footer-container {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) { /* --breakpoint-lg */
+  .footer-container {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}

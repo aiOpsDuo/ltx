@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agnostic Component Library - Showcase</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="main.css">
+  
+  <!-- Showcase Specific Styles (Not part of the library) -->
+  <style>
+    .showcase-section {
+      padding: var(--spacing-12) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .showcase-header {
+      margin-bottom: var(--spacing-8);
+    }
+    .component-box {
+      padding: var(--spacing-6);
+      background-color: var(--color-bg-base);
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-4);
+    }
+    .code-block {
+      background-color: var(--slate-950);
+      color: var(--color-text-secondary);
+      padding: var(--spacing-4);
+      border-radius: var(--radius-md);
+      font-family: monospace;
+      font-size: var(--text-sm);
+      overflow-x: auto;
+      margin-bottom: var(--spacing-8);
+    }
+    body {
+      background-color: var(--color-bg-showcase); /* Slate 950 — token exclusivo do showcase */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       HEADER ORGANISM DEMO
+       ========================================== -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#" class="header-brand">
+        <svg class="text-brand-primary" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        AgnosticUI
+      </a>
+      
+      <nav class="header-nav">
+        <a href="#atoms" class="header-nav-link">Atoms</a>
+        <a href="#molecules" class="header-nav-link">Molecules</a>
+        <a href="#organisms" class="header-nav-link">Organisms</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="#" class="btn btn-text">Login</a>
+        <button class="btn btn-primary btn-sm">Get Started</button>
+      </div>
+      
+      <button class="header-toggle" aria-label="Open Menu">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <div class="showcase-section text-center border-none pt-16">
+      <h1 class="h1">Design System Showcase</h1>
+      <p class="text-lead">Catálogo vivo da biblioteca de componentes agnóstica.</p>
+    </div>
+
+    <!-- ==========================================
+         ATOMS
+         ========================================== -->
+    <section id="atoms" class="showcase-section">
+      <div class="showcase-header">
+        <h2 class="h2">1. Atoms</h2>
+        <p class="text-body">Elementos fundamentais da interface.</p>
+      </div>
+
+      <!-- Buttons -->
+      <h3 class="h4">Buttons</h3>
+      <div class="component-box d-flex flex-wrap gap-4">
+        <button class="btn btn-primary">Primary Button</button>
+        <button class="btn btn-outline">Outline Button</button>
+        <button class="btn btn-text">Text Button</button>
+        <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <div class="code-block">&lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;</div>
+
+      <!-- Badges -->
+      <h3 class="h4">Badges</h3>
+      <div class="component-box d-flex flex-wrap gap-2">
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-error">Error</span>
+        <span class="badge badge-info">Info</span>
+      </div>
+      <div class="code-block">&lt;span class="badge badge-success"&gt;Success&lt;/span&gt;</div>
+
+      <!-- Typography -->
+      <h3 class="h4">Typography</h3>
+      <div class="component-box">
+        <h1 class="h1">Heading H1</h1>
+        <h2 class="h2">Heading H2</h2>
+        <p class="text-body">Este é um parágrafo padrão. A tipografia usa variáveis CSS e escalas pré-definidas para manter a consistência visual em todo o projeto. <a href="#" class="link">Link de exemplo</a>.</p>
+        <p class="text-muted text-small">Texto de apoio e detalhes secundários.</p>
+      </div>
+
+      <!-- Inputs -->
+      <h3 class="h4">Inputs & Form Elements</h3>
+      <div class="component-box max-w-400">
+        <input type="text" class="input-base mb-4" placeholder="Standard input">
+        <input type="email" class="input-base input-error mb-4" placeholder="Error input" value="invalid-email">
+        <select class="input-base mb-4">
+          <option>Select an option...</option>
+          <option>Option 1</option>
+          <option>Option 2</option>
+        </select>
+        <textarea class="input-base" placeholder="Type your message here..."></textarea>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         MOLECULES
+         ========================================== -->
+    <section id="molecules" class="showcase-section">
+      <div class="showcase-header">
+        <h2 class="h2">2. Molecules</h2>
+        <p class="text-body">Composições de múltiplos átomos.</p>
+      </div>
+
+      <!-- Form Group -->
+      <h3 class="h4">Form Group</h3>
+      <div class="component-box max-w-400">
+        <div class="form-group">
+          <label class="form-label" for="email">Endereço de E-mail</label>
+          <input type="email" id="email" class="input-base" placeholder="voce@empresa.com">
+          <span class="form-hint">Nunca compartilharemos seu e-mail.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Senha</label>
+          <input type="password" id="password" class="input-base input-error" placeholder="••••••••">
+          <span class="form-error-msg">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            A senha deve conter no mínimo 8 caracteres.
+          </span>
+        </div>
+      </div>
+
+      <!-- Alerts -->
+      <h3 class="h4">Alerts</h3>
+      <div class="component-box">
+        <div class="alert alert-info">
+          <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <div class="alert-content">
+            <h4 class="alert-title">Atualização disponível</h4>
+            <p class="alert-message">Uma nova versão do software está pronta para download.</p>
+          </div>
+        </div>
+        
+        <div class="alert alert-success">
+          <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <div class="alert-content">
+            <h4 class="alert-title">Sucesso!</h4>
+            <p class="alert-message">Seu perfil foi atualizado com sucesso.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <h3 class="h4">Cards</h3>
+      <div class="component-box d-flex gap-4 flex-wrap">
+        
+        <!-- Blog Card -->
+        <div class="card card-blog w-320">
+          <img src="assets/images/blog-code.png" alt="Code" class="card-img-top">
+          <div class="card-body">
+            <span class="badge badge-primary card-category">Tecnologia</span>
+            <h3 class="h4 card-title">O Futuro do CSS Moderno</h3>
+            <p class="card-text">Descubra como os novos recursos do CSS estão mudando a forma como construímos interfaces em 2026.</p>
+          </div>
+          <div class="card-footer">
+            <span class="text-small text-muted">Ler em 5 min</span>
+            <a href="#" class="link">Leia mais &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Product Card -->
+        <div class="card card-product w-320">
+          <div class="p-8 bg-surface-elevated d-flex justify-content-center">
+            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-primary)" stroke-width="1"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+          </div>
+          <div class="card-body">
+            <h3 class="h4 card-title">Agnostic UI Pro</h3>
+            <p class="card-text">Licença completa com acesso a mais de 200 componentes premium.</p>
+            <div class="card-price">$49</div>
+          </div>
+          <div class="card-footer bg-transparent border-none pt-0">
+            <button class="btn btn-primary w-100">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ORGANISMS
+         ========================================== -->
+    <section id="organisms" class="showcase-section border-none">
+      <div class="showcase-header">
+        <h2 class="h2">3. Organisms</h2>
+        <p class="text-body">Seções completas e prontas para uso.</p>
+      </div>
+
+      <h3 class="h4">Hero Section</h3>
+      <div class="component-box p-0 overflow-hidden">
+        
+        <!-- Hero Include -->
+        <section class="hero">
+          <div class="container hero-container">
+            <div class="hero-content">
+              <h1 class="hero-title">Construa rápido. <br><span class="highlight">Escale melhor.</span></h1>
+              <p class="hero-subtitle">Uma biblioteca de componentes agnóstica desenhada para times que buscam performance, consistência e um design premium.</p>
+              <div class="hero-actions">
+                <button class="btn btn-primary btn-lg">Começar Agora</button>
+                <button class="btn btn-outline btn-lg">Ver Documentação</button>
+              </div>
+            </div>
+            <div class="hero-media">
+              <img src="assets/images/hero-dashboard.png" alt="Dashboard Preview">
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <h3 class="h4 mt-8">Features Grid</h3>
+      <div class="component-box p-0 overflow-hidden">
+        
+        <!-- Features Include -->
+        <section class="features">
+          <div class="container">
+            <div class="features-header">
+              <h2 class="h2 features-title">Por que escolher o AgnosticUI?</h2>
+              <p class="features-subtitle">Tudo o que você precisa para criar interfaces modernas sem ficar preso a um framework específico.</p>
+            </div>
+            
+            <div class="features-grid">
+              <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                </div>
+                <h3 class="h4 feature-title">Atomic Design</h3>
+                <p class="feature-desc">Arquitetura modular que facilita a manutenção e evolução do seu design system a longo prazo.</p>
+              </div>
+              
+              <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <h3 class="h4 feature-title">Framework Agnostic</h3>
+                <p class="feature-desc">Utilize em projetos React, Vue, Angular, WordPress ou HTML puro sem conflitos.</p>
+              </div>
+              
+              <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="6.5"></line></svg>
+                </div>
+                <h3 class="h4 feature-title">Design Tokens</h3>
+                <p class="feature-desc">Customização instantânea através de variáveis CSS perfeitamente mapeadas.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <h3 class="h4 mt-8">Pricing Table</h3>
+      <div class="component-box p-0 overflow-hidden">
+        
+        <!-- Pricing Include -->
+        <section class="pricing">
+          <div class="container">
+            <div class="pricing-header">
+              <h2 class="h2">Planos simples e transparentes</h2>
+            </div>
+            
+            <div class="pricing-grid">
+              
+              <!-- Basic Plan -->
+              <div class="pricing-card">
+                <h3 class="pricing-title">Starter</h3>
+                <p class="pricing-desc">Perfeito para projetos pessoais e portfólios.</p>
+                <div class="pricing-price">$0 <span class="pricing-period">/mês</span></div>
+                
+                <ul class="pricing-features">
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Acesso aos átomos base
+                  </li>
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Suporte da comunidade
+                  </li>
+                </ul>
+                <button class="btn btn-outline pricing-action">Começar Grátis</button>
+              </div>
+              
+              <!-- Pro Plan -->
+              <div class="pricing-card is-popular">
+                <span class="popular-badge">Recomendado</span>
+                <h3 class="pricing-title">Pro</h3>
+                <p class="pricing-desc">Para startups e equipes que precisam de agilidade.</p>
+                <div class="pricing-price">$29 <span class="pricing-period">/mês</span></div>
+                
+                <ul class="pricing-features">
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Todos os componentes
+                  </li>
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Figma UI Kit
+                  </li>
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Suporte prioritário via email
+                  </li>
+                </ul>
+                <button class="btn btn-primary pricing-action">Assinar Pro</button>
+              </div>
+
+              <!-- Enterprise Plan -->
+              <div class="pricing-card">
+                <h3 class="pricing-title">Enterprise</h3>
+                <p class="pricing-desc">Solução completa para grandes operações corporativas.</p>
+                <div class="pricing-price">$99 <span class="pricing-period">/mês</span></div>
+                
+                <ul class="pricing-features">
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Tudo do plano Pro
+                  </li>
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Onboarding dedicado
+                  </li>
+                  <li class="pricing-feature">
+                    <svg class="pricing-feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    SSO (Single Sign-On)
+                  </li>
+                </ul>
+                <button class="btn btn-outline pricing-action">Falar com Vendas</button>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER ORGANISM DEMO
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        
+        <div class="footer-brand-col">
+          <a href="#" class="header-brand">
+            <svg class="text-brand-primary" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            AgnosticUI
+          </a>
+          <p class="footer-desc">Construindo as fundações para experiências digitais excepcionais. Desenvolvido para durar.</p>
+          <div class="newsletter-form">
+            <input type="email" class="input-base" placeholder="Seu melhor e-mail">
+            <button class="btn btn-primary">Assinar</button>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-title">Produto</h4>
+          <ul class="footer-nav">
+            <li><a href="#" class="footer-nav-link">Componentes</a></li>
+            <li><a href="#" class="footer-nav-link">Preços</a></li>
+            <li><a href="#" class="footer-nav-link">Showcase</a></li>
+            <li><a href="#" class="footer-nav-link">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-title">Recursos</h4>
+          <ul class="footer-nav">
+            <li><a href="#" class="footer-nav-link">Documentação</a></li>
+            <li><a href="#" class="footer-nav-link">Figma Kit</a></li>
+            <li><a href="#" class="footer-nav-link">Blog</a></li>
+            <li><a href="#" class="footer-nav-link">Comunidade Discord</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-title">Legal</h4>
+          <ul class="footer-nav">
+            <li><a href="#" class="footer-nav-link">Termos de Uso</a></li>
+            <li><a href="#" class="footer-nav-link">Política de Privacidade</a></li>
+            <li><a href="#" class="footer-nav-link">Licença</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; 2026 AgnosticUI. Todos os direitos reservados.
+        </div>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="components/organisms/menu.js"></script>
+</body>
+</html>

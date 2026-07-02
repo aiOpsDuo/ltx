@@ -1,0 +1,67 @@
+/* ==========================================================================
+   CARD MOLECULE
+   ========================================================================== */
+
+.card {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-subtle);
+}
+
+/* Card Image/Media */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Card Body Area */
+.card-body {
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  margin-bottom: var(--spacing-2);
+}
+
+.card-text {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-4);
+  flex-grow: 1;
+}
+
+/* Card Footer Area */
+.card-footer {
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--color-bg-surface-elevated);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Card Variations --- */
+.card-product .card-price {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.card-blog .card-category {
+  margin-bottom: var(--spacing-3);
+  align-self: flex-start;
+}

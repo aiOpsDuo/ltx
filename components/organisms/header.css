@@ -1,0 +1,103 @@
+/* ==========================================================================
+   HEADER ORGANISM
+   ========================================================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg-header); /* slate-900 @ 85% — glassmorphism token */
+  backdrop-filter: blur(12px); /* Glassmorphism */
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-4) 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+/* Desktop Navigation */
+.header-nav {
+  display: none; /* Mobile first, hidden by default */
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.header-nav-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+}
+
+.header-nav-link:hover,
+.header-nav-link.active {
+  color: var(--color-brand-primary);
+}
+
+/* Mobile Navigation Open State */
+.header-nav.is-open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-bg-surface);
+  padding: var(--spacing-4) var(--spacing-6);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  z-index: 99;
+  animation: slideDown var(--transition-normal);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CTA Area */
+.header-actions {
+  display: none; /* Hidden on mobile */
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+/* Mobile Toggle */
+.header-toggle {
+  display: flex; /* Visible on mobile */
+  background: transparent;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: var(--text-2xl);
+  cursor: pointer;
+  padding: var(--spacing-1);
+}
+
+/* --- Media Queries --- */
+@media (min-width: 768px) { /* --breakpoint-md */
+  .header-nav {
+    display: flex;
+  }
+  .header-actions {
+    display: flex;
+  }
+  .header-toggle {
+    display: none;
+  }
+}
