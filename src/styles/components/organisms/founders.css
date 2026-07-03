@@ -11,6 +11,7 @@
 .founders {
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--ltx-border-soft);
 }
 
 .founders > .container {

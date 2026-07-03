@@ -20,18 +20,36 @@ function QuoteMark() {
   );
 }
 
-function getClosestIndex(track: HTMLDivElement): number {
-  const trackLeft = track.getBoundingClientRect().left;
-  let closest = 0;
-  let closestDist = Infinity;
-  Array.from(track.children).forEach((child, index) => {
-    const dist = Math.abs(child.getBoundingClientRect().left - trackLeft);
-    if (dist < closestDist) {
-      closestDist = dist;
-      closest = index;
-    }
-  });
-  return closest;
+function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d={direction === 'left' ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6'} />
+    </svg>
+  );
+}
+
+// scrollWidth - clientWidth pode ser menor que a distância real entre os
+// cards (ex.: 3 cards largos numa track estreita) — por isso o índice ativo
+// e o alvo do scroll usam passos proporcionais ao intervalo real navegável,
+// em vez do offsetLeft de cada card, que o navegador nem sempre alcança.
+function getStepSize(track: HTMLDivElement, count: number): number {
+  const maxScroll = track.scrollWidth - track.clientWidth;
+  return count > 1 ? maxScroll / (count - 1) : 0;
+}
+
+function getClosestIndex(track: HTMLDivElement, count: number): number {
+  const step = getStepSize(track, count);
+  return step > 0 ? Math.round(track.scrollLeft / step) : 0;
 }
 
 export function Depoimentos() {
@@ -61,7 +79,7 @@ export function Depoimentos() {
     // Setar scrollLeft por script dentro de um handler de ponteiro nem sempre
     // dispara o evento nativo `scroll` a tempo (varia por navegador) — por
     // isso o dot ativo é recalculado aqui direto, sem depender de onScroll.
-    setActive(getClosestIndex(track));
+    setActive(getClosestIndex(track, PLACEHOLDERS.length));
   };
 
   const stopDragging = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -73,23 +91,39 @@ export function Depoimentos() {
     } catch {
       // Sem captura ativa (ex.: setPointerCapture já havia sido recusado) — nada a liberar.
     }
+    // Sem scroll-snap nativo (ver scrollToIndex), o arraste solta o card onde
+    // o ponteiro parou — este assentamento no passo mais próximo faz as vezes
+    // do snap que o CSS faria.
+    if (track) scrollToIndex(getClosestIndex(track, PLACEHOLDERS.length));
   };
 
   const handleScroll = () => {
     const track = trackRef.current;
     if (!track) return;
-    setActive(getClosestIndex(track));
+    setActive(getClosestIndex(track, PLACEHOLDERS.length));
   };
 
   const scrollToIndex = (index: number) => {
     const track = trackRef.current;
-    const card = track?.children[index] as HTMLElement | undefined;
-    if (!track || !card) return;
+    if (!track) return;
+    // scrollWidth - clientWidth pode ser bem menor que a distância real entre
+    // os cards (caso desta seção, com só 235px de sobra pra 364px de intervalo
+    // entre cards) — por isso o alvo usa passos proporcionais ao intervalo
+    // navegável, e não o offsetLeft de cada card. CSS scroll-snap corrigiria
+    // esse alvo de volta pro offset bruto (inalcançável), por isso a track
+    // não usa scroll-snap-type — o assentamento é todo feito aqui.
+    const step = getStepSize(track, PLACEHOLDERS.length);
+    setActive(index);
     track.scrollTo({
-      left: card.offsetLeft - track.offsetLeft,
+      left: index * step,
       behavior: prefersReducedMotion() ? 'auto' : 'smooth',
     });
   };
+
+  const canGoPrev = active > 0;
+  const canGoNext = active < PLACEHOLDERS.length - 1;
+  const goPrev = () => scrollToIndex(active - 1);
+  const goNext = () => scrollToIndex(active + 1);
 
   return (
     <section className="section depoimentos" id="depoimentos">
@@ -126,18 +160,40 @@ export function Depoimentos() {
             ))}
           </div>
 
-          <div className="depoimentos-dots" role="tablist" aria-label="Navegar depoimentos">
-            {PLACEHOLDERS.map((n, index) => (
-              <button
-                key={n}
-                type="button"
-                role="tab"
-                className={`depoimentos-dot${active === index ? ' is-active' : ''}`}
-                aria-selected={active === index}
-                aria-label={`Depoimento ${index + 1}`}
-                onClick={() => scrollToIndex(index)}
-              />
-            ))}
+          <div className="depoimentos-controls">
+            <button
+              type="button"
+              className="depoimentos-arrow"
+              onClick={goPrev}
+              disabled={!canGoPrev}
+              aria-label="Depoimento anterior"
+            >
+              <ChevronIcon direction="left" />
+            </button>
+
+            <div className="depoimentos-dots" role="tablist" aria-label="Navegar depoimentos">
+              {PLACEHOLDERS.map((n, index) => (
+                <button
+                  key={n}
+                  type="button"
+                  role="tab"
+                  className={`depoimentos-dot${active === index ? ' is-active' : ''}`}
+                  aria-selected={active === index}
+                  aria-label={`Depoimento ${index + 1}`}
+                  onClick={() => scrollToIndex(index)}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="depoimentos-arrow"
+              onClick={goNext}
+              disabled={!canGoNext}
+              aria-label="Próximo depoimento"
+            >
+              <ChevronIcon direction="right" />
+            </button>
           </div>
         </div>
       </div>

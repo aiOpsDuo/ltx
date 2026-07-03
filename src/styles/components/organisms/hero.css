@@ -1,6 +1,7 @@
 /* ==========================================================================
    HERO ORGANISM — PRD 6.2. No gradients, no stock icons.
-   Two-column layout above 1024px: copy left, product video right.
+   Full-bleed mountain photo as section background, copy sits on top,
+   left-aligned in its original position with more room to breathe right.
    ========================================================================== */
 
 .hero {
@@ -13,21 +14,50 @@
   .hero { padding: 168px var(--ltx-gutter-desktop) var(--ltx-space-32); }
 }
 
+/* Photo fills the entire section (100% × 100%, object-fit: cover — no
+   letterboxing gaps) at every breakpoint, one single treatment, no media
+   queries, so there's no jump in size/crop/opacity as the viewport changes.
+   mountain.png used to have ~180px of fully-transparent canvas above the
+   actual peak; on a wide/short container that margin could land entirely
+   inside the crop window and hide the mountain outright. Fixed at the
+   source (the asset itself was re-cropped so row 0 is the peak) instead of
+   fighting it with object-position math, so object-position: Y 0% now
+   reliably means "peak", full stop — cover keeps that top edge in frame at
+   every resolution and only ever crops from the bottom. X is right-biased
+   so the visible rock reads on the right half, never the left. Faded out
+   toward the left via mask (not a color gradient) so the copy keeps its
+   contrast. */
+.hero-bg {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent 0%, black 50%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 50%);
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% 0%;
+  display: block;
+  opacity: 0.5;
+  filter: brightness(0.85);
+}
+
 .hero-inner {
   max-width: var(--ltx-container-max);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--ltx-space-16);
-}
-
-@media (min-width: 1024px) {
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    gap: var(--ltx-space-16);
-  }
 }
 
 .hero-copy {
@@ -35,26 +65,34 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--ltx-space-6);
+  max-width: 560px;
 }
 
 .hero-headline {
   font-family: var(--ltx-font-mono);
   font-weight: var(--ltx-weight-heading);
-  font-size: clamp(30px, 3.6vw, 48px);
-  line-height: 1.12;
-  letter-spacing: var(--ltx-track-display);
 }
 
+/* Kept small and quiet on purpose — it's context, not the headline. The
+   payoff line below (rotating word) is what should land first. */
 .hero-headline-lead {
   display: block;
   color: var(--ltx-text-muted);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  max-width: 46ch;
 }
 
 .hero-headline-payoff {
   display: block;
-  margin-top: var(--ltx-space-2);
+  margin-top: var(--ltx-space-4);
   color: var(--ltx-text-title);
   font-weight: 700;
+  font-size: clamp(36px, 4.6vw, 60px);
+  line-height: 1.1;
+  letter-spacing: var(--ltx-track-display);
 }
 
 .hero-rotator {
@@ -86,7 +124,7 @@
   font-size: var(--ltx-size-body-lg);
   font-weight: var(--ltx-weight-body);
   color: var(--ltx-text-body);
-  max-width: 480px;
+  max-width: 640px;
 }
 
 .hero-actions {
@@ -97,47 +135,3 @@
   margin-top: var(--ltx-space-4);
 }
 
-.hero-media {
-  position: relative;
-  width: 100%;
-}
-
-/* Brand grafismo bleeding out from behind the product frame — the
-   composition beat borrowed from the reference, built with the brand's own
-   chevron field (ltx-grafismo) instead of a gradient glow (banned). Sized
-   past the frame on every side, faded toward its own edges via mask so it
-   reads as a soft accent, not a hard rectangle. */
-.hero-media-glow {
-  position: absolute;
-  inset: -14% -20%;
-  z-index: 0;
-  pointer-events: none;
-  mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
-  -webkit-mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
-}
-
-.hero-media-glow ltx-grafismo {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-media-frame {
-  position: relative;
-  z-index: 1;
-  aspect-ratio: 4 / 5;
-  border-radius: var(--ltx-radius-lg);
-  overflow: hidden;
-  background: var(--ltx-surface);
-  border: 1px solid var(--ltx-border-soft);
-}
-
-.hero-media-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
-  transform: scale(1.08);
-  transform-origin: top left;
-  display: block;
-}

@@ -1,20 +1,50 @@
 /* ==========================================================================
    TECNOLOGIA X ORGANISM — Seção 4. Enxuta: print + texto curto. PRD 6.5
+   Layout centralizado: kicker + headline no topo, print centralizado, CTA
+   abaixo do print.
    ========================================================================== */
 
-.tecnologia-x-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--ltx-space-10);
-  align-items: center;
+.tecnologia-x {
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--ltx-space-8);
+  background: var(--ltx-surface-soft);
+  border-top: 1px solid var(--ltx-border-soft);
 }
 
-@media (min-width: 900px) {
-  .tecnologia-x-inner { grid-template-columns: 1fr 1fr; gap: var(--ltx-space-16); }
+@media (min-width: 768px) {
+  .tecnologia-x { padding-top: var(--ltx-space-10); }
+}
+
+.tecnologia-x > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grafismo 01 de fundo, bem contido — textura de canto, não compete com o
+   glow local (02) atrás do print nem com o contraste do texto. */
+.tecnologia-x .section-grafismo {
+  mask-image: radial-gradient(ellipse 70% 60% at 100% 0%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 100% 0%, black 0%, transparent 70%);
+}
+
+.tecnologia-x-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--ltx-space-8);
+}
+
+.tecnologia-x-heading {
+  max-width: 760px;
 }
 
 .tecnologia-x-media-wrap {
   position: relative;
+  width: 100%;
+  max-width: 920px;
+  margin-top: var(--ltx-space-4);
 }
 
 /* Grafismo 02 bleeding out from behind the media frame — mesma técnica do
@@ -41,7 +71,7 @@
   border: 1px solid var(--ltx-border-soft);
   background: var(--ltx-surface);
   overflow: hidden;
-  aspect-ratio: 2765 / 1528;
+  aspect-ratio: 2248 / 1013;
 }
 
 .tecnologia-x-media-img {
@@ -52,12 +82,6 @@
   display: block;
 }
 
-.tecnologia-x-copy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ltx-space-5);
-}
-
-.tecnologia-x-punch {
-  color: var(--ltx-text-body);
+.tecnologia-x-cta {
+  margin-top: var(--ltx-space-2);
 }

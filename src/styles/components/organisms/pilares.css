@@ -6,6 +6,9 @@
 .pilares {
   position: relative;
   overflow: hidden;
+  padding-top: 10px;
+  background: var(--ltx-surface-soft);
+  border-top: 1px solid var(--ltx-border-soft);
 }
 
 .pilares > .container {

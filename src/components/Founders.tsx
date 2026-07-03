@@ -35,7 +35,7 @@ export function Founders() {
   return (
     <section className="section founders" id="founders">
       <div className="section-grafismo" aria-hidden="true">
-        <ltx-grafismo variant="03" motion="flow" opacity="0.08" speed="9600" />
+        <ltx-grafismo variant="01" motion="flow" opacity="0.08" flip speed="9600" />
       </div>
       <div className="container founders-container">
         <h2 className="h2 section-heading">

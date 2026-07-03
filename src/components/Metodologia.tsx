@@ -50,9 +50,6 @@ const QUADRANTES = [
   },
 ];
 
-const FECHAMENTO =
-  'E quando esse loop começa a rodar sozinho, com o gestor conduzindo o rito sem a LTX no colo, a operação ganha escala: o sistema passa a cobrar a execução e o gestor vira alavanca, não apagador de incêndio.';
-
 const LAST_INDEX = QUADRANTES.length - 1;
 
 export function Metodologia() {
@@ -154,9 +151,8 @@ export function Metodologia() {
                       <button
                         key={quadrante.titulo}
                         type="button"
-                        className={`metodologia-node metodologia-node--${index}${
-                          active === index ? ' is-active' : ''
-                        }`}
+                        className={`metodologia-node metodologia-node--${index}${active === index ? ' is-active' : ''
+                          }`}
                         aria-pressed={active === index}
                         aria-controls="metodologia-panel"
                         onFocus={() => selectStage(index)}
@@ -189,11 +185,6 @@ export function Metodologia() {
                   </button>
                 </div>
               </div>
-            </div>
-
-            <div className="container metodologia-pin-footer">
-              <p className="metodologia-loop-note">↻ O ciclo recomeça em Diagnóstico</p>
-              <p className="metodologia-fechamento">{FECHAMENTO}</p>
             </div>
           </div>
         </div>

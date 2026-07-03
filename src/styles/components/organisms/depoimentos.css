@@ -9,6 +9,8 @@
 .depoimentos {
   position: relative;
   overflow: hidden;
+  background: var(--ltx-surface-soft);
+  border-top: 1px solid var(--ltx-border-soft);
 }
 
 .depoimentos > .container {
@@ -36,7 +38,10 @@
   display: flex;
   gap: var(--ltx-space-6);
   overflow-x: auto;
-  scroll-snap-type: x proximity;
+  /* Sem scroll-snap-type: o passo entre cards nem sempre cabe no scroll
+     disponível (ver scrollToIndex em Depoimentos.tsx) — o snap nativo
+     corrigiria o alvo calculado de volta pro offset bruto, inalcançável.
+     O assentamento é feito em JS pelos botões/dots e ao soltar o arraste. */
   padding-bottom: var(--ltx-space-4);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* legacy Edge */
@@ -49,7 +54,6 @@
 
 .depoimentos-track.is-dragging {
   cursor: grabbing;
-  scroll-snap-type: none;
   user-select: none;
 }
 
@@ -58,7 +62,6 @@
 }
 
 .depoimento-card {
-  scroll-snap-align: start;
   flex: 0 0 auto;
   width: min(84vw, 340px);
   display: flex;
@@ -70,10 +73,55 @@
   color: var(--ltx-accent);
 }
 
+.depoimentos-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ltx-space-4);
+  margin-top: var(--ltx-space-6);
+}
+
 .depoimentos-dots {
   display: flex;
   gap: var(--ltx-space-2);
-  margin-top: var(--ltx-space-6);
+}
+
+.depoimentos-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--ltx-space-10);
+  height: var(--ltx-space-10);
+  border-radius: var(--ltx-radius-full);
+  border: 1px solid var(--ltx-border);
+  background: transparent;
+  color: var(--ltx-text-body);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--ltx-dur-sm) var(--ltx-ease-out-expo),
+              color var(--ltx-dur-sm) var(--ltx-ease-out-expo),
+              background var(--ltx-dur-sm) var(--ltx-ease-out-expo),
+              transform var(--ltx-dur-xs) var(--ltx-ease-out-expo);
+}
+
+.depoimentos-arrow:hover:not(:disabled) {
+  border-color: var(--ltx-accent);
+  color: var(--ltx-text-title);
+  background: color-mix(in srgb, var(--ltx-text-title) 6%, transparent);
+}
+
+.depoimentos-arrow:focus-visible {
+  box-shadow: 0 0 0 3px var(--ltx-focus-ring);
+}
+
+.depoimentos-arrow:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.depoimentos-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .depoimentos-dot {

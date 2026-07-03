@@ -1,16 +1,17 @@
 /* ==========================================================================
-   CTA FINAL ORGANISM — Seção 8. Única seção (além do modal) que usa
-   --ltx-surface como fundo de seção inteira. PRD 6.9
+   CTA FINAL ORGANISM — Seção 8. O copy fica dentro de um bloco (card) com
+   --ltx-surface, destacado do fundo de página --ltx-bg. PRD 6.9
    ========================================================================== */
 
 .cta-final {
   position: relative;
   overflow: hidden;
-  background: var(--ltx-surface);
+  background: var(--ltx-bg);
+  border-top: 1px solid var(--ltx-border-soft);
 }
 
-/* Grafismo 03 "fechamento" — reforça o encerramento da página sobre o único
-   fundo com cor própria da LP (PRD §6.9). */
+/* Grafismo 03 "fechamento" — reforça o encerramento da página atrás do bloco
+   destacado (PRD §6.9). */
 .cta-final .section-grafismo {
   mask-image: radial-gradient(closest-side, black 45%, transparent 100%);
   -webkit-mask-image: radial-gradient(closest-side, black 45%, transparent 100%);
@@ -19,6 +20,33 @@
 .cta-final .container {
   position: relative;
   z-index: 1;
+}
+
+.cta-final-block {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--ltx-accent);
+  border-radius: var(--ltx-radius-xl);
+  padding: var(--ltx-space-12) var(--ltx-space-6);
+}
+
+.cta-final-block .text-lead {
+  color: color-mix(in srgb, var(--ltx-text-on-accent) 70%, transparent);
+}
+
+.cta-final-block .btn-primary {
+  background-color: var(--ltx-text-on-accent);
+  color: var(--ltx-accent);
+}
+
+.cta-final-block .btn-primary:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--ltx-text-on-accent) 85%, transparent);
+}
+
+@media (min-width: 768px) {
+  .cta-final-block {
+    padding: var(--ltx-space-20) var(--ltx-space-16);
+  }
 }
 
 .cta-final-inner {
@@ -34,10 +62,15 @@
 .cta-final-headline {
   font-family: var(--ltx-font-mono);
   font-weight: 700;
-  font-size: clamp(28px, 4.4vw, 44px);
+  font-size: clamp(22px, 3.2vw, 34px);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--ltx-text-title);
+  color: var(--ltx-text-on-accent);
 }
 
-.cta-final-headline .text-accent { color: var(--ltx-accent); }
+.cta-final-headline .text-accent {
+  color: var(--ltx-text-on-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}

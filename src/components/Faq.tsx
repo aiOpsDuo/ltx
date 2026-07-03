@@ -32,10 +32,14 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="section" id="faq">
-      <div className="container">
-        <span className="section-kicker">Perguntas frequentes</span>
-        <h2 className="h2 section-heading">Antes de você decidir.</h2>
+    <section className="section faq" id="faq">
+      <div className="section-grafismo" aria-hidden="true">
+        <ltx-grafismo variant="02" motion="flow" opacity="0.06" mono speed="9800" />
+      </div>
+      <div className="container faq-container">
+        <div className="faq-header">
+          <h2 className="h2 section-heading">Antes de você decidir.</h2>
+        </div>
         <div className="faq-list">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;

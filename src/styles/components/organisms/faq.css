@@ -2,8 +2,41 @@
    FAQ ORGANISM — Seção 7. Accordion exclusivo, lista limpa. PRD 6.8
    ========================================================================== */
 
+.faq {
+  position: relative;
+  overflow: hidden;
+  background: var(--ltx-bg-elevated);
+  border-top: 1px solid var(--ltx-border-soft);
+}
+
+/* Grafismo 02 quieto no canto superior — a lista de perguntas precisa de
+   contraste limpo, então a textura fica confinada bem longe do texto. */
+.faq .section-grafismo {
+  mask-image: radial-gradient(ellipse 55% 50% at 100% 0%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 55% 50% at 100% 0%, black 0%, transparent 70%);
+}
+
+.faq-container {
+  position: relative;
+  z-index: 1;
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.faq-header .section-heading {
+  font-size: var(--ltx-size-h1);
+}
+
 .faq-list {
-  margin-top: var(--ltx-space-12);
+  margin-top: 70px;
   border-top: 1px solid var(--ltx-border-soft);
 }
 

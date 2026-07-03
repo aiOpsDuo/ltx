@@ -60,6 +60,9 @@ export function Hero() {
 
   return (
     <section className="hero" id="topo">
+      <div className="hero-bg" aria-hidden="true">
+        <img className="hero-bg-img" src="/images/mountain.png" alt="" />
+      </div>
       <div className="hero-inner">
         <div className="hero-copy">
           <h1 className="hero-headline">
@@ -86,22 +89,6 @@ export function Hero() {
             <button type="button" className="btn btn-primary btn-lg" onClick={() => openModal('hero')}>
               Agendar Diagnóstico
             </button>
-          </div>
-        </div>
-        <div className="hero-media">
-          <div className="hero-media-glow" aria-hidden="true">
-            <ltx-grafismo variant="02" motion="flow" opacity="0.5" mono speed="9000" />
-          </div>
-          <div className="hero-media-frame">
-            <video
-              className="hero-media-video"
-              src="/videos/video-dash.mov"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            />
           </div>
         </div>
       </div>
