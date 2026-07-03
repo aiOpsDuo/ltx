@@ -1,0 +1,63 @@
+/* ==========================================================================
+   TECNOLOGIA X ORGANISM — Seção 4. Enxuta: print + texto curto. PRD 6.5
+   ========================================================================== */
+
+.tecnologia-x-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ltx-space-10);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .tecnologia-x-inner { grid-template-columns: 1fr 1fr; gap: var(--ltx-space-16); }
+}
+
+.tecnologia-x-media-wrap {
+  position: relative;
+}
+
+/* Grafismo 02 bleeding out from behind the media frame — mesma técnica do
+   hero-media-glow: chevron field da marca em vez de um glow em gradiente. */
+.tecnologia-x-media-glow {
+  position: absolute;
+  inset: -14% -18%;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
+}
+
+.tecnologia-x-media-glow ltx-grafismo {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tecnologia-x-media {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--ltx-radius-lg);
+  border: 1px solid var(--ltx-border-soft);
+  background: var(--ltx-surface);
+  overflow: hidden;
+  aspect-ratio: 2765 / 1528;
+}
+
+.tecnologia-x-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.tecnologia-x-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-5);
+}
+
+.tecnologia-x-punch {
+  color: var(--ltx-text-body);
+}

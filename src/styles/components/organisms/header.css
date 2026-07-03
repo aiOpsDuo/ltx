@@ -1,0 +1,93 @@
+/* ==========================================================================
+   HEADER ORGANISM — "linking page" header. Transparent by default,
+   glass surface only after >40px scroll. PRD 6.1
+   ========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background var(--ltx-dur-md) var(--ltx-ease-in-out-ui),
+              border-color var(--ltx-dur-md) var(--ltx-ease-in-out-ui);
+}
+
+.header.is-stuck {
+  background: color-mix(in srgb, var(--ltx-bg) 85%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ltx-border-soft);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ltx-space-8);
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+}
+.header-brand img { height: 24px; width: auto; }
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--ltx-space-6);
+}
+
+.header-nav-link {
+  font-family: var(--ltx-font-sans);
+  font-size: var(--ltx-size-body-sm);
+  font-weight: var(--ltx-weight-emphasis);
+  color: var(--ltx-text-body);
+  transition: color var(--ltx-dur-sm) var(--ltx-ease-out-expo);
+}
+.header-nav-link:hover { color: var(--ltx-text-title); }
+
+@media (max-width: 860px) {
+  .header-nav { display: none; }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ltx-space-5);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  background: var(--ltx-surface-soft);
+  border: 1px solid var(--ltx-border-soft);
+  border-radius: var(--ltx-radius-full);
+}
+
+.theme-toggle-option {
+  font-family: var(--ltx-font-mono);
+  font-weight: var(--ltx-weight-bold);
+  font-size: 11px;
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--ltx-radius-full);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background var(--ltx-dur-sm) var(--ltx-ease-out-expo),
+              color var(--ltx-dur-sm) var(--ltx-ease-out-expo);
+}
+.theme-toggle-option:hover { color: var(--ltx-text-title); }
+
+.theme-toggle-option.is-active {
+  background: var(--ltx-chip-bg);
+  color: var(--ltx-text-title);
+}

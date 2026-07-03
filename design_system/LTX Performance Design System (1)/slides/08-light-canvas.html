@@ -1,0 +1,57 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="08 — Light canvas variant" subtitle="Same rhythm, white background, dark ink" -->
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html, body { margin: 0; }
+  .slide {
+    width: 1280px; height: 720px;
+    background: #FFFFFF;
+    padding: 96px 128px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 56px;
+    box-sizing: border-box;
+  }
+  .top img { height: 26px; }
+  .body { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; }
+  h1 {
+    font-family: var(--ltx-font-mono); font-weight: 700; font-size: 44px;
+    line-height: 1.12; letter-spacing: -0.02em; color: #11161B; margin: 0 0 20px;
+    max-width: 540px;
+  }
+  p {
+    font-family: var(--ltx-font-sans); font-size: 17px; line-height: 1.55;
+    color: #3B403F; margin: 0; max-width: 480px;
+  }
+  .stat .v {
+    font-family: var(--ltx-font-mono); font-weight: 700; font-size: 168px;
+    line-height: 0.92; letter-spacing: -0.04em; color: #1F9E17;
+  }
+  .stat .l {
+    font-family: var(--ltx-font-sans); font-size: 16px; line-height: 1.5;
+    color: #3B403F; margin-top: 20px; max-width: 380px;
+    padding-top: 20px; border-top: 1px solid #D9DCE3;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top">
+    <img src="../assets/logo/lockup-horizontal-light.svg" alt="LTX Performance">
+  </div>
+  <div class="body">
+    <div>
+      <h1>Operação enxuta gera ganho rápido de margem.</h1>
+      <p>17 clientes ativos da LTX entregaram redução média de CAC em 8 semanas após a estruturação completa do funil.</p>
+    </div>
+    <div class="stat">
+      <div class="v">34%</div>
+      <div class="l">redução média de CAC entre 17 clientes ativos da LTX (2024–2025).</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

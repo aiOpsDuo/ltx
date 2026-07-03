@@ -1,0 +1,143 @@
+/* ==========================================================================
+   DEPOIMENTOS ORGANISM — Seção 5, prova social. PRD 6.6
+   Layout: painel escuro (kicker + heading) à esquerda, carrossel de cards +
+   dots à direita — referência Clari, adaptada aos tokens de cor/card do DS
+   (cards seguem o mesmo --ltx-surface do resto do site, sem introduzir um
+   padrão de "card claro" fora do vocabulário já formalizado).
+   ========================================================================== */
+
+.depoimentos {
+  position: relative;
+  overflow: hidden;
+}
+
+.depoimentos > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.depoimentos .section-grafismo {
+  mask-image: radial-gradient(closest-side, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(closest-side, black 40%, transparent 100%);
+}
+
+.depoimentos-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: var(--ltx-space-16);
+  align-items: center;
+}
+
+.depoimentos-carousel {
+  min-width: 0;
+}
+
+.depoimentos-track {
+  display: flex;
+  gap: var(--ltx-space-6);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: var(--ltx-space-4);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+  cursor: grab;
+}
+
+.depoimentos-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari — navegação fica a cargo dos dots */
+}
+
+.depoimentos-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.depoimentos-track.is-dragging .depoimento-card {
+  pointer-events: none; /* evita selecionar texto do card enquanto arrasta */
+}
+
+.depoimento-card {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: min(84vw, 340px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-5);
+}
+
+.depoimento-quote-mark {
+  color: var(--ltx-accent);
+}
+
+.depoimentos-dots {
+  display: flex;
+  gap: var(--ltx-space-2);
+  margin-top: var(--ltx-space-6);
+}
+
+.depoimentos-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--ltx-radius-full);
+  background: var(--ltx-line);
+  cursor: pointer;
+  outline: none;
+  transition: background var(--ltx-dur-sm) var(--ltx-ease-out-expo),
+              transform var(--ltx-dur-xs) var(--ltx-ease-out-expo),
+              box-shadow var(--ltx-dur-sm) var(--ltx-ease-out-expo);
+}
+
+.depoimentos-dot:hover:not(.is-active) {
+  background: var(--ltx-border);
+}
+
+.depoimentos-dot:focus-visible {
+  box-shadow: 0 0 0 3px var(--ltx-focus-ring);
+}
+
+.depoimentos-dot:active {
+  transform: scale(0.75);
+}
+
+.depoimentos-dot.is-active {
+  background: var(--ltx-accent);
+  transform: scale(1.25);
+}
+
+.depoimentos-dot.is-active:active {
+  transform: scale(1.1);
+}
+
+.depoimento-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ltx-radius-full);
+  background: var(--ltx-chip-bg);
+  flex-shrink: 0;
+}
+
+.depoimento-quote {
+  font-family: var(--ltx-font-mono);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ltx-text-title);
+}
+
+.depoimento-attribution {
+  display: flex;
+  align-items: center;
+  gap: var(--ltx-space-3);
+}
+
+.depoimento-name { font-size: 14px; font-weight: var(--ltx-weight-emphasis); color: var(--ltx-text-title); }
+.depoimento-role { font-size: 13px; color: var(--ltx-text-body); }
+
+@media (max-width: 900px) {
+  .depoimentos-layout {
+    grid-template-columns: 1fr;
+    gap: var(--ltx-space-8);
+  }
+}

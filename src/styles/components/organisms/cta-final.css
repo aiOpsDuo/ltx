@@ -1,0 +1,43 @@
+/* ==========================================================================
+   CTA FINAL ORGANISM — Seção 8. Única seção (além do modal) que usa
+   --ltx-surface como fundo de seção inteira. PRD 6.9
+   ========================================================================== */
+
+.cta-final {
+  position: relative;
+  overflow: hidden;
+  background: var(--ltx-surface);
+}
+
+/* Grafismo 03 "fechamento" — reforça o encerramento da página sobre o único
+   fundo com cor própria da LP (PRD §6.9). */
+.cta-final .section-grafismo {
+  mask-image: radial-gradient(closest-side, black 45%, transparent 100%);
+  -webkit-mask-image: radial-gradient(closest-side, black 45%, transparent 100%);
+}
+
+.cta-final .container {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-final-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--ltx-space-6);
+}
+
+.cta-final-headline {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: clamp(28px, 4.4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ltx-text-title);
+}
+
+.cta-final-headline .text-accent { color: var(--ltx-accent); }

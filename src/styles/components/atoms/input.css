@@ -1,0 +1,51 @@
+/* ==========================================================================
+   INPUT ATOM
+   ========================================================================== */
+
+.input-group { display: flex; flex-direction: column; gap: var(--ltx-space-2); }
+
+.input-label {
+  font-family: var(--ltx-font-sans);
+  font-size: 13px;
+  font-weight: var(--ltx-weight-emphasis);
+  color: var(--ltx-text-title);
+}
+.input-label-required { color: var(--ltx-danger-600); margin-left: 4px; }
+
+.input-base {
+  display: block;
+  width: 100%;
+
+  font-family: var(--ltx-font-sans);
+  font-size: 15px;
+  color: var(--ltx-text-title);
+  background-color: var(--ltx-input-bg);
+
+  padding: 12px 14px;
+  border-radius: var(--ltx-radius-md);
+  border: 1px solid var(--ltx-border);
+
+  transition: border-color var(--ltx-dur-sm), box-shadow var(--ltx-dur-sm);
+  outline: none;
+}
+
+.input-base::placeholder { color: var(--ltx-text-muted); opacity: 1; }
+
+.input-base:hover:not(:disabled) { border-color: var(--ltx-ink-500); }
+
+.input-base:focus {
+  border-color: var(--ltx-accent);
+  box-shadow: 0 0 0 3px var(--ltx-focus-ring);
+}
+
+.input-base:disabled {
+  background-color: var(--ltx-surface-soft);
+  color: var(--ltx-text-muted);
+  cursor: not-allowed;
+}
+
+.input-error { border-color: var(--ltx-danger-600); }
+.input-error:focus { box-shadow: 0 0 0 3px rgba(200, 56, 47, 0.25); }
+
+.input-hint { font-family: var(--ltx-font-sans); font-size: 12px; color: var(--ltx-text-muted); }
+.input-hint-error { color: var(--ltx-danger-600); }

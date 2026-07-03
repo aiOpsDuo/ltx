@@ -1,0 +1,65 @@
+/* ==========================================================================
+   FAQ ORGANISM — Seção 7. Accordion exclusivo, lista limpa. PRD 6.8
+   ========================================================================== */
+
+.faq-list {
+  margin-top: var(--ltx-space-12);
+  border-top: 1px solid var(--ltx-border-soft);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--ltx-border-soft);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ltx-space-6);
+  padding: var(--ltx-space-6) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--ltx-font-sans);
+  font-size: 16px;
+  font-weight: var(--ltx-weight-emphasis);
+  color: var(--ltx-text-title);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: transform var(--ltx-dur-md) var(--ltx-ease-out-expo);
+}
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--ltx-text-title);
+  top: 50%; left: 50%;
+}
+.faq-icon::before { width: 14px; height: 1.5px; transform: translate(-50%, -50%); }
+.faq-icon::after { width: 1.5px; height: 14px; transform: translate(-50%, -50%); }
+
+.faq-item.is-open .faq-icon { transform: rotate(45deg); }
+
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--ltx-dur-md) var(--ltx-ease-out-expo);
+}
+.faq-item.is-open .faq-panel { grid-template-rows: 1fr; }
+
+.faq-panel-inner { overflow: hidden; }
+
+.faq-answer {
+  padding-bottom: var(--ltx-space-6);
+  max-width: var(--ltx-container-reading);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ltx-text-body);
+}

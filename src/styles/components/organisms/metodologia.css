@@ -1,0 +1,355 @@
+/* ==========================================================================
+   METODOLOGIA ORGANISM — Seção 3, looping comercial. PRD 6.4 (COPY.md 3ª
+   sessão). Roda com as 4 etapas à esquerda, texto em destaque + CTA à
+   direita. Rolar a página gira a roda e avança a etapa (sem depender de
+   clique) — só em telas ≥1024px com motion permitido.
+
+   Mobile-first: base = layout estático empilhado (roda vira lista de
+   botões). Enhanced (min-width:1024px + prefers-reduced-motion:no-preference,
+   mesma condição usada no JS via gsap.matchMedia) = roda girando presa
+   (pin) durante o scroll.
+   ========================================================================== */
+
+.metodologia {
+  position: relative;
+}
+
+/* ── Base (mobile / reduced motion): fluxo normal, sem pin ───────────────── */
+
+.metodologia-scroller {
+  height: auto;
+}
+
+.metodologia-pin {
+  position: static;
+}
+
+.metodologia-pin-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.metodologia-pin-footer {
+  margin-top: var(--ltx-space-8);
+}
+
+.metodologia-pin-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-10);
+}
+
+.metodologia-wheel-col {
+  display: flex;
+  justify-content: center;
+}
+
+.metodologia-wheel {
+  position: relative;
+  width: 100%;
+}
+
+.metodologia-ring,
+.metodologia-pointer {
+  display: none;
+}
+
+.metodologia-hub-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto var(--ltx-space-4);
+  border-radius: var(--ltx-radius-full);
+  background: var(--ltx-surface);
+  border: 1px solid var(--ltx-border-soft);
+}
+
+.metodologia-hub-mark img {
+  width: 13px;
+  height: auto;
+}
+
+.metodologia-rotor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ltx-space-3);
+}
+
+.metodologia-node {
+  position: static;
+  background: none;
+  border: 1px solid var(--ltx-border-soft);
+  border-radius: var(--ltx-radius-full);
+  padding: var(--ltx-space-2) var(--ltx-space-4);
+  cursor: pointer;
+  transition: border-color var(--ltx-dur-md) var(--ltx-ease-out-expo);
+}
+
+.metodologia-node-label {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: var(--ltx-space-2);
+}
+
+.metodologia-node-index {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--ltx-radius-full);
+  border: 1px solid var(--ltx-border);
+  font-family: var(--ltx-font-mono);
+  font-size: 11px;
+  color: var(--ltx-accent);
+  transition: background-color var(--ltx-dur-md) var(--ltx-ease-out-expo),
+              color var(--ltx-dur-md) var(--ltx-ease-out-expo),
+              border-color var(--ltx-dur-md) var(--ltx-ease-out-expo);
+}
+
+.metodologia-node-title {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ltx-text-title);
+  white-space: nowrap;
+  transition: color var(--ltx-dur-md) var(--ltx-ease-out-expo);
+}
+
+.metodologia-node:hover,
+.metodologia-node:focus-visible,
+.metodologia-node.is-active {
+  border-color: var(--ltx-accent);
+}
+
+.metodologia-node.is-active .metodologia-node-index {
+  background: var(--ltx-accent);
+  color: var(--ltx-text-on-accent);
+  border-color: var(--ltx-accent);
+}
+
+.metodologia-node.is-active .metodologia-node-title {
+  color: var(--ltx-accent);
+}
+
+.metodologia-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.metodologia-panel {
+  width: 100%;
+  max-width: var(--ltx-container-reading);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-2);
+  text-align: left;
+}
+
+.metodologia-panel-index {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: var(--ltx-track-overline);
+  color: var(--ltx-accent);
+}
+
+.metodologia-panel-curto {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ltx-text-title);
+}
+
+.metodologia-panel-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ltx-text-body);
+}
+
+.metodologia-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--ltx-space-6);
+}
+
+/* ── Notas abaixo da roda ─────────────────────────────────────────────── */
+
+.metodologia-loop-note {
+  display: flex;
+  align-items: center;
+  gap: var(--ltx-space-2);
+  font-family: var(--ltx-font-mono);
+  font-size: 12px;
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-text-muted);
+}
+
+.metodologia-fechamento {
+  margin-top: var(--ltx-space-4);
+  max-width: var(--ltx-container-reading);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ltx-text-muted);
+}
+
+/* ── Enhanced: roda de verdade, presa (pin) e girando com o scroll ───────
+   Mesma condição do gsap.matchMedia() em Metodologia.tsx (ENHANCED_QUERY) —
+   os dois precisam ficar em sincronia. */
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .metodologia-scroller {
+    height: 340vh;
+  }
+
+  .metodologia-pin {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .metodologia-pin-inner {
+    width: 100%;
+    align-items: center;
+    gap: var(--ltx-space-6);
+  }
+
+  .metodologia-pin-footer {
+    margin-top: 0;
+    width: 100%;
+    max-width: 1360px;
+    text-align: center;
+  }
+
+  .metodologia-pin .metodologia-pin-grid {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ltx-space-24);
+    width: 100%;
+    max-width: 1360px;
+  }
+
+  .metodologia-wheel-col {
+    flex: 0 0 520px;
+  }
+
+  .metodologia-wheel {
+    width: 520px;
+    height: 520px;
+  }
+
+  .metodologia-text-col {
+    flex: 1 1 auto;
+  }
+
+  .metodologia-ring {
+    display: block;
+    position: absolute;
+    inset: 84px;
+    border-radius: var(--ltx-radius-full);
+    border: 1px dashed var(--ltx-border);
+    overflow: hidden;
+  }
+
+  .metodologia-ring-glow {
+    position: absolute;
+    inset: 0;
+    mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
+    -webkit-mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
+  }
+
+  .metodologia-ring-glow ltx-grafismo {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Marca fixa por onde as etapas "chegam" ao girar — o lado que aponta
+     para o texto em destaque. */
+  .metodologia-pointer {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 84px;
+    width: 18px;
+    height: 2px;
+    background: var(--ltx-accent);
+    transform: translate(50%, -50%);
+  }
+
+  .metodologia-hub-mark {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 54px;
+    height: 54px;
+    margin: 0;
+  }
+
+  .metodologia-hub-mark img {
+    width: 19px;
+  }
+
+  /* --rot é escrito via JS (ScrollTrigger onUpdate) direto no elemento —
+     herda para .metodologia-node-label, que contra-rotaciona pra manter o
+     texto sempre na horizontal. */
+  .metodologia-rotor {
+    position: absolute;
+    inset: 0;
+    display: block;
+    transform: rotate(var(--rot, 0deg));
+  }
+
+  .metodologia-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  .metodologia-node--0 { transform: rotate(0deg) translate(220px); }
+  .metodologia-node--1 { transform: rotate(90deg) translate(220px); }
+  .metodologia-node--2 { transform: rotate(180deg) translate(220px); }
+  .metodologia-node--3 { transform: rotate(270deg) translate(220px); }
+
+  .metodologia-node-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    gap: var(--ltx-space-1);
+    padding: var(--ltx-space-2);
+  }
+
+  .metodologia-node--0 .metodologia-node-label { transform: translate(-50%, -50%) rotate(0deg)   rotate(calc(-1 * var(--rot, 0deg))); }
+  .metodologia-node--1 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-90deg) rotate(calc(-1 * var(--rot, 0deg))); }
+  .metodologia-node--2 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-180deg) rotate(calc(-1 * var(--rot, 0deg))); }
+  .metodologia-node--3 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-270deg) rotate(calc(-1 * var(--rot, 0deg))); }
+
+  .metodologia-node-index { width: 34px; height: 34px; font-size: 13px; }
+  .metodologia-node-title { font-size: 16px; }
+
+  .metodologia-panel { text-align: left; margin: 0; max-width: none; gap: var(--ltx-space-4); }
+  .metodologia-panel-index { font-size: 13px; }
+  .metodologia-panel-curto { font-size: 28px; line-height: 1.25; }
+  .metodologia-panel-body { font-size: 16px; line-height: 1.6; }
+
+  .metodologia-cta { justify-content: flex-start; margin-top: var(--ltx-space-8); }
+
+  .metodologia-loop-note { justify-content: center; }
+  .metodologia-fechamento { margin: var(--ltx-space-2) auto 0; }
+}

@@ -1,0 +1,143 @@
+/* ==========================================================================
+   HERO ORGANISM — PRD 6.2. No gradients, no stock icons.
+   Two-column layout above 1024px: copy left, product video right.
+   ========================================================================== */
+
+.hero {
+  padding: 148px var(--ltx-gutter-mobile) var(--ltx-space-24);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero { padding: 168px var(--ltx-gutter-desktop) var(--ltx-space-32); }
+}
+
+.hero-inner {
+  max-width: var(--ltx-container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-16);
+}
+
+@media (min-width: 1024px) {
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: var(--ltx-space-16);
+  }
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ltx-space-6);
+}
+
+.hero-headline {
+  font-family: var(--ltx-font-mono);
+  font-weight: var(--ltx-weight-heading);
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.12;
+  letter-spacing: var(--ltx-track-display);
+}
+
+.hero-headline-lead {
+  display: block;
+  color: var(--ltx-text-muted);
+}
+
+.hero-headline-payoff {
+  display: block;
+  margin-top: var(--ltx-space-2);
+  color: var(--ltx-text-title);
+  font-weight: 700;
+}
+
+.hero-rotator {
+  position: relative;
+  display: inline-block;
+  min-width: 13ch;
+  height: 1.2em;
+  vertical-align: top;
+  text-align: left;
+  color: var(--ltx-accent);
+}
+
+/* Cross-fade is driven by GSAP (src/lib/motion.ts) — it sets opacity/transform
+   inline. This only covers the very first paint, before that effect runs. */
+.hero-rotator-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.hero-rotator-item:first-child {
+  opacity: 1;
+}
+
+.hero-subhead {
+  font-family: var(--ltx-font-sans);
+  font-size: var(--ltx-size-body-lg);
+  font-weight: var(--ltx-weight-body);
+  color: var(--ltx-text-body);
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ltx-space-4);
+  margin-top: var(--ltx-space-4);
+}
+
+.hero-media {
+  position: relative;
+  width: 100%;
+}
+
+/* Brand grafismo bleeding out from behind the product frame — the
+   composition beat borrowed from the reference, built with the brand's own
+   chevron field (ltx-grafismo) instead of a gradient glow (banned). Sized
+   past the frame on every side, faded toward its own edges via mask so it
+   reads as a soft accent, not a hard rectangle. */
+.hero-media-glow {
+  position: absolute;
+  inset: -14% -20%;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
+}
+
+.hero-media-glow ltx-grafismo {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-media-frame {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--ltx-radius-lg);
+  overflow: hidden;
+  background: var(--ltx-surface);
+  border: 1px solid var(--ltx-border-soft);
+}
+
+.hero-media-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  transform: scale(1.08);
+  transform-origin: top left;
+  display: block;
+}

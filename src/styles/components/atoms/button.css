@@ -1,0 +1,71 @@
+/* ==========================================================================
+   BUTTON ATOM — pill by default, per LTX marketing CTA rule
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ltx-space-2);
+
+  font-family: var(--ltx-font-sans);
+  font-weight: var(--ltx-weight-strong);
+  font-size: var(--ltx-size-body-sm);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+
+  padding: 14px var(--ltx-space-8);
+  border-radius: var(--ltx-radius-full);
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition: background var(--ltx-dur-sm) var(--ltx-ease-out-expo),
+              transform var(--ltx-dur-xs) var(--ltx-ease-out-expo),
+              border-color var(--ltx-dur-sm) var(--ltx-ease-out-expo);
+  outline: none;
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--ltx-focus-ring);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:active:not(:disabled) { transform: scale(0.98); }
+
+/* --- Primary --- */
+.btn-primary {
+  background-color: var(--ltx-accent);
+  color: var(--ltx-text-on-accent);
+}
+.btn-primary:hover:not(:disabled) { background-color: var(--ltx-accent-hover); }
+
+/* --- Secondary (outline) --- */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--ltx-text-title);
+  border-color: var(--ltx-text-title);
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--ltx-text-title) 8%, transparent);
+}
+
+/* --- Ghost --- */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--ltx-text-title);
+}
+.btn-ghost:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--ltx-text-title) 6%, transparent);
+}
+
+/* --- Sizes --- */
+.btn-sm { font-size: 13px; padding: 10px var(--ltx-space-5); }
+.btn-md { font-size: 14px; padding: 12px var(--ltx-space-6); }
+.btn-lg { font-size: 15px; padding: 14px var(--ltx-space-8); }
+
+.btn-full { width: 100%; }

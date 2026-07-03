@@ -1,0 +1,42 @@
+/* ==========================================================================
+   CARD MOLECULE — flat surface, hairline, lift on hover only
+   ========================================================================== */
+
+.card {
+  background-color: var(--ltx-surface);
+  border-radius: var(--ltx-radius-lg);
+  border: 1px solid var(--ltx-border-soft);
+  padding: var(--ltx-space-8);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--ltx-dur-md) var(--ltx-ease-out-expo),
+              border-color var(--ltx-dur-sm),
+              box-shadow var(--ltx-dur-sm);
+}
+
+.card-hoverable:hover {
+  transform: translateY(-2px);
+  border-color: var(--ltx-border);
+  box-shadow: var(--ltx-shadow-xs);
+}
+
+/* Reserved for the single featured card on a page */
+.card-accent {
+  border-left: 2px solid var(--ltx-accent);
+}
+
+.card-title {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ltx-text-title);
+  margin-bottom: var(--ltx-space-2);
+}
+
+.card-text {
+  color: var(--ltx-text-body);
+  font-size: 14px;
+  line-height: 1.55;
+}

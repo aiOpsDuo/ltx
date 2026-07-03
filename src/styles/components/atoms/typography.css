@@ -1,0 +1,31 @@
+/* ==========================================================================
+   TYPOGRAPHY ATOM — Space Mono (display) · Sora (body), thin-first
+   ========================================================================== */
+
+.overline {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: var(--ltx-size-overline);
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-accent);
+}
+
+.display-xl { font-family: var(--ltx-font-mono); font-size: clamp(40px, 6vw, var(--ltx-size-display-xl)); line-height: var(--ltx-lh-display); font-weight: var(--ltx-weight-display); letter-spacing: var(--ltx-track-display); color: var(--ltx-text-title); }
+.display-lg { font-family: var(--ltx-font-mono); font-size: clamp(32px, 5vw, var(--ltx-size-display-lg)); line-height: 1.15; font-weight: var(--ltx-weight-display); letter-spacing: var(--ltx-track-display); color: var(--ltx-text-title); }
+
+.h1 { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h1); line-height: var(--ltx-lh-heading); font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); color: var(--ltx-text-title); }
+.h2 { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h2); line-height: 1.25; font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); color: var(--ltx-text-title); }
+.h3 { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h3); line-height: var(--ltx-lh-tight); font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); color: var(--ltx-text-title); }
+.h4 { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h4); line-height: 1.35; font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); color: var(--ltx-text-title); }
+
+.text-lead { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-body-lg); line-height: var(--ltx-lh-body); font-weight: var(--ltx-weight-body); color: var(--ltx-text-body); }
+.text-body { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-body-md); line-height: var(--ltx-lh-body); font-weight: var(--ltx-weight-body); color: var(--ltx-text-body); }
+.text-sm   { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-body-sm); line-height: 1.45; font-weight: var(--ltx-weight-body); color: var(--ltx-text-body); }
+.text-caption { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-caption); line-height: 1.33; font-weight: var(--ltx-weight-ui); color: var(--ltx-text-muted); }
+
+.text-title  { color: var(--ltx-text-title); }
+.text-muted  { color: var(--ltx-text-muted); }
+.text-accent { color: var(--ltx-accent); }
+
+.text-strong { font-weight: var(--ltx-weight-emphasis); }

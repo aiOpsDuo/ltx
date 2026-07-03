@@ -1,0 +1,34 @@
+/* ==========================================================================
+   BADGE ATOM
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--ltx-radius-full);
+  font-family: var(--ltx-font-sans);
+  font-size: 11px;
+  font-weight: var(--ltx-weight-emphasis);
+  line-height: 1.4;
+}
+
+.badge-neutral {
+  background: color-mix(in srgb, var(--ltx-text-title) 8%, transparent);
+  color: var(--ltx-text-title);
+  border: 1px solid color-mix(in srgb, var(--ltx-text-title) 18%, transparent);
+}
+
+.badge-brand {
+  background: color-mix(in srgb, var(--ltx-accent) 12%, transparent);
+  color: var(--ltx-accent);
+  border: 1px solid color-mix(in srgb, var(--ltx-accent) 30%, transparent);
+}
+
+.badge-uppercase {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

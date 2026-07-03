@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "react-app",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "set WSLENV=PORT/u && wsl -d Ubuntu bash /home/rodrigo/projetos/ltx/.claude/dev.sh"],
+      "port": 5173,
+      "autoPort": true
+    }
+  ]
+}

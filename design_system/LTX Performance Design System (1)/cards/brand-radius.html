@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Radius scale" subtitle="Pill on CTAs · md on inputs · lg on cards · 0 on logos" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; background: #11161B; }
+  .row { display: flex; gap: 16px; align-items: flex-end; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .sw { background: #1A1F26; border: 1px solid #3B403F; width: 72px; height: 72px; }
+  .lbl { font-family: var(--ltx-font-mono); font-size: 10px; color: #A9B5B5; letter-spacing: 0.04em; }
+  .val { font-family: var(--ltx-font-mono); font-size: 11px; color: #696F6D; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="col"><div class="sw" style="border-radius:0"></div><span class="lbl">NONE</span><span class="val">0px</span></div>
+  <div class="col"><div class="sw" style="border-radius:4px"></div><span class="lbl">XS</span><span class="val">4px</span></div>
+  <div class="col"><div class="sw" style="border-radius:8px"></div><span class="lbl">MD</span><span class="val">8px</span></div>
+  <div class="col"><div class="sw" style="border-radius:12px"></div><span class="lbl">LG</span><span class="val">12px</span></div>
+  <div class="col"><div class="sw" style="border-radius:16px"></div><span class="lbl">XL</span><span class="val">16px</span></div>
+  <div class="col"><div class="sw" style="border-radius:9999px; background:#BCFFB7; border-color:transparent;"></div><span class="lbl">FULL</span><span class="val">CTA</span></div>
+</div>
+</body>
+</html>

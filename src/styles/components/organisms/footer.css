@@ -1,0 +1,64 @@
+/* ==========================================================================
+   FOOTER ORGANISM — as simple as the header. PRD 6.10
+   ========================================================================== */
+
+.footer {
+  background-color: var(--ltx-bg);
+  border-top: 1px solid var(--ltx-border-soft);
+  padding: var(--ltx-space-12) 0 var(--ltx-space-8);
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ltx-space-6);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ltx-space-2);
+}
+
+@media (min-width: 640px) {
+  .footer-brand { align-items: flex-start; }
+}
+
+.footer-brand img { height: 22px; width: auto; }
+
+.footer-tagline {
+  font-family: var(--ltx-font-mono);
+  font-size: 12px;
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-text-muted);
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  gap: var(--ltx-space-6);
+}
+
+.footer-nav-link {
+  color: var(--ltx-text-body);
+  font-size: 14px;
+  transition: color var(--ltx-dur-sm);
+}
+.footer-nav-link:hover { color: var(--ltx-text-title); }
+
+.footer-copyright {
+  color: var(--ltx-text-muted);
+  font-size: 12px;
+}

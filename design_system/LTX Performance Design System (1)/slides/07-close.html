@@ -1,0 +1,77 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="07 — Close / CTA" subtitle="Tagline + contact" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<script src="../assets/graphics/ltx-grafismo.js"></script>
+<style>
+  html, body { margin: 0; }
+  .slide {
+    width: 1280px; height: 720px;
+    background: #11161B;
+    padding: 96px 128px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 40px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide > .grafismo {
+    position: absolute; inset: 0; z-index: 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent 42%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 42%, #000 100%);
+  }
+  .slide > .logo, .slide > .center, .slide > .footer { position: relative; z-index: 1; }
+  .logo img { height: 30px; }
+  .center { align-self: center; display: flex; flex-direction: column; gap: 28px; max-width: 880px; }
+  .tagline {
+    font-family: var(--ltx-font-mono);
+    font-weight: 700; font-size: 80px; line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: #EDEEF4; margin: 0;
+  }
+  .tagline span { color: #BCFFB7; }
+  .contact {
+    display: flex; gap: 48px; margin-top: 8px;
+  }
+  .contact .row { display: flex; flex-direction: column; gap: 4px; }
+  .contact .label {
+    font-family: var(--ltx-font-mono); font-size: 11px;
+    letter-spacing: 0.08em; color: #696F6D; text-transform: uppercase;
+  }
+  .contact .value {
+    font-family: var(--ltx-font-sans); font-size: 16px; color: #EDEEF4;
+  }
+  .footer {
+    display: flex; justify-content: space-between; align-items: end;
+    font-family: var(--ltx-font-mono); font-size: 12px;
+    color: #696F6D; letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <ltx-grafismo class="grafismo" variant="01" motion="flow" opacity="0.12" speed="7600" flip></ltx-grafismo>
+  <div class="logo"><img src="../assets/logo/lockup-horizontal.svg" alt="LTX Performance"></div>
+  <div class="center">
+    <h1 class="tagline">lógica em <span>movimento.</span></h1>
+    <div class="contact">
+      <div class="row">
+        <span class="label">contato direto</span>
+        <span class="value">leonardo.reis@ltx.com.br</span>
+      </div>
+      <div class="row">
+        <span class="label">próximo passo</span>
+        <span class="value">Agendar diagnóstico de 30 minutos</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>OBRIGADO</span>
+    <span>07 / 07</span>
+  </div>
+</div>
+</body>
+</html>

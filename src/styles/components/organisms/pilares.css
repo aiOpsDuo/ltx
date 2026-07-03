@@ -1,0 +1,188 @@
+/* ==========================================================================
+   PILARES ORGANISM — Seção 2, Credibilidade / Pilares. PRD 6.3
+   Prova social (logos em marquee) + headline + 4 pilares com destaque no hover.
+   ========================================================================== */
+
+.pilares {
+  position: relative;
+  overflow: hidden;
+}
+
+.pilares > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Grafismo 01 "abertura" faded in from the right edge — mesma lógica de
+   mask do card oficial 02-section-divider, mantendo o texto à esquerda
+   livre de textura. */
+.pilares .section-grafismo {
+  mask-image: linear-gradient(90deg, transparent 0%, black 55%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 55%);
+}
+
+/* ── Prova social: contador + marquee de logos ───────────────────────────── */
+
+.pilares-proof {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-6);
+  padding-bottom: var(--ltx-space-10);
+  margin-bottom: var(--ltx-space-16);
+  border-bottom: 1px solid var(--ltx-border-soft);
+}
+
+@media (min-width: 768px) {
+  .pilares-proof {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ltx-space-10);
+  }
+}
+
+.pilares-proof-stat {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ltx-space-3);
+}
+
+.pilares-proof-number {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: var(--ltx-size-h2);
+  color: var(--ltx-text-title);
+}
+
+.pilares-proof-label {
+  font-size: 14px;
+  color: var(--ltx-text-body);
+  white-space: nowrap;
+}
+
+.pilares-marquee {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.pilares-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--ltx-space-12);
+  animation: pilares-marquee-scroll 26s linear infinite;
+}
+
+.pilares-marquee:hover .pilares-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes pilares-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.pilares-logo {
+  flex: 0 0 auto;
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-text-muted);
+  white-space: nowrap;
+}
+
+/* ── Headline + grid dos 4 pilares ────────────────────────────────────────── */
+
+.pilares-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-10);
+}
+
+@media (min-width: 1024px) {
+  .pilares-body {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ltx-space-16);
+  }
+
+  .pilares-copy {
+    flex: 0 0 480px;
+  }
+
+  .pilares-grid {
+    flex: 1 1 auto;
+  }
+}
+
+.pilares-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ltx-space-6) var(--ltx-space-8);
+}
+
+@media (min-width: 1024px) {
+  /* Distribui os 4 pilares até a borda direita do container, para alinhar
+     com o restante do conteúdo da página (ex.: a faixa de logos acima). */
+  .pilares-grid { justify-content: space-between; }
+}
+
+/* Sem caixa, sem borda por padrão — só o ícone e o texto, como na
+   referência. O fundo (icone + texto juntos) só aparece no hover/focus. */
+.pilar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ltx-space-2);
+  padding: var(--ltx-space-3) var(--ltx-space-4);
+  border-radius: var(--ltx-radius-lg);
+  background-color: transparent;
+  text-align: center;
+  outline: none;
+  cursor: default;
+  transition: background-color var(--ltx-dur-md) var(--ltx-ease-out-expo),
+              transform var(--ltx-dur-md) var(--ltx-ease-out-expo);
+}
+
+.pilar-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  color: var(--ltx-accent);
+}
+
+/* Único efeito no hover/focus: ícone + texto ganham zoom-in juntos, sobre um
+   fundo único que cobre os dois. Exceção pontual ao motion token padrão
+   (fade + translate) a pedido do cliente para esta seção. */
+.pilar-card:hover,
+.pilar-card:focus-visible {
+  background-color: color-mix(in srgb, var(--ltx-accent) 12%, transparent);
+  transform: scale(1.08);
+}
+
+.pilar-title {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ltx-text-title);
+  letter-spacing: -0.01em;
+}
+
+.pending-note {
+  margin-top: var(--ltx-space-10);
+  padding: var(--ltx-space-4) var(--ltx-space-5);
+  border: 1px dashed var(--ltx-border);
+  border-radius: var(--ltx-radius-md);
+  font-size: 13px;
+  color: var(--ltx-text-muted);
+}

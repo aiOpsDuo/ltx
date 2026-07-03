@@ -1,0 +1,93 @@
+/* ==========================================================================
+   LAYOUT UTILITIES
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--ltx-container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--ltx-gutter-mobile);
+  padding-right: var(--ltx-gutter-mobile);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--ltx-gutter-desktop);
+    padding-right: var(--ltx-gutter-desktop);
+  }
+}
+
+.container-reading {
+  max-width: var(--ltx-container-reading);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section {
+  padding-top: var(--ltx-section-y-mobile);
+  padding-bottom: var(--ltx-section-y-mobile);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: var(--ltx-section-y-desktop);
+    padding-bottom: var(--ltx-section-y-desktop);
+  }
+}
+
+.section-kicker {
+  display: inline-flex;
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: var(--ltx-size-overline);
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-accent);
+  margin-bottom: var(--ltx-space-4);
+}
+
+.section-heading {
+  max-width: 640px;
+}
+
+/* ── Section grafismo backdrop ────────────────────────────────────────────
+   Full-bleed animated chevron-field texture used to give each section its
+   own visual identity without introducing a new background color — the PRD
+   (§6.9) reserves a distinct flat background for the CTA final section only.
+   The host section needs `position:relative; overflow:hidden`, and its
+   content wrapper needs `position:relative; z-index:1` to sit above this. */
+.section-grafismo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.section-grafismo ltx-grafismo {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Flex helpers */
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-2 { gap: var(--ltx-space-2); }
+.gap-4 { gap: var(--ltx-space-4); }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
