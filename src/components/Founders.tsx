@@ -1,4 +1,5 @@
 import { useReveal } from '../hooks/useReveal';
+import { useDiagnosticoModal } from '../context/DiagnosticoModalContext';
 
 // COPY.md — 6ª Sessão (Fundadores). Nomes completos por Tiago Souza (liderança
 // comercial) e Leonardo dos Reis (processo/engenharia de dados) — ver
@@ -31,6 +32,7 @@ function SilhouetteIcon() {
 
 export function Founders() {
   const ref = useReveal<HTMLDivElement>({ stagger: 0.08 });
+  const { openModal } = useDiagnosticoModal();
 
   return (
     <section className="section founders" id="founders">
@@ -56,6 +58,11 @@ export function Founders() {
               </blockquote>
             </article>
           ))}
+        </div>
+        <div className="founders-cta">
+          <button type="button" className="btn btn-primary btn-lg" onClick={() => openModal('founders')}>
+            Fale com nossa equipe
+          </button>
         </div>
       </div>
     </section>

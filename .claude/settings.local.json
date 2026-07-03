@@ -120,7 +120,20 @@
       "PowerShell(wsl -d Ubuntu bash -lc \"cd /home/rodrigo/projetos/ltx && git status --porcelain -- public/images/mountain.png scripts/\")",
       "PowerShell(npx tsc --noEmit 2>&1)",
       "PowerShell(Get-Command wsl -ErrorAction SilentlyContinue)",
-      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npx tsc --noEmit 2>&1 | head -60\")"
+      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npx tsc --noEmit 2>&1 | head -60\")",
+      "Read(///wsl.localhost/ubuntu//**)",
+      "Bash(wslpath -w /tmp/adb24048-f5e4-4d17-ac6f-afabcdc62111.png)",
+      "Bash(mkdir -p \"/mnt/c/Users/v/AppData/Local/Temp/claude/--wsl-localhost-ubuntu-home-rodrigo-projetos-ltx/41b2314e-e9e6-410e-8720-372228da11f7/scratchpad\")",
+      "Bash(cp /tmp/adb24048-f5e4-4d17-ac6f-afabcdc62111.png \"/mnt/c/Users/v/AppData/Local/Temp/claude/--wsl-localhost-ubuntu-home-rodrigo-projetos-ltx/41b2314e-e9e6-410e-8720-372228da11f7/scratchpad/pasted-mark.png\")",
+      "Bash(mount)",
+      "Bash(sort -k6,7)",
+      "PowerShell(Get-Command pnpm -ErrorAction SilentlyContinue)",
+      "Bash(command -v wsl.exe)",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc \"cd /home/rodrigo/projetos/ltx && node -v && npx --yes tsc --noEmit -p tsconfig.json 2>&1 | tail -100\")",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc \"cd /home/rodrigo/projetos/ltx && ls tsconfig*.json && cat package.json | grep -A2 '\\\\\"build\\\\\"'\")",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc \"cd /home/rodrigo/projetos/ltx && ls node_modules/.bin/tsc 2>&1 && ./node_modules/.bin/tsc -b --noEmit 2>&1 | tail -100\")",
+      "Bash(wsl.exe -d Ubuntu -- bash -lc \"cd /home/rodrigo/projetos/ltx && ./node_modules/.bin/tsc --noEmit -p tsconfig.app.json 2>&1 | tail -150\")",
+      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npx tsc --noEmit 2>&1 | head -80\")"
     ]
   }
 }

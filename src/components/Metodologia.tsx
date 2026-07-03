@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,9 +16,14 @@ import { DURATION, EASE_OUT_EXPO, TRANSLATE_DISTANCE, prefersReducedMotion } fro
 // botões estáticos que trocam o texto ao toque/clique.
 const ENHANCED_QUERY = '(min-width: 1024px) and (prefers-reduced-motion: no-preference)';
 
-const QUADRANTES = [
+// Um ícone por etapa — substitui o número dentro do nó da roda (PRD:
+// cada ponto do ciclo precisa se identificar visualmente, não só por índice).
+type QuadranteIconName = 'search' | 'list-checks' | 'activity' | 'trending-up';
+
+const QUADRANTES: { titulo: string; icon: QuadranteIconName; curto: string; paragrafos: string[] }[] = [
   {
     titulo: 'Diagnóstico',
+    icon: 'search',
     curto: 'Diagnóstico: saber exatamente onde a venda vaza',
     paragrafos: [
       'Antes de mexer em qualquer coisa, a gente entende o que está acontecendo de verdade. Não no achismo, com call real avaliada ao vivo, raio-x da operação e o gargalo apontado.',
@@ -26,6 +32,7 @@ const QUADRANTES = [
   },
   {
     titulo: 'Padrão',
+    icon: 'list-checks',
     curto: 'Padrão: o time inteiro sabe o que é uma boa call',
     paragrafos: [
       'Com o gargalo na mesa, define-se o "como deveria ser", o jeito certo de abordar, qualificar, conduzir uma reunião, fechar. Pelo critério da própria empresa, não por uma fórmula genérica.',
@@ -34,6 +41,7 @@ const QUADRANTES = [
   },
   {
     titulo: 'Medição',
+    icon: 'activity',
     curto: 'Medição: 100% das interações avaliadas, todo dia',
     paragrafos: [
       'Não adianta ter padrão se ninguém acompanha. Aqui as interações passam a ser avaliadas 24/7, ligação, reunião, WhatsApp, sem depender do gestor puxar relatório.',
@@ -42,6 +50,7 @@ const QUADRANTES = [
   },
   {
     titulo: 'Desenvolvimento',
+    icon: 'trending-up',
     curto: 'Desenvolvimento: cada vendedor evolui na competência que move o ponteiro',
     paragrafos: [
       'Com os dados claros, fica óbvio onde agir. Quem não está performando recebe um plano (PDI), trilhas e coaching 1:1 sobre uma call real. Quem performa vira referência.',
@@ -49,6 +58,47 @@ const QUADRANTES = [
     ],
   },
 ];
+
+const QUADRANTE_ICON_PATHS: Record<QuadranteIconName, ReactNode> = {
+  search: (
+    <>
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </>
+  ),
+  'list-checks': (
+    <>
+      <path d="m3 17 2 2 4-4" />
+      <path d="m3 7 2 2 4-4" />
+      <path d="M13 6h8" />
+      <path d="M13 12h8" />
+      <path d="M13 18h8" />
+    </>
+  ),
+  activity: <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
+  'trending-up': (
+    <>
+      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+      <polyline points="16 7 22 7 22 13" />
+    </>
+  ),
+};
+
+function QuadranteIcon({ name }: { name: QuadranteIconName }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {QUADRANTE_ICON_PATHS[name]}
+    </svg>
+  );
+}
 
 const LAST_INDEX = QUADRANTES.length - 1;
 
@@ -139,14 +189,10 @@ export function Metodologia() {
             <div className="container metodologia-pin-grid">
               <div className="metodologia-wheel-col">
                 <div className="metodologia-wheel">
-                  <div className="metodologia-ring" aria-hidden="true">
-                    <div className="metodologia-ring-glow">
-                      <ltx-grafismo variant="02" motion="wave" opacity="0.16" mono speed="8000" />
-                    </div>
-                  </div>
+                  <div className="metodologia-ring" aria-hidden="true" />
                   <span className="metodologia-pointer" aria-hidden="true" />
                   <span className="metodologia-hub-mark" aria-hidden="true">
-                    <img src="/brand/logo/mark.svg" alt="" />
+                    <img src="/brand/logo/avatar-icon.svg" alt="" />
                   </span>
 
                   <div className="metodologia-rotor" ref={rotorRef}>
@@ -162,7 +208,9 @@ export function Metodologia() {
                         onClick={() => selectStage(index)}
                       >
                         <span className="metodologia-node-label">
-                          <span className="metodologia-node-index">0{index + 1}</span>
+                          <span className="metodologia-node-index">
+                            <QuadranteIcon name={quadrante.icon} />
+                          </span>
                           <span className="metodologia-node-title">{quadrante.titulo}</span>
                         </span>
                       </button>
@@ -173,7 +221,10 @@ export function Metodologia() {
 
               <div className="metodologia-text-col">
                 <div className="metodologia-panel" id="metodologia-panel" role="region" aria-live="polite" ref={panelRef}>
-                  <span className="metodologia-panel-index">0{active + 1} / 04</span>
+                  <span className="metodologia-panel-step">0{active + 1}</span>
+                  <span className="visually-hidden">
+                    Etapa {active + 1} de {QUADRANTES.length}
+                  </span>
                   <p className="metodologia-panel-curto">{atual.curto}</p>
                   {atual.paragrafos.map((paragrafo) => (
                     <p className="metodologia-panel-body" key={paragrafo}>

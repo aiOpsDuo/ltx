@@ -3,12 +3,21 @@
    Prova social (logos em marquee) + headline + 4 pilares com destaque no hover.
    ========================================================================== */
 
+/* Top fades in from transparent (instead of a flat fill) so the mountain
+   bleeding down from .hero-bg (hero.css) stays visible through the marquee
+   area instead of being covered by this section's own background. Reads
+   --ltx-hero-mountain-bleed (defined in hero.css) so it can't drift out of
+   sync with the bleed distance. */
 .pilares {
   position: relative;
   overflow: hidden;
   padding-top: 10px;
-  background: var(--ltx-surface-soft);
-  border-top: 1px solid var(--ltx-border-soft);
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    var(--ltx-surface-soft) var(--ltx-hero-mountain-bleed),
+    var(--ltx-surface-soft) 100%
+  );
 }
 
 .pilares > .container {
@@ -55,7 +64,7 @@
   font-family: var(--ltx-font-mono);
   font-weight: 700;
   font-size: var(--ltx-size-h2);
-  color: var(--ltx-text-title);
+  color: var(--ltx-accent);
 }
 
 .pilares-proof-label {

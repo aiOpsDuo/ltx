@@ -4,10 +4,24 @@
    left-aligned in its original position with more room to breathe right.
    ========================================================================== */
 
+/* How far the mountain bleeds past the hero's own bottom edge into Pilares
+   — capped at .pilares-proof's own height (border-box, not counting its
+   margin-bottom), measured empirically per breakpoint since that block's
+   layout flips from stacked to a single row at 768px. Consumed by
+   .hero-bg below and by .pilares' background in pilares.css — keep both
+   read from this variable so they can't drift out of sync. */
+:root {
+  --ltx-hero-mountain-bleed: 136px;
+}
+
+@media (min-width: 768px) {
+  :root { --ltx-hero-mountain-bleed: 93px; }
+}
+
 .hero {
   padding: 148px var(--ltx-gutter-mobile) var(--ltx-space-24);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 @media (min-width: 768px) {
@@ -27,17 +41,33 @@
    so the visible rock reads on the right half, never the left. Faded out
    toward the left via mask (not a color gradient) so the copy keeps its
    contrast. */
+/* Bleeds past the hero's own bottom edge so the mountain keeps going into
+   the top of the Pilares section (the client-logo marquee sits right
+   there) instead of cutting off hard at the section boundary. Requires
+   .hero { overflow: visible } above, and .pilares' background in
+   pilares.css to fade in from transparent over that same distance so the
+   opaque section background doesn't paint over the bleed. */
 .hero-bg {
   position: absolute;
   top: 80px;
   right: 0;
-  bottom: 0;
   left: 0;
+  /* 100% resolves against .hero's own height; subtract the 80px top inset
+     back out first so the opaque region still ends flush with the hero's
+     bottom edge (matching pre-bleed behavior), then add the bleed on top
+     of that — otherwise the inset silently eats into the bleed budget. */
+  height: calc(100% - 80px + var(--ltx-hero-mountain-bleed));
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  mask-image: linear-gradient(90deg, transparent 0%, black 50%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 50%);
+  mask-image:
+    linear-gradient(90deg, transparent 0%, black 50%),
+    linear-gradient(to bottom, black 0%, black calc(100% - var(--ltx-hero-mountain-bleed)), transparent 100%);
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, black 50%),
+    linear-gradient(to bottom, black 0%, black calc(100% - var(--ltx-hero-mountain-bleed)), transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
 }
 
 .hero-bg-img {

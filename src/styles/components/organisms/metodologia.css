@@ -71,8 +71,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   margin: 0 auto var(--ltx-space-4);
   border-radius: var(--ltx-radius-full);
   background: var(--ltx-surface);
@@ -80,7 +80,7 @@
 }
 
 .metodologia-hub-mark img {
-  width: 13px;
+  width: 28px;
   height: auto;
 }
 
@@ -125,6 +125,11 @@
               border-color var(--ltx-dur-md) var(--ltx-ease-out-expo);
 }
 
+.metodologia-node-index svg {
+  width: 14px;
+  height: 14px;
+}
+
 .metodologia-node-title {
   font-family: var(--ltx-font-mono);
   font-weight: 700;
@@ -165,7 +170,7 @@
   text-align: left;
 }
 
-.metodologia-panel-index {
+.metodologia-panel-step {
   font-family: var(--ltx-font-mono);
   font-weight: 700;
   font-size: 11px;
@@ -278,20 +283,6 @@
     inset: 84px;
     border-radius: var(--ltx-radius-full);
     border: 1px dashed var(--ltx-border);
-    overflow: hidden;
-  }
-
-  .metodologia-ring-glow {
-    position: absolute;
-    inset: 0;
-    mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
-    -webkit-mask-image: radial-gradient(closest-side, black 55%, transparent 100%);
-  }
-
-  .metodologia-ring-glow ltx-grafismo {
-    display: block;
-    width: 100%;
-    height: 100%;
   }
 
   /* Marca fixa por onde as etapas "chegam" ao girar — o lado que aponta
@@ -313,13 +304,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 54px;
-    height: 54px;
+    width: 88px;
+    height: 88px;
     margin: 0;
   }
 
   .metodologia-hub-mark img {
-    width: 19px;
+    width: 46px;
   }
 
   /* --rot é escrito via JS (ScrollTrigger onUpdate) direto no elemento —
@@ -363,10 +354,11 @@
   .metodologia-node--3 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-270deg) rotate(calc(-1 * var(--rot, 0deg))); }
 
   .metodologia-node-index { width: 34px; height: 34px; font-size: 13px; }
+  .metodologia-node-index svg { width: 18px; height: 18px; }
   .metodologia-node-title { font-size: 16px; }
 
   .metodologia-panel { text-align: left; margin: 0; max-width: none; gap: var(--ltx-space-4); }
-  .metodologia-panel-index { font-size: 13px; }
+  .metodologia-panel-step { font-size: 13px; }
   .metodologia-panel-curto { font-size: 28px; line-height: 1.25; }
   .metodologia-panel-body { font-size: 16px; line-height: 1.6; }
 
