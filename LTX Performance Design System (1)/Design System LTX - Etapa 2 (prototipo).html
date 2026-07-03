@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System · LTX Performance — Etapa 2</title>
+<style>
+
+  @font-face{
+    font-family:"Space Mono";
+    src: url("Kit Marca/Tipografia/Space_Mono/SpaceMono-Regular.ttf") format("truetype");
+    font-weight:400; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Space Mono";
+    src: url("Kit Marca/Tipografia/Space_Mono/SpaceMono-Bold.ttf") format("truetype");
+    font-weight:700; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Sora";
+    src: url("Kit Marca/Tipografia/Sora/Sora-VariableFont_wght.ttf") format("truetype-variations");
+    font-weight: 100 800; font-style:normal; font-display:swap;
+  }
+
+  :root{
+    /* ---- paleta oficial ---- */
+    --color-ink-900:#11161B;
+    --color-graphite-700:#3B403F;
+    --color-sage-500:#696F6D;
+    --color-accent-400:#BCFFB7;
+    --color-frost-300:#A9B5B5;
+    --color-ice-100:#EDEEF4;
+    --color-white:#FFFFFF;
+
+    /* ---- tokens semanticos (dark = padrao) ---- */
+    --bg-canvas: var(--color-ink-900);
+    --bg-surface: #1a2027;
+    --bg-surface-2:#20272f;
+    --text-primary: var(--color-ice-100);
+    --text-secondary: var(--color-frost-300);
+    --text-tertiary: var(--color-sage-500);
+    --border-hairline: rgba(237,238,244,0.12);
+    --accent: var(--color-accent-400);
+    --accent-ink: var(--color-ink-900);
+    --shadow-1: 0 1px 2px rgba(0,0,0,0.28);
+    --shadow-2: 0 8px 28px rgba(0,0,0,0.36);
+    --glass-bg: rgba(17,22,27,0.72);
+
+    /* ---- spacing ---- */
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-6:24px; --space-8:32px; --space-12:48px; --space-16:64px;
+    --space-24:96px;
+
+    /* ---- radius ---- */
+    --radius-pill:999px; --radius-lg:24px; --radius-md:16px; --radius-sm:10px; --radius-xs:6px;
+
+    /* ---- motion ---- */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-linear: linear;
+    --duration-micro:180ms; --duration-fast:320ms; --duration-reveal:560ms;
+
+    --font-mono:"Space Mono", ui-monospace, monospace;
+    --font-sans:"Sora", -apple-system, sans-serif;
+  }
+
+  html[data-theme="light"]{
+    --bg-canvas: var(--color-ice-100);
+    --bg-surface: #FFFFFF;
+    --bg-surface-2:#F5F6FA;
+    --text-primary: var(--color-ink-900);
+    --text-secondary: var(--color-graphite-700);
+    --text-tertiary: var(--color-sage-500);
+    --border-hairline: rgba(17,22,27,0.10);
+    --shadow-1: 0 1px 2px rgba(17,22,27,0.08);
+    --shadow-2: 0 10px 28px rgba(17,22,27,0.10);
+    --glass-bg: rgba(237,238,244,0.78);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg-canvas);
+    color:var(--text-primary);
+    font-family:var(--font-sans);
+    font-weight:400;
+    line-height:1.65;
+    transition: background-color 480ms var(--ease-out), color 480ms var(--ease-out);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 clamp(20px,6vw,72px);}
+  section{padding: 96px 0; border-bottom:1px solid var(--border-hairline);}
+  section:last-of-type{border-bottom:none;}
+
+  h1,h2,h3{margin:0; font-weight:400;}
+  .kicker{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--text-secondary); display:inline-flex; align-items:center; gap:10px; margin-bottom:var(--space-4);
+  }
+  .kicker::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block;}
+  .section-title{font-family:var(--font-mono); font-size:clamp(28px,4vw,40px); letter-spacing:-0.01em; margin-bottom:var(--space-3);}
+  .section-desc{color:var(--text-secondary); font-size:16px; max-width:640px; margin-bottom:var(--space-12);}
+  .section-desc code{font-family:var(--font-mono); font-size:13px; background:var(--bg-surface); padding:2px 6px; border-radius:4px;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 22px clamp(20px,6vw,72px);
+    background:transparent;
+    border-bottom:1px solid transparent;
+    transition: background-color 480ms var(--ease-out), border-color 480ms var(--ease-out), backdrop-filter 480ms var(--ease-out);
+  }
+  header.scrolled{
+    background:var(--glass-bg);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    backdrop-filter: blur(16px) saturate(120%);
+    border-bottom-color:var(--border-hairline);
+  }
+  .logo{height:22px; color:var(--text-primary); display:block;}
+  .logo path.accent{fill:var(--accent);}
+  .logo path.ink{fill:currentColor;}
+  nav{display:flex; gap:var(--space-8); font-size:14px; color:var(--text-secondary);}
+  nav a{text-decoration:none; transition:color var(--duration-micro) var(--ease-out);}
+  nav a:hover{color:var(--text-primary);}
+  .header-actions{display:flex; align-items:center; gap:var(--space-6);}
+
+  .theme-toggle{
+    width:46px; height:26px; border-radius:var(--radius-pill);
+    border:1px solid var(--border-hairline); background:var(--bg-surface);
+    position:relative; cursor:pointer; padding:0;
+    transition: background-color var(--duration-fast) var(--ease-out);
+  }
+  .theme-toggle::after{
+    content:""; position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%;
+    background:var(--accent); transition: transform var(--duration-fast) var(--ease-out);
+  }
+  html[data-theme="light"] .theme-toggle::after{ transform: translateX(20px); }
+
+  /* ---------- BOTOES ---------- */
+  .btn{
+    font-family:var(--font-sans); font-weight:600; font-size:15px; letter-spacing:.01em;
+    padding:12px 28px; border-radius:var(--radius-pill); cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px; border:1px solid var(--text-primary);
+    background:transparent; color:var(--text-primary);
+    transition: border-color var(--duration-micro) var(--ease-out), color var(--duration-micro) var(--ease-out), transform var(--duration-micro) var(--ease-out);
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent);}
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .btn.primary:hover{transform:translateY(-1px); box-shadow:var(--shadow-1); color:var(--accent-ink); border-color:var(--accent);}
+  .btn.text{border-color:transparent; padding:12px 4px;}
+  .btn.text:hover{text-decoration:underline; text-underline-offset:4px;}
+  .btn-row{display:flex; gap:var(--space-4); flex-wrap:wrap; align-items:center;}
+
+  /* ---------- TIPOGRAFIA showcase ---------- */
+  .type-row{display:flex; align-items:baseline; justify-content:space-between; gap:var(--space-8); padding:var(--space-6) 0; border-top:1px solid var(--border-hairline); flex-wrap:wrap;}
+  .type-row:first-of-type{border-top:none;}
+  .type-sample{margin:0;}
+  .type-meta{font-family:var(--font-mono); font-size:12px; color:var(--text-tertiary); white-space:nowrap; text-align:right;}
+  .display{font-family:var(--font-mono); font-size:clamp(40px,6vw,72px); letter-spacing:-0.01em; line-height:1.05;}
+  .h1{font-family:var(--font-mono); font-size:clamp(30px,4vw,44px);}
+  .h2{font-family:var(--font-sans); font-weight:700; font-size:30px;}
+  .h3{font-family:var(--font-sans); font-weight:700; font-size:20px;}
+  .body-lg{font-family:var(--font-sans); font-weight:300; font-size:19px; color:var(--text-secondary);}
+  .body{font-family:var(--font-sans); font-size:16px; color:var(--text-secondary);}
+
+  /* ---------- CORES ---------- */
+  .swatch-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:var(--space-4);}
+  .swatch{border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-hairline);}
+  .swatch-color{height:96px;}
+  .swatch-meta{padding:var(--space-3) var(--space-4); background:var(--bg-surface); font-family:var(--font-mono); font-size:12px;}
+  .swatch-meta strong{display:block; font-family:var(--font-sans); font-size:13px; margin-bottom:2px; font-weight:600;}
+
+  /* ---------- GRID / SPACING demo ---------- */
+  .space-demo{display:flex; align-items:flex-end; gap:var(--space-3); flex-wrap:wrap;}
+  .space-block{background:var(--accent); border-radius:4px;}
+  .space-label{font-family:var(--font-mono); font-size:11px; color:var(--text-tertiary); margin-top:6px; text-align:center;}
+  .space-item{display:flex; flex-direction:column; align-items:center;}
+
+  /* ---------- CARDS ---------- */
+  .card-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:var(--space-6);}
+  .card{
+    background:var(--bg-surface); border:1px solid var(--border-hairline); border-radius:var(--radius-lg);
+    padding:var(--space-8); box-shadow:var(--shadow-1);
+    transition: transform var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+  .card:hover{transform:translateY(-3px); border-color:rgba(188,255,183,0.4);}
+  .card .icon{width:34px; height:34px; margin-bottom:var(--space-4); color:var(--accent);}
+  .card h3{margin-bottom:var(--space-2);}
+  .card p{margin:0; color:var(--text-secondary); font-size:14.5px;}
+
+  /* ---------- BADGES ---------- */
+  .badge{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    padding:6px 14px; border-radius:var(--radius-pill); border:1px solid var(--border-hairline); color:var(--text-secondary);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .badge.accent{border-color:var(--accent); color:var(--accent);}
+  .badge-row{display:flex; gap:var(--space-3); flex-wrap:wrap;}
+
+  /* ---------- INPUTS ---------- */
+  .form-demo{max-width:420px; display:flex; flex-direction:column; gap:var(--space-4);}
+  .field label{display:block; font-size:13px; color:var(--text-secondary); margin-bottom:6px; font-family:var(--font-sans);}
+  .field input{
+    width:100%; padding:14px 16px; border-radius:var(--radius-md); border:1px solid var(--border-hairline);
+    background:var(--bg-surface); color:var(--text-primary); font-family:var(--font-sans); font-size:15px;
+    transition: box-shadow var(--duration-micro) var(--ease-out), border-color var(--duration-micro) var(--ease-out);
+  }
+  .field input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(188,255,183,0.16);}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-top:1px solid var(--border-hairline); padding:var(--space-4) 0;}
+  .faq-item:first-child{border-top:none;}
+  .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:var(--font-sans); font-weight:700; font-size:17px;}
+  .faq-q .plus{font-family:var(--font-mono); transition:transform var(--duration-fast) var(--ease-out); color:var(--accent);}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{display:grid; grid-template-rows:0fr; transition:grid-template-rows var(--duration-fast) var(--ease-out); }
+  .faq-item.open .faq-a{grid-template-rows:1fr;}
+  .faq-a-inner{overflow:hidden;}
+  .faq-a p{margin:var(--space-3) 0 0; color:var(--text-secondary); font-size:15px;}
+
+  /* ---------- LOADING SYSTEM ---------- */
+  .loading-row{display:flex; align-items:center; gap:var(--space-8); flex-wrap:wrap;}
+  .loading-seq{display:flex; align-items:center; gap:var(--space-6);}
+  .lstep{width:40px; height:40px; display:flex; align-items:center; justify-content:center; color:var(--text-tertiary);}
+  .lstep svg{width:100%; height:100%; overflow:visible;}
+  .lstep .shape{stroke:var(--text-tertiary); fill:none; stroke-width:1.6; transition:none;}
+  .lstep.filled .shape{fill:var(--accent); stroke:var(--accent);}
+  @keyframes pulseFill{
+    0%,100%{ stroke: var(--text-tertiary); fill:none; }
+    45%,60%{ stroke: var(--accent); fill:var(--accent); }
+  }
+  .lstep .shape{ animation: pulseFill 4.8s var(--ease-linear) infinite; }
+  .lstep:nth-child(1) .shape{ animation-delay:0s; }
+  .lstep:nth-child(2) .shape{ animation-delay:.5s; }
+  .lstep:nth-child(3) .shape{ animation-delay:1s; }
+  .lstep:nth-child(4) .shape{ animation-delay:1.5s; }
+  .lstep:nth-child(5) .shape{ animation-delay:2s; }
+  .loading-caption{font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-tertiary);}
+
+  .bar-track{height:2px; width:220px; background:var(--border-hairline); border-radius:2px; overflow:hidden;}
+  .bar-fill{height:100%; width:0%; background:var(--accent); animation: barLoop 3.6s var(--ease-linear) infinite;}
+  @keyframes barLoop{ 0%{width:0%;} 70%{width:100%;} 100%{width:100%;} }
+
+  /* ---------- SLOGAN ---------- */
+  .slogan-panel{
+    background:var(--bg-surface); border:1px solid var(--border-hairline); border-radius:var(--radius-lg);
+    padding: var(--space-16) var(--space-12); position:relative; overflow:hidden;
+  }
+  .slogan{font-family:var(--font-mono); font-size:clamp(30px,5vw,52px); line-height:1.15; letter-spacing:-0.01em;}
+  .slogan-line{opacity:0; transform:translateY(10px); transition:opacity 480ms var(--ease-out), transform 480ms var(--ease-out);}
+  .slogan-line.show{opacity:1; transform:translateY(0);}
+  .slogan-row{display:flex; align-items:center;}
+  .slogan-bar{
+    height:3px; width:0px; margin:0 14px; border-radius:2px; flex-shrink:0;
+    background:linear-gradient(90deg, var(--color-graphite-700), var(--color-sage-500));
+    transition: width 2200ms var(--ease-linear), background 420ms var(--ease-out);
+    align-self:center; transform:translateY(-4px);
+  }
+  .slogan-bar.grown{width:min(30vw,340px);}
+  .slogan-bar.accent{background:var(--accent-400,var(--accent));}
+  .slogan-move{opacity:0; transition:opacity 300ms var(--ease-out);}
+  .slogan-move.show{opacity:1;}
+  .slogan-move.accent{color:var(--accent); font-weight:700;}
+
+  footer{padding:var(--space-16) 0 var(--space-12);}
+  .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:var(--space-12); margin-bottom:var(--space-12);}
+  .footer-col h4{font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--text-tertiary); margin:0 0 var(--space-3);}
+  .footer-col a{display:block; font-size:14px; color:var(--text-secondary); margin-bottom:8px; text-decoration:none;}
+  .footer-col a:hover{color:var(--text-primary);}
+  .footer-bottom{display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-hairline); padding-top:var(--space-6); font-size:13px; color:var(--text-tertiary); flex-wrap:wrap; gap:12px;}
+
+  .chevron-field{position:relative; height:180px; border-radius:var(--radius-lg); overflow:hidden; background:var(--bg-surface); border:1px solid var(--border-hairline);}
+  .chevron-field svg{position:absolute; inset:0; width:100%; height:100%;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  @media (max-width:720px){
+    nav{display:none;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <svg class="logo" viewBox="0 0 776 194" xmlns="http://www.w3.org/2000/svg" aria-label="LTX">
+    <path class="ink" d="M0 194V0.114439H22.793V172.396H122.105V194H0Z"/>
+    <path class="ink" d="M338.739 194V21.7188H283.385V0.114439H416.887V21.7188H361.532V194H338.739Z"/>
+    <path class="ink" d="M570.809 194H596.038L643.131 98.4307V94.9971L596.038 0H570.809L618.463 94.9971V98.4307L570.809 194Z"/>
+    <path class="accent" d="M776 192.855H751.332L708.164 107.015H732.927L776 192.855Z"/>
+    <path class="accent" d="M732.64 86.413H708.485L708.164 85.8407L751.332 0H776L732.64 86.413Z"/>
+  </svg>
+  <nav>
+    <a href="#cores">O problema</a>
+    <a href="#tipografia">Tecnologia X</a>
+    <a href="#componentes">Gestão</a>
+    <a href="#faq">Dúvidas</a>
+  </nav>
+  <div class="header-actions">
+    <button class="btn primary" style="padding:10px 22px; font-size:14px;">Diagnóstico Gratuito</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"></button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="principios">
+    <span class="kicker">Design System · Etapa 2</span>
+    <h1 class="section-title">Lógica em Movimento</h1>
+    <p class="section-desc">Protótipo vivo dos tokens e componentes formalizados no documento desta etapa. Fonte de verdade: Manual de Marca LTX 2026 + Kit Marca. Use o botão no header para alternar entre dark (padrão) e light — tudo aqui reage por token, nenhuma cor está hard-coded.</p>
+  </section>
+
+  <section id="cores">
+    <span class="kicker">01 · Paleta</span>
+    <h2 class="section-title" style="font-size:28px;">Cores oficiais</h2>
+    <p class="section-desc">O verde (<code>--color-accent-400</code>) é pontuação, não bloco — usar em no máximo ~5% da composição de qualquer tela.</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background:#11161B"></div><div class="swatch-meta"><strong>Preto Profundo</strong>#11161B</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#3B403F"></div><div class="swatch-meta"><strong>Cinza Grafite</strong>#3B403F</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#696F6D"></div><div class="swatch-meta"><strong>Cinza Sage</strong>#696F6D</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#BCFFB7"></div><div class="swatch-meta" style="color:#11161B"><strong>Verde Neon Suave</strong>#BCFFB7</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#A9B5B5"></div><div class="swatch-meta" style="color:#11161B"><strong>Cinza Frio Claro</strong>#A9B5B5</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#EDEEF4"></div><div class="swatch-meta" style="color:#11161B"><strong>Branco Gelo</strong>#EDEEF4</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #eee"></div><div class="swatch-meta" style="color:#11161B"><strong>Branco</strong>#FFFFFF</div></div>
+    </div>
+  </section>
+
+  <section id="tipografia">
+    <span class="kicker">02 · Tipografia</span>
+    <h2 class="section-title" style="font-size:28px;">Space Mono + Sora</h2>
+    <p class="section-desc">Space Mono carrega a voz técnica (display, kickers, sistema). Sora carrega a voz humana e funcional (parágrafos, UI, formulários).</p>
+
+    <div class="type-row"><h1 class="display type-sample">Performance sai do papel</h1><span class="type-meta">display · Space Mono 400 · 64–80px</span></div>
+    <div class="type-row"><h2 class="h1 type-sample">A receita escapa onde a gestão não vê</h2><span class="type-meta">h1 · Space Mono 400 · 48px</span></div>
+    <div class="type-row"><h3 class="h2 type-sample">Tecnologia X: a central de comando</h3><span class="type-meta">h2 · Sora 700 · 32px</span></div>
+    <div class="type-row"><h4 class="h3 type-sample">O que o X entrega</h4><span class="type-meta">h3 · Sora 700 · 22px</span></div>
+    <div class="type-row"><p class="body-lg type-sample">A LTX combina tecnologia própria e gestão comercial especializada.</p><span class="type-meta">body-lg · Sora 300 · 19px</span></div>
+    <div class="type-row"><p class="body type-sample">Sem custo. Sem compromisso. Resposta em até 24h úteis.</p><span class="type-meta">body · Sora 400 · 16px</span></div>
+  </section>
+
+  <section id="spacing">
+    <span class="kicker">03 · Spacing</span>
+    <h2 class="section-title" style="font-size:28px;">Escala de 4px</h2>
+    <p class="section-desc">Base geométrica de respiro — nenhuma seção do site usa menos que <code>--space-16</code> (64px) de padding vertical, mesmo no mobile.</p>
+    <div class="space-demo">
+      <div class="space-item"><div class="space-block" style="width:4px;height:4px;"></div><div class="space-label">4</div></div>
+      <div class="space-item"><div class="space-block" style="width:8px;height:8px;"></div><div class="space-label">8</div></div>
+      <div class="space-item"><div class="space-block" style="width:16px;height:16px;"></div><div class="space-label">16</div></div>
+      <div class="space-item"><div class="space-block" style="width:24px;height:24px;"></div><div class="space-label">24</div></div>
+      <div class="space-item"><div class="space-block" style="width:32px;height:32px;"></div><div class="space-label">32</div></div>
+      <div class="space-item"><div class="space-block" style="width:48px;height:48px;"></div><div class="space-label">48</div></div>
+      <div class="space-item"><div class="space-block" style="width:64px;height:64px;"></div><div class="space-label">64</div></div>
+      <div class="space-item"><div class="space-block" style="width:96px;height:96px;"></div><div class="space-label">96</div></div>
+    </div>
+  </section>
+
+  <section id="slogan">
+    <span class="kicker">04 · Assinatura de movimento</span>
+    <h2 class="section-title" style="font-size:28px;">Animação do slogan</h2>
+    <p class="section-desc">Formalizada no Manual de Marca 2026 (p.37, "Composição Tipográfica") — a barra nasce, empurra "move" e vira verde ao concluir. Loop contínuo, ~5s por ciclo.</p>
+    <div class="slogan-panel">
+      <div class="slogan">
+        <div class="slogan-line" id="sLine1">inteligência que</div>
+        <div class="slogan-row">
+          <div class="slogan-bar" id="sBar"></div>
+          <div class="slogan-move" id="sMove">move</div>
+        </div>
+        <div class="slogan-line" id="sLine3">resultados</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="loading">
+    <span class="kicker">05 · Sistema de loading</span>
+    <h2 class="section-title" style="font-size:28px;">Execução → Inteligente</h2>
+    <p class="section-desc">Sequência oficial do Manual (p.33): cada forma cicla de contorno cinza para preenchimento verde, em stagger — nunca todas simultâneas. Muito lento, quase meditativo.</p>
+    <div class="loading-row">
+      <div class="loading-seq">
+        <div class="lstep"><svg viewBox="0 0 24 24"><path class="shape" d="M3 6a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6Z"/></svg></div>
+        <div class="lstep"><svg viewBox="0 0 24 24"><rect class="shape" x="4" y="4" width="16" height="16"/></svg></div>
+        <div class="lstep"><svg viewBox="0 0 24 24"><circle class="shape" cx="12" cy="12" r="9" stroke-width="2.4"/></svg></div>
+        <div class="lstep"><svg viewBox="0 0 24 24"><circle class="shape" cx="12" cy="12" r="8"/></svg></div>
+        <div class="lstep"><svg viewBox="0 0 24 24"><circle class="shape" cx="12" cy="12" r="9"/></svg></div>
+      </div>
+      <span class="loading-caption">execução</span>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+      <span class="loading-caption">inteligente</span>
+    </div>
+  </section>
+
+  <section id="componentes">
+    <span class="kicker">06 · Componentes</span>
+    <h2 class="section-title" style="font-size:28px;">Botões, badges & cards</h2>
+
+    <p class="section-desc" style="margin-bottom:var(--space-4);">Botões — outline por padrão, preenchido reservado ao CTA de maior prioridade da tela.</p>
+    <div class="btn-row" style="margin-bottom:var(--space-12);">
+      <button class="btn">Quero falar com quem entende</button>
+      <button class="btn primary">Quero meu Diagnóstico Gratuito</button>
+      <button class="btn text">Ver como funciona</button>
+    </div>
+
+    <p class="section-desc" style="margin-bottom:var(--space-4);">Badges — kicker de sistema, Space Mono tracked.</p>
+    <div class="badge-row" style="margin-bottom:var(--space-12);">
+      <span class="badge">Diagnóstico gratuito</span>
+      <span class="badge accent">Vaga disponível esta semana</span>
+      <span class="badge">Gestão &amp; Estratégia</span>
+    </div>
+
+    <p class="section-desc" style="margin-bottom:var(--space-4);">Cards — usados nos 4 sintomas do bloco Problema e em depoimentos.</p>
+    <div class="card-grid">
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 12h4l3 8 5-16 3 8h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Onde a receita escapa</h3>
+        <p>Você sabe que perde oportunidades, mas não sabe exatamente onde: qualificação, abordagem, follow-up ou timing.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h3>Dados sem ação</h3>
+        <p>As informações existem, mas demoram para virar decisão — espalhadas entre CRM, planilha e WhatsApp.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Resultado inconsistente</h3>
+        <p>A performance depende de quem está vendendo naquele dia. Sem método, o resultado varia com o humor da equipe.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="inputs">
+    <span class="kicker">07 · Formulário</span>
+    <h2 class="section-title" style="font-size:28px;">Diagnóstico Gratuito</h2>
+    <p class="section-desc">Campos do modal de captura, conforme copy da Etapa 1.</p>
+    <div class="form-demo">
+      <div class="field"><label>Nome</label><input type="text" placeholder="Seu nome completo"></div>
+      <div class="field"><label>E-mail</label><input type="email" placeholder="voce@empresa.com"></div>
+      <div class="field"><label>Empresa</label><input type="text" placeholder="Nome da empresa"></div>
+      <div class="field"><label>Telefone</label><input type="tel" placeholder="(00) 00000-0000"></div>
+      <button class="btn primary" style="justify-content:center; margin-top:8px;">Quero meu Diagnóstico Gratuito</button>
+    </div>
+  </section>
+
+  <section id="faq">
+    <span class="kicker">08 · FAQ</span>
+    <h2 class="section-title" style="font-size:28px;">Accordion — lista limpa, sem cards</h2>
+    <div id="faqList">
+      <div class="faq-item open">
+        <div class="faq-q"><span>O Diagnóstico é gratuito mesmo?</span><span class="plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Sim. A conversa inicial serve para entender sua operação e apontar prioridades, sem custo.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>É uma reunião comercial disfarçada?</span><span class="plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>É uma conversa consultiva. Primeiro entendemos seu cenário; se fizer sentido, mostramos como a LTX pode ajudar.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>O X substitui meu CRM?</span><span class="plus">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Depende do cenário. Em alguns casos, sim. Em outros, atua como camada de gestão sobre o que você já usa.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="grafismos">
+    <span class="kicker">09 · Grafismos</span>
+    <h2 class="section-title" style="font-size:28px;">Campo vetorial</h2>
+    <p class="section-desc">Vocabulário oficial de chevrons (Manual p.27-31) — nunca ícones genéricos de tecnologia.</p>
+    <div class="chevron-field">
+      <svg viewBox="0 0 800 180" preserveAspectRatio="xMidYMid slice">
+        <g fill="none" stroke-width="14" stroke-linecap="square">
+          <path d="M40 40 L90 90 L40 140" stroke="var(--text-tertiary)"/>
+          <path d="M80 40 L130 90 L80 140" stroke="var(--accent)"/>
+          <path d="M220 40 L270 90 L220 140" stroke="var(--accent)"/>
+          <path d="M400 90 L450 40" stroke="var(--text-tertiary)"/>
+          <path d="M400 90 L450 140" stroke="var(--text-tertiary)"/>
+          <path d="M470 90 L520 40" stroke="var(--accent)"/>
+          <path d="M470 90 L520 140" stroke="var(--accent)"/>
+          <path d="M620 40 L670 90 L620 140" stroke="var(--text-tertiary)"/>
+          <path d="M660 40 L710 90 L660 140" stroke="var(--accent)"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <svg class="logo" viewBox="0 0 776 194" style="height:20px;" xmlns="http://www.w3.org/2000/svg">
+          <path class="ink" d="M0 194V0.114439H22.793V172.396H122.105V194H0Z"/>
+          <path class="ink" d="M338.739 194V21.7188H283.385V0.114439H416.887V21.7188H361.532V194H338.739Z"/>
+          <path class="ink" d="M570.809 194H596.038L643.131 98.4307V94.9971L596.038 0H570.809L618.463 94.9971V98.4307L570.809 194Z"/>
+          <path class="accent" d="M776 192.855H751.332L708.164 107.015H732.927L776 192.855Z"/>
+          <path class="accent" d="M732.64 86.413H708.485L708.164 85.8407L751.332 0H776L732.64 86.413Z"/>
+        </svg>
+      </div>
+      <div class="footer-col">
+        <h4>Produto</h4>
+        <a href="#">Tecnologia X</a>
+        <a href="#">Diagnóstico Gratuito</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="#">Quem somos</a>
+        <a href="#">Cases</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="#">contato@ltx.com.br</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Lógica em Movimento</span>
+      <span>© 2026 LTX Performance</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header glass on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Dark/light toggle
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+
+  // Slogan signature loop
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sLine1 = document.getElementById('sLine1');
+  const sBar = document.getElementById('sBar');
+  const sMove = document.getElementById('sMove');
+  const sLine3 = document.getElementById('sLine3');
+
+  function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  async function sloganCycle(){
+    // reset
+    sLine1.classList.remove('show');
+    sBar.classList.remove('grown','accent');
+    sMove.classList.remove('show','accent');
+    sLine3.classList.remove('show');
+    sBar.style.transitionDuration = '0ms';
+    sBar.offsetHeight; // reflow
+    sBar.style.transitionDuration = '2200ms';
+
+    if (reduceMotion){
+      sLine1.classList.add('show'); sMove.classList.add('show','accent');
+      sBar.classList.add('grown','accent'); sLine3.classList.add('show');
+      return; // static end-state, no loop
+    }
+
+    await wait(400);
+    sLine1.classList.add('show');
+    sMove.classList.add('show');
+    await wait(700);
+    sBar.classList.add('grown');           // bar grows, pushes "move" via flex flow
+    await wait(2200);
+    sBar.classList.add('accent');
+    sMove.classList.add('accent');
+    await wait(300);
+    sLine3.classList.add('show');
+    await wait(1400);
+    // fade out
+    sLine1.style.transition = 'opacity 300ms var(--ease-out)';
+    sLine1.classList.remove('show');
+    sMove.classList.remove('show');
+    sLine3.classList.remove('show');
+    await wait(500);
+    sloganCycle();
+  }
+  sloganCycle();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+/* LTX Performance — border radius
+ * Pill on marketing CTAs. md (8px) on inputs/buttons in product.
+ * lg (12px) on cards/containers. 0 on logo + silhouette images.
+ */
+
+:root {
+  --ltx-radius-none: 0px;
+  --ltx-radius-xs:   4px;
+  --ltx-radius-sm:   6px;
+  --ltx-radius-md:   8px;
+  --ltx-radius-lg:   12px;
+  --ltx-radius-xl:   16px;
+  --ltx-radius-full: 9999px;
+}

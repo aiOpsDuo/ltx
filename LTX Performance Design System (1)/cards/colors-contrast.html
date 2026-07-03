@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Contrast pairs" subtitle="Brand-approved foreground / background combinations" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pair { padding: 14px 16px; border-radius: var(--ltx-radius-md);
+    display: flex; flex-direction: column; gap: 6px;
+    border: 1px solid var(--ltx-border-soft); }
+  .pair .big { font-family: var(--ltx-font-mono); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+  .pair .body { font-family: var(--ltx-font-sans); font-size: 13px; }
+  .pair .ratio { font-family: var(--ltx-font-mono); font-size: 10px; letter-spacing: 0.05em; opacity: 0.7; }
+
+  .p1 { background: #11161B; color: #EDEEF4; }
+  .p2 { background: #BCFFB7; color: #11161B; }
+  .p3 { background: #11161B; color: #BCFFB7; }
+  .p4 { background: #11161B; color: #A9B5B5; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="pair p1"><span class="big">Branco Gelo on Paper</span><span class="body">Titles + headlines</span><span class="ratio">17.9 : 1 — AAA</span></div>
+  <div class="pair p2"><span class="big">Paper on Accent</span><span class="body">CTA button text</span><span class="ratio">11.2 : 1 — AAA</span></div>
+  <div class="pair p3"><span class="big">Accent on Paper</span><span class="body">Big numbers only</span><span class="ratio">11.2 : 1 — AAA</span></div>
+  <div class="pair p4"><span class="big">Cinza Frio on Paper</span><span class="body">Body paragraphs</span><span class="ratio">8.4 : 1 — AAA</span></div>
+</div>
+</body>
+</html>

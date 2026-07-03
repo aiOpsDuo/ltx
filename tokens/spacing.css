@@ -1,0 +1,28 @@
+/* LTX Performance — 4px base spacing scale */
+
+:root {
+  --ltx-space-0:  0px;
+  --ltx-space-1:  4px;
+  --ltx-space-2:  8px;
+  --ltx-space-3:  12px;
+  --ltx-space-4:  16px;
+  --ltx-space-5:  20px;
+  --ltx-space-6:  24px;
+  --ltx-space-8:  32px;
+  --ltx-space-10: 40px;
+  --ltx-space-12: 48px;
+  --ltx-space-16: 64px;
+  --ltx-space-20: 80px;
+  --ltx-space-24: 96px;
+  --ltx-space-32: 128px;
+
+  /* Containers */
+  --ltx-container-max:     1200px;
+  --ltx-container-reading: 680px;
+  --ltx-gutter-mobile:     16px;
+  --ltx-gutter-desktop:    32px;
+
+  /* Section rhythm (mobile / desktop) */
+  --ltx-section-y-mobile:  64px;
+  --ltx-section-y-desktop: 96px;
+}

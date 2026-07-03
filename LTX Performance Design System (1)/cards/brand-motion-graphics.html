@@ -1,0 +1,117 @@
+<!-- @dsCard group="Brand" viewport="880x460" name="Grafismos em movimento" subtitle="Fluxo, onda e revelação — motion aprovado para os grafismos LTX" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<script src="../assets/graphics/ltx-grafismo.js"></script>
+<style>
+  html, body { margin: 0; }
+  body { padding: 24px; background: #11161B; font-family: var(--ltx-font-sans); }
+  .head {
+    display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px;
+  }
+  .head h2 {
+    font-family: var(--ltx-font-mono); font-weight: 400; font-size: 15px;
+    letter-spacing: -0.01em; color: #EDEEF4; margin: 0;
+  }
+  .head .note {
+    font-family: var(--ltx-font-mono); font-size: 10px; letter-spacing: 0.04em;
+    color: #696F6D;
+  }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .frame {
+    position: relative; aspect-ratio: 16 / 9; border-radius: 10px;
+    overflow: hidden; background: #11161B; border: 1px solid #282C2B;
+  }
+  .frame ltx-grafismo { position: absolute; inset: 0; }
+  .tag {
+    position: absolute; left: 12px; top: 12px; z-index: 2;
+    font-family: var(--ltx-font-mono); font-size: 10px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #BCFFB7;
+    background: rgba(17,22,27,0.72); padding: 4px 8px; border-radius: 4px;
+  }
+  .cap { margin-top: 10px; }
+  .cap .name {
+    font-family: var(--ltx-font-mono); font-size: 11px; color: #EDEEF4; font-weight: 400;
+  }
+  .cap .desc {
+    font-family: var(--ltx-font-sans); font-weight: 300; font-size: 12px;
+    color: #A9B5B5; line-height: 1.45; margin-top: 3px;
+  }
+  .replay {
+    position: absolute; right: 12px; top: 12px; z-index: 3;
+    font-family: var(--ltx-font-mono); font-size: 10px; letter-spacing: 0.04em;
+    color: #EDEEF4; background: rgba(40,44,43,0.9); border: 1px solid #3B403F;
+    padding: 4px 9px; border-radius: 999px; cursor: pointer;
+  }
+  .replay:hover { border-color: #BCFFB7; color: #BCFFB7; }
+  .foot {
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid #282C2B;
+    font-family: var(--ltx-font-sans); font-weight: 300; font-size: 12px;
+    color: #A9B5B5; line-height: 1.5;
+  }
+  .foot code {
+    font-family: var(--ltx-font-mono); color: #BCFFB7;
+    background: rgba(188,255,183,0.08); padding: 2px 6px; border-radius: 4px;
+  }
+  .foot b { color: #EDEEF4; font-family: var(--ltx-font-mono); font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="head">
+  <h2>Grafismos em movimento</h2>
+  <span class="note">mostrado a 42% p/ leitura · use 10–20% em produção</span>
+</div>
+
+<div class="grid">
+  <div>
+    <div class="frame">
+      <span class="tag">flow</span>
+      <ltx-grafismo variant="01" motion="flow" opacity="0.42" speed="7200"></ltx-grafismo>
+    </div>
+    <div class="cap">
+      <div class="name">Fluxo direcional</div>
+      <div class="desc">Chevrons derivam ≤8px na direção das setas, em loop. Lógica em movimento, literal.</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="frame">
+      <span class="tag">wave</span>
+      <ltx-grafismo variant="03" motion="wave" opacity="0.5" speed="6000"></ltx-grafismo>
+    </div>
+    <div class="cap">
+      <div class="name">Onda de brilho</div>
+      <div class="desc">Uma onda de opacidade percorre o campo. Sem deslocamento — só brilho viajando.</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="frame" id="revealFrame">
+      <span class="tag">reveal</span>
+      <button class="replay" onclick="replayReveal()">repetir</button>
+      <ltx-grafismo variant="02" motion="reveal" opacity="0.5"></ltx-grafismo>
+    </div>
+    <div class="cap">
+      <div class="name">Revelação escalonada</div>
+      <div class="desc">Entrada única: cada chevron faz fade + 8px em sequência. Para abertura de seção.</div>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <b>Regras.</b> Fade + ≤8px translate, easing <code>ease-in-out-ui</code> (loop) ou <code>ease-out-expo</code> (reveal).
+  Loops lentos (6–8s), opacidade baixa — textura, não decoração. Nunca parallax, bounce, shake ou shimmer. Respeita <code>prefers-reduced-motion</code>.
+</div>
+
+<script>
+  function replayReveal() {
+    var f = document.getElementById('revealFrame');
+    var old = f.querySelector('ltx-grafismo');
+    var fresh = old.cloneNode(false);
+    old.replaceWith(fresh);
+  }
+</script>
+</body>
+</html>

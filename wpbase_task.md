@@ -1,0 +1,9 @@
+- [x] Create `template-parts/components/` folder.
+- [x] Update `functions.php` to enqueue `assets-library/main.css`.
+- [x] Read `assets-library/assest-library.html` and understand component HTML.
+- [x] Create `template-parts/components/button.php`.
+- [x] Create `template-parts/components/badge.php`.
+- [x] Create `template-parts/components/card.php`.
+- [x] Create `template-parts/components/accordion.php`.
+- [x] Update `header.php` to use DS classes.
+- [x] Refactor `front-page.php` to use `get_template_part`.

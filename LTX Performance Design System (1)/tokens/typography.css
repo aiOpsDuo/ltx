@@ -1,0 +1,77 @@
+/* LTX Performance — typography tokens
+ *
+ * BRANDBOOK NOTE: LTX types run THIN, not heavy. The brand voice is
+ * engineering-precise, editorial, low-noise — so the default weights
+ * skew light. Bold weights (700+) exist as tokens but are reserved for
+ * rare emphasis (single word inside a heading, code hot-highlight).
+ *
+ * Space Mono = display + headlines + overline + code (default 400)
+ * Sora       = body + UI labels + inputs                (default 300)
+ */
+
+:root {
+  /* Families */
+  --ltx-font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ltx-font-sans: 'Sora', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Weights — Sora spans 100→800; Space Mono is 400/700 only */
+  --ltx-weight-thin:       100;
+  --ltx-weight-extralight: 200;
+  --ltx-weight-light:      300;
+  --ltx-weight-regular:    400;
+  --ltx-weight-medium:     500;
+  --ltx-weight-semibold:   600;
+  --ltx-weight-bold:       700;
+  --ltx-weight-extrabold:  800;
+
+  /* Default weights (thin-first) */
+  --ltx-weight-display:  400;  /* Space Mono Regular — headlines run thin */
+  --ltx-weight-heading:  400;  /* Space Mono Regular */
+  --ltx-weight-body:     300;  /* Sora Light */
+  --ltx-weight-ui:       400;  /* Sora Regular for buttons, tabs, labels */
+  --ltx-weight-emphasis: 500;  /* Sora Medium — the "bold" you reach for first */
+  --ltx-weight-strong:   600;  /* Sora SemiBold — reserved emphasis */
+
+  /* Sizes (px) */
+  --ltx-size-display-xl: 64px;
+  --ltx-size-display-lg: 48px;
+  --ltx-size-h1:         36px;
+  --ltx-size-h2:         28px;
+  --ltx-size-h3:         22px;
+  --ltx-size-h4:         18px;
+  --ltx-size-body-lg:    18px;
+  --ltx-size-body-md:    16px;
+  --ltx-size-body-sm:    14px;
+  --ltx-size-caption:    12px;
+  --ltx-size-overline:   12px;
+
+  /* Line heights */
+  --ltx-lh-display: 1.1;   /* @kind other */
+  --ltx-lh-heading: 1.2;   /* @kind other */
+  --ltx-lh-body:    1.5;   /* @kind other */
+  --ltx-lh-tight:   1.3;   /* @kind other */
+
+  /* Tracking — thin type wants slightly looser tracking than the old bold defaults */
+  --ltx-track-display:  -0.015em;  /* @kind other */
+  --ltx-track-heading:  -0.01em;   /* @kind other */
+  --ltx-track-overline:  0.08em;   /* @kind other */
+}
+
+/* Utility classes — thin-first per brandbook.
+ * Add `.ltx-strong` to any of these to opt into 500/700 emphasis. */
+.ltx-display-xl { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-display-xl); line-height: var(--ltx-lh-display); font-weight: var(--ltx-weight-display); letter-spacing: var(--ltx-track-display); }
+.ltx-display-lg { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-display-lg); line-height: 1.15; font-weight: var(--ltx-weight-display); letter-spacing: var(--ltx-track-display); }
+.ltx-h1         { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h1); line-height: var(--ltx-lh-heading); font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); }
+.ltx-h2         { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h2); line-height: 1.25; font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); }
+.ltx-h3         { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h3); line-height: var(--ltx-lh-tight); font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); }
+.ltx-h4         { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-h4); line-height: 1.35; font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-heading); }
+.ltx-body-lg    { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-body-lg); line-height: var(--ltx-lh-body); font-weight: var(--ltx-weight-body); }
+.ltx-body-md    { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-body-md); line-height: var(--ltx-lh-body); font-weight: var(--ltx-weight-body); }
+.ltx-body-sm    { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-body-sm); line-height: 1.45; font-weight: var(--ltx-weight-body); }
+.ltx-caption    { font-family: var(--ltx-font-sans); font-size: var(--ltx-size-caption); line-height: 1.33; font-weight: var(--ltx-weight-ui); }
+.ltx-overline   { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-overline); line-height: 1; font-weight: var(--ltx-weight-heading); letter-spacing: var(--ltx-track-overline); text-transform: uppercase; }
+.ltx-code       { font-family: var(--ltx-font-mono); font-size: var(--ltx-size-body-sm); line-height: 1.4; font-weight: var(--ltx-weight-heading); }
+
+/* Emphasis modifier — use sparingly. */
+.ltx-strong     { font-weight: var(--ltx-weight-emphasis); }
+.ltx-strong-mono{ font-weight: var(--ltx-weight-bold); }  /* Space Mono only has 400/700 */

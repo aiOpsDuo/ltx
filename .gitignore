@@ -1,0 +1,47 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+error_log
+debug.log
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.buildpath
+.settings/
+
+# Dependencies
+node_modules/
+vendor/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mac OS X
+.AppleDouble
+.LSOverride
+
+# Build and environment (Optional based on workflow)
+# dist/
+# build/
+.env
+.env.local
+
+# Agent / AI Assistants
+.agents/
+.gemini/

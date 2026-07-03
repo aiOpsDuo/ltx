@@ -1,0 +1,34 @@
+<!-- @dsCard group="Spacing" viewport="700x250" name="Section rhythm" subtitle="Vertical pattern inside every marketing section" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; background: #11161B; }
+  .col { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+  .el { font-family: var(--ltx-font-sans); color: #EDEEF4; }
+  .k { font-family: var(--ltx-font-mono); font-size: 10px; color: #BCFFB7; letter-spacing: 0.06em; text-transform: uppercase; }
+  .h { font-family: var(--ltx-font-mono); font-weight: 700; font-size: 22px; color: #EDEEF4; letter-spacing: -0.015em; }
+  .p { font-size: 13px; color: #A9B5B5; max-width: 460px; }
+  .btn { background: #BCFFB7; color: #11161B; padding: 10px 22px; border-radius: 9999px; font-family: var(--ltx-font-sans); font-weight: 600; font-size: 13px; }
+  .gap { display: flex; align-items: center; gap: 8px; }
+  .gap .meas { width: 80px; height: 1px; background: #3B403F; }
+  .gap .tag { font-family: var(--ltx-font-mono); font-size: 10px; color: #696F6D; }
+  .gap.s12 { height: 12px; }
+  .gap.s16 { height: 16px; }
+  .gap.s32 { height: 32px; }
+</style>
+</head>
+<body>
+<div class="col">
+  <span class="k">métricas reais</span>
+  <div class="gap s12"><span class="meas"></span><span class="tag">12 · kicker → headline</span></div>
+  <span class="h">Reduza em 40% o ciclo de vendas.</span>
+  <div class="gap s16"><span class="meas"></span><span class="tag">16 · headline → paragraph</span></div>
+  <span class="p">Integramos canais ao CRM em 3 dias e eliminamos preenchimento manual.</span>
+  <div class="gap s32"><span class="meas"></span><span class="tag">32 · paragraph → CTA</span></div>
+  <span class="btn">Analisar minha operação</span>
+</div>
+</body>
+</html>

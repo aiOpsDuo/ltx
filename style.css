@@ -1,0 +1,227 @@
+/*
+Theme Name:   Duo
+Theme URI:    https://seusite.com
+Author:       Agência Duo
+Description:  Tema customizado para Duo (Landing Page)
+Version:      1.0.0
+Text Domain:  duo
+*/
+
+@font-face{
+  font-family:"Space Mono";
+  src: url("./assets/fonts/space-mono/SpaceMono-Regular.ttf") format("truetype");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Space Mono";
+  src: url("./assets/fonts/space-mono/SpaceMono-Bold.ttf") format("truetype");
+  font-weight:700; font-style:normal; font-display:swap;
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./assets/fonts/sora/Sora-ExtraBold.ttf') format('truetype');
+}
+
+:root{
+  /* ---- paleta oficial ---- */
+  --color-ink-900:#11161B;
+  --color-graphite-700:#3B403F;
+  --color-sage-500:#696F6D;
+  --color-accent-400:#BCFFB7;
+  --color-frost-300:#A9B5B5;
+  --color-ice-100:#EDEEF4;
+  --color-white:#FFFFFF;
+
+  /* ---- tokens semanticos (dark = padrao) ---- */
+  --bg-canvas: var(--color-ink-900);
+  --bg-surface: #1a2027;
+  --bg-surface-2:#20272f;
+  --text-primary: var(--color-ice-100);
+  --text-secondary: var(--color-frost-300);
+  --text-tertiary: var(--color-sage-500);
+  --border-hairline: rgba(237,238,244,0.12);
+  --accent: var(--color-accent-400);
+  --accent-ink: var(--color-ink-900);
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.28);
+  --shadow-2: 0 8px 28px rgba(0,0,0,0.36);
+  --glass-bg: rgba(17,22,27,0.72);
+
+  /* ---- spacing ---- */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-6:24px; --space-8:32px; --space-12:48px; --space-16:64px;
+  --space-24:96px;
+
+  /* ---- radius ---- */
+  --radius-pill:999px; --radius-lg:24px; --radius-md:16px; --radius-sm:10px; --radius-xs:6px;
+
+  /* ---- motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-linear: linear;
+  --duration-micro:180ms; --duration-fast:320ms; --duration-reveal:560ms;
+
+  --font-mono:"Space Mono", ui-monospace, monospace;
+  --font-sans:"Sora", -apple-system, sans-serif;
+}
+
+html[data-theme="light"]{
+  --bg-canvas: var(--color-ice-100);
+  --bg-surface: #FFFFFF;
+  --bg-surface-2:#F5F6FA;
+  --text-primary: var(--color-ink-900);
+  --text-secondary: var(--color-graphite-700);
+  --text-tertiary: var(--color-sage-500);
+  --border-hairline: rgba(17,22,27,0.10);
+  --shadow-1: 0 1px 2px rgba(17,22,27,0.08);
+  --shadow-2: 0 10px 28px rgba(17,22,27,0.10);
+  --glass-bg: rgba(237,238,244,0.78);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.65;
+  transition: background-color 480ms var(--ease-out), color 480ms var(--ease-out);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Mídia responsiva por padrão */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Formulários herdam a fonte do tema */
+input, button, textarea, select {
+  font: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* =============================================================================
+   LTX COMPONENTS
+   ============================================================================= */
+
+/* ---------- BOTOES ---------- */
+.btn {
+  font-family: var(--font-sans); font-weight: 600; font-size: 15px; letter-spacing: .01em;
+  padding: 12px 28px; border-radius: var(--radius-pill); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--text-primary);
+  background: transparent; color: var(--text-primary);
+  transition: border-color var(--duration-micro) var(--ease-out), color var(--duration-micro) var(--ease-out), transform var(--duration-micro) var(--ease-out);
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-1); color: var(--accent-ink); border-color: var(--accent); }
+.btn.text { border-color: transparent; padding: 12px 4px; }
+.btn.text:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- CARDS ---------- */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-6); }
+.card {
+  background: var(--bg-surface); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg);
+  padding: var(--space-8); box-shadow: var(--shadow-1);
+  transition: transform var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+}
+.card:hover { transform: translateY(-3px); border-color: rgba(188, 255, 183, 0.4); }
+.card .icon { width: 34px; height: 34px; margin-bottom: var(--space-4); color: var(--accent); }
+.card h3 { margin-bottom: var(--space-2); }
+.card p { margin: 0; color: var(--text-secondary); font-size: 14.5px; }
+
+/* ---------- BADGES ---------- */
+.badge {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); color: var(--text-secondary);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.badge.accent { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- INPUTS ---------- */
+.form-conversao__input {
+  width: 100%; padding: 14px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-hairline);
+  background: var(--bg-surface); color: var(--text-primary); font-family: var(--font-sans); font-size: 15px;
+  transition: box-shadow var(--duration-micro) var(--ease-out), border-color var(--duration-micro) var(--ease-out);
+}
+.form-conversao__input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(188, 255, 183, 0.16); }
+
+/* ---------- FAQ ACCORDION ---------- */
+.faq-item { border-bottom: 1px solid var(--border-hairline); padding: var(--space-4) 0; }
+.faq-item__pergunta { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--font-sans); font-weight: 700; font-size: 17px; list-style: none; }
+.faq-item__pergunta::-webkit-details-marker { display: none; }
+.faq-item__pergunta .accordion-icon { color: var(--accent); transition: transform var(--duration-fast) var(--ease-out); }
+.faq-item[open] .accordion-icon { transform: rotate(45deg); }
+.faq-item__resposta { margin-top: var(--space-3); color: var(--text-secondary); font-size: 15px; }

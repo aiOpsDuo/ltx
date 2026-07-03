@@ -1,0 +1,120 @@
+<!-- @dsCard group="Components" viewport="1200x720" name="Marketing blocks" subtitle="Nav · Hero · FeatureCard · Testimonial · CtaBand" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { background: #11161B; margin: 0; }
+  .label { font-family: var(--ltx-font-mono); font-size: 10px; letter-spacing: 0.06em; color: #696F6D; text-transform: uppercase; padding: 14px 32px 0; display: block; max-width: 1200px; margin: 0 auto; }
+  .ico { width: 18px; height: 18px; }
+  /* Grafismo compose background layer */
+  .gband { position: relative; overflow: hidden; }
+  .gband > ltx-grafismo { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .gband > .gband-fg { position: relative; z-index: 1; }
+  /* Silhouette in the hero image slot — favor the figure on the right */
+  .gband .ltx-surface img { object-position: 72% center; }
+</style>
+<script src="../../assets/graphics/ltx-grafismo.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+  const ns = Object.keys(window).find(k => k.startsWith('LTXPerformanceDesignSystem_'));
+  const DS = window[ns];
+  const { Nav, Hero, FeatureCard, Testimonial, CtaBand } = DS;
+
+  const Grafismo = (p) => React.createElement('ltx-grafismo', p);
+
+  const Workflow = (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/>
+      <path d="M9 6h6a3 3 0 0 1 3 3v6"/>
+    </svg>
+  );
+  const LineChart = (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
+    </svg>
+  );
+  const Clock = (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </svg>
+  );
+
+  function Demo() {
+    return (
+      <div>
+        <Nav
+          basePath="../.."
+          links={[
+            { label: 'Metodologia', href: '#m' },
+            { label: 'Clientes', href: '#c' },
+            { label: 'Preços', href: '#p' },
+          ]}
+          cta={{ label: 'Falar com consultor', href: '#x' }}
+          sticky={false}
+        />
+
+        <div className="gband">
+          <Grafismo variant="02" motion="flow" opacity="0.13" speed="8200"/>
+          <div className="gband-fg">
+            <Hero
+              overline="lógica em movimento"
+              headline="Reduza em 40% o ciclo médio de vendas da sua equipe."
+              subhead="Integramos seus canais de leads ao seu CRM em 3 dias. Eliminamos preenchimento manual de planilhas."
+              primaryCta={{ label: 'Analisar minha operação', href: '#x' }}
+              secondaryCta={{ label: 'Ver metodologia', href: '#m' }}
+              image={{ src: '../../assets/images/sample02.png', alt: 'Head de vendas em silhueta sobre verde neon' }}
+              style={{ background: 'transparent' }}
+            />
+          </div>
+        </div>
+
+        <span className="label">FEATURE GRID</span>
+        <section style={{ padding: '24px 32px 64px', maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+            <FeatureCard icon={<Workflow/>} title="Triagem automática"
+              body="Conectamos seus formulários ao Pipedrive e disparamos a primeira mensagem em 3 segundos."/>
+            <FeatureCard icon={<LineChart/>} title="Dados consolidados"
+              body="Sincronizamos WhatsApp Business e RD Station no mesmo histórico de cliente."/>
+            <FeatureCard icon={<Clock/>} title="Operação em 3 dias"
+              body="Diagnóstico, integração e treinamento concluídos antes do próximo ciclo."/>
+          </div>
+        </section>
+
+        <span className="label">TESTIMONIAL</span>
+        <section style={{ padding: '24px 32px 64px', maxWidth: 1200, margin: '0 auto' }}>
+          <Testimonial
+            quote="Sincronizamos a triagem de leads e o atendimento na mesma semana. O tempo de primeiro contato caiu de 4 horas para 7 minutos."
+            attribution={{ name: 'Marina Cardoso', role: 'Head de Vendas', business: 'Hospital São Lucas', city: 'Porto Alegre' }}
+            outcome={{ value: '34%', label: 'redução de CAC em 8 semanas' }}
+          />
+        </section>
+
+        <div className="gband">
+          <Grafismo variant="03" motion="wave" opacity="0.10" speed="9000"/>
+          <div className="gband-fg">
+            <CtaBand
+              overline="diagnóstico inicial"
+              headline="Pronto para tirar os gargalos da sua operação de vendas?"
+              subhead="Nosso diagnóstico dura 30 minutos e mapeia as 3 principais automações para sua equipe."
+              primaryCta={{ label: 'Agendar diagnóstico', href: '#x' }}
+              style={{ background: 'transparent' }}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* LTX Performance — color tokens
+ * Source: design-system/foundations/color.md
+ * Dark canvas is the default. [data-theme="light"] flips every alias.
+ */
+
+:root {
+  /* ── Brand: Verde Neon Suave ─────────────────────────── */
+  --ltx-brand-50:  #F2FFF0;
+  --ltx-brand-100: #E3FEDE;
+  --ltx-brand-200: #BCFFB7;  /* the one true brand color (dark canvas) */
+  --ltx-brand-300: #92EF8C;
+  --ltx-brand-400: #7AE574;
+  --ltx-brand-500: #62DA5A;
+  --ltx-brand-600: #4AD142;
+  --ltx-brand-700: #33C72A;
+  --ltx-brand-800: #1F9E17;  /* light-canvas accent (readable on white) */
+  --ltx-brand-900: #167012;
+
+  /* ── Ink scale ───────────────────────────────────────── */
+  --ltx-ink-0:   #FFFFFF;
+  --ltx-ink-100: #EDEEF4;   /* Branco Gelo */
+  --ltx-ink-200: #A9B5B5;   /* Cinza Frio Claro */
+  --ltx-ink-300: #869292;
+  --ltx-ink-400: #696F6D;   /* Cinza Sage */
+  --ltx-ink-500: #555C5A;
+  --ltx-ink-600: #3B403F;   /* Cinza Grafite */
+  --ltx-ink-700: #282C2B;
+  --ltx-ink-800: #1A1F26;   /* Preto Suave */
+  --ltx-ink-900: #11161B;   /* Preto Profundo */
+
+  /* ── Semantic (used sparingly) ───────────────────────── */
+  --ltx-success-100: #E3FEDE;
+  --ltx-success-600: #1F9D6B;
+  --ltx-warn-100:    #FBF2DC;
+  --ltx-warn-600:    #C08415;
+  --ltx-danger-100:  #FAE4E2;
+  --ltx-danger-600:  #C8382F;
+
+  /* ── Semantic aliases (DARK theme — default) ─────────── */
+  --ltx-bg:              #11161B;   /* canvas */
+  --ltx-bg-elevated:     #1A1F26;
+  --ltx-surface:         #1A1F26;   /* card surface */
+  --ltx-surface-soft:    #161B21;
+  --ltx-text-title:      #EDEEF4;
+  --ltx-text-body:       #A9B5B5;
+  --ltx-text-muted:      #696F6D;
+  --ltx-text-on-accent:  #11161B;
+  --ltx-accent:          #BCFFB7;
+  --ltx-accent-hover:    #92EF8C;
+  --ltx-accent-soft:     #E3FEDE;
+  --ltx-line:            #3B403F;
+  --ltx-line-soft:       #282C2B;
+  --ltx-border:          #3B403F;
+  --ltx-border-soft:     #282C2B;
+  --ltx-chip-bg:         #3B403F;
+  --ltx-input-bg:        #1A1F26;
+  --ltx-focus-ring:      rgba(188, 255, 183, 0.4);
+}
+
+/* ── LIGHT theme — print, email, light-mode landing pages ── */
+[data-theme="light"] {
+  --ltx-bg:              #FFFFFF;
+  --ltx-bg-elevated:     #F7F8FA;
+  --ltx-surface:         #FFFFFF;
+  --ltx-surface-soft:    #F7F8FA;
+  --ltx-text-title:      #11161B;
+  --ltx-text-body:       #3B403F;
+  --ltx-text-muted:      #696F6D;
+  --ltx-text-on-accent:  #FFFFFF;
+  --ltx-accent:          #1F9E17;        /* brand-800 — readable on white */
+  --ltx-accent-hover:    #167012;        /* brand-900 */
+  --ltx-accent-soft:     #E3FEDE;
+  --ltx-line:            #D9DCE3;
+  --ltx-line-soft:       #EDEEF4;
+  --ltx-border:          #D9DCE3;
+  --ltx-border-soft:     #EDEEF4;
+  --ltx-chip-bg:         #EDEEF4;
+  --ltx-input-bg:        #FFFFFF;
+  --ltx-focus-ring:      rgba(31, 158, 23, 0.25);
+}

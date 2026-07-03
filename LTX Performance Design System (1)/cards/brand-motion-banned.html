@@ -1,0 +1,91 @@
+<!-- @dsCard group="Brand" viewport="820x220" name="Motion — proibidos" subtitle="O que nunca fazer, mostrado ao vivo" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: #11161B; display: flex; flex-direction: column; gap: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .card {
+    background: #1A1F26; border: 1px solid rgba(200,56,47,0.35); border-radius: 12px;
+    padding: 14px; display: flex; flex-direction: column; gap: 8px;
+    min-height: 130px; position: relative; overflow: hidden;
+  }
+  .banner {
+    position: absolute; top: 8px; right: 8px;
+    font-family: var(--ltx-font-mono); font-weight: 400; font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #C8382F;
+    background: rgba(200,56,47,0.12); padding: 3px 6px; border-radius: 3px;
+  }
+  .stage { flex: 1; display: flex; align-items: center; justify-content: center; }
+  .card .name { font-family: var(--ltx-font-mono); font-weight: 400; font-size: 11px; color: #EDEEF4; }
+  .card .why { font-family: var(--ltx-font-sans); font-weight: 300; font-size: 11px; color: #A9B5B5; line-height: 1.4; }
+
+  .demo { font-family: var(--ltx-font-mono); font-weight: 400; font-size: 14px; color: #EDEEF4; padding: 6px 12px; background: #282C2B; border-radius: 4px; }
+
+  /* Bounce */
+  .bounce { animation: bounce 900ms cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  /* Shake */
+  .shake { animation: shake 600ms ease-in-out infinite; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+  }
+
+  /* Shimmer */
+  .shimmer {
+    background: linear-gradient(90deg, #EDEEF4, #BCFFB7, #EDEEF4);
+    background-size: 200% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: shimmer 2000ms linear infinite;
+  }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+
+  /* Typewriter */
+  .type::after {
+    content: "|";
+    animation: blink 800ms steps(1) infinite;
+    margin-left: 2px; color: #BCFFB7;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="card">
+    <span class="banner">Never</span>
+    <div class="stage"><span class="demo bounce">Ping</span></div>
+    <span class="name">Bounce / elastic</span>
+    <span class="why">Vira brand para app infantil. LTX é precisão, não brincadeira.</span>
+  </div>
+
+  <div class="card">
+    <span class="banner">Never</span>
+    <div class="stage"><span class="demo shake">Erro</span></div>
+    <span class="name">Shake em erro</span>
+    <span class="why">Feedback de erro é copy + cor, nunca movimento agressivo.</span>
+  </div>
+
+  <div class="card">
+    <span class="banner">Never</span>
+    <div class="stage"><span class="demo shimmer">40% mais vendas</span></div>
+    <span class="name">Shimmer / gradient sweep</span>
+    <span class="why">Distrai da métrica. Números falam sozinhos.</span>
+  </div>
+
+  <div class="card">
+    <span class="banner">Never</span>
+    <div class="stage"><span class="demo type">lógica em movimento</span></div>
+    <span class="name">Typewriter</span>
+    <span class="why">Cliché de landing 2015. Segura o leitor no lugar errado.</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="03 — Big stat" subtitle="One number, one source" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html, body { margin: 0; }
+  .slide {
+    width: 1280px; height: 720px;
+    background: #11161B;
+    padding: 96px 128px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    box-sizing: border-box;
+  }
+  .center { align-self: center; display: flex; flex-direction: column; gap: 24px; }
+  .number {
+    font-family: var(--ltx-font-mono);
+    font-weight: 700;
+    font-size: 220px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: #BCFFB7;
+    margin: 0;
+  }
+  .label {
+    font-family: var(--ltx-font-sans);
+    font-size: 28px;
+    line-height: 1.3;
+    color: #EDEEF4;
+    max-width: 760px;
+    margin: 0;
+  }
+  .source {
+    font-family: var(--ltx-font-mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: #696F6D;
+    text-transform: uppercase;
+  }
+  .footer {
+    display: flex; justify-content: space-between; align-items: end;
+    font-family: var(--ltx-font-mono); font-size: 12px;
+    color: #696F6D; letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="center">
+    <div class="number">34%</div>
+    <p class="label">redução média do <b style="color:#BCFFB7;">CAC</b> em 8 semanas após sincronizar triagem de leads e atendimento.</p>
+    <span class="source">— mediana entre 17 clientes ativos da LTX (2024–2025)</span>
+  </div>
+  <div class="footer">
+    <span>LTX PERFORMANCE · MÉTRICAS REAIS</span>
+    <span>03 / 07</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!-- @dsCard group="Brand" viewport="820x280" name="Motion — iconografia" subtitle="Micro-interações permitidas · passe o mouse" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: #11161B; display: flex; flex-direction: column; gap: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .card {
+    background: #1A1F26; border: 1px solid #282C2B; border-radius: 12px;
+    padding: 16px; display: flex; flex-direction: column; gap: 10px;
+    min-height: 150px; cursor: pointer;
+  }
+  .icon-frame {
+    height: 56px; display: flex; align-items: center; justify-content: center;
+    color: #EDEEF4;
+  }
+  .card .name { font-family: var(--ltx-font-mono); font-weight: 400; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #BCFFB7; }
+  .card .desc { font-family: var(--ltx-font-sans); font-weight: 300; font-size: 12px; line-height: 1.4; color: #A9B5B5; }
+  .card .meta { font-family: var(--ltx-font-mono); font-size: 10px; color: #696F6D; letter-spacing: 0.04em; margin-top: auto; }
+
+  /* Behaviors */
+  .b-shift svg { transition: transform var(--ltx-dur-sm) var(--ltx-ease-out-expo); }
+  .b-shift:hover svg { transform: translateX(4px); }
+
+  .b-rotate svg { transition: transform var(--ltx-dur-md) var(--ltx-ease-out-expo); }
+  .b-rotate:hover svg { transform: rotate(45deg); }
+
+  .b-crossfade { position: relative; }
+  .b-crossfade svg { transition: opacity var(--ltx-dur-sm) var(--ltx-ease-standard); }
+  .b-crossfade .b { position: absolute; inset: 0; margin: auto; opacity: 0; color: #BCFFB7; }
+  .b-crossfade:hover .a { opacity: 0; }
+  .b-crossfade:hover .b { opacity: 1; }
+
+  .b-spin svg { animation: spin 1400ms linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .foot {
+    font-family: var(--ltx-font-sans); font-size: 12px; font-weight: 300; color: #A9B5B5;
+    line-height: 1.5;
+  }
+  .foot b { font-family: var(--ltx-font-mono); font-weight: 400; color: #EDEEF4; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="card b-shift">
+    <div class="icon-frame">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </div>
+    <span class="name">Directional</span>
+    <span class="desc">Seta se desloca 4px no hover — reforça a direção da ação.</span>
+    <span class="meta">160ms · out-expo</span>
+  </div>
+
+  <div class="card b-rotate">
+    <div class="icon-frame">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+    </div>
+    <span class="name">State morph</span>
+    <span class="desc">+ vira × para "fechar/expandir". Rotação limitada a 45°/90°.</span>
+    <span class="meta">240ms · out-expo</span>
+  </div>
+
+  <div class="card b-crossfade">
+    <div class="icon-frame" style="position: relative; width: 100%;">
+      <svg class="a" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+      <svg class="b" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+    </div>
+    <span class="name">Cross-fade</span>
+    <span class="desc">Troca de ícone (default → confirmado) sem deslocamento.</span>
+    <span class="meta">160ms · standard</span>
+  </div>
+
+  <div class="card b-spin">
+    <div class="icon-frame">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9" opacity="0.9"/></svg>
+    </div>
+    <span class="name">Loading</span>
+    <span class="desc">Único caso em que ícone pode girar 360° em loop.</span>
+    <span class="meta">1400ms · linear · infinite</span>
+  </div>
+</div>
+
+<div class="foot">
+  <b>Regra geral:</b> ícones respondem, não performam. Deslocamento ≤ 4px, rotação apenas para state-change (0/45/90°) ou loading. Nunca bounce, pulse contínuo, wobble ou "attention-seeking".
+</div>
+</body>
+</html>

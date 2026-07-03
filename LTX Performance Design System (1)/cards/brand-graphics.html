@@ -1,0 +1,74 @@
+<!-- @dsCard group="Brand" viewport="800x600" name="Grafismos LTX" subtitle="Três campos oficiais + variações derivadas (espelho, mono, movimento)" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<script src="../assets/graphics/ltx-grafismo.js"></script>
+<style>
+  html, body { margin: 0; }
+  body { padding: 24px; background: #11161B; box-sizing: border-box; width: 800px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .frame {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1A1F26;
+    border: 1px solid #282C2B;
+    position: relative;
+  }
+  .frame ltx-grafismo { position: absolute; inset: 0; }
+  .lbl {
+    font-family: var(--ltx-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: #A9B5B5;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+  .lbl b { color: #BCFFB7; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div>
+    <div class="frame"><ltx-grafismo variant="01" motion="flow" opacity="1" bg speed="8000"></ltx-grafismo></div>
+    <div class="lbl"><b>01</b> — abertura</div>
+  </div>
+  <div>
+    <div class="frame"><ltx-grafismo variant="01" motion="flow" opacity="1" bg flip speed="8000"></ltx-grafismo></div>
+    <div class="lbl"><b>01 · espelho</b></div>
+  </div>
+  <div>
+    <div class="frame"><ltx-grafismo variant="01" motion="wave" opacity="1" bg mono speed="7000"></ltx-grafismo></div>
+    <div class="lbl"><b>01 · mono</b></div>
+  </div>
+
+  <div>
+    <div class="frame"><ltx-grafismo variant="02" motion="flow" opacity="1" bg speed="7200"></ltx-grafismo></div>
+    <div class="lbl"><b>02</b> — quebra</div>
+  </div>
+  <div>
+    <div class="frame"><ltx-grafismo variant="02" motion="flow" opacity="1" bg flip speed="7200"></ltx-grafismo></div>
+    <div class="lbl"><b>02 · espelho</b></div>
+  </div>
+  <div>
+    <div class="frame"><ltx-grafismo variant="02" motion="wave" opacity="1" bg speed="6000"></ltx-grafismo></div>
+    <div class="lbl"><b>02 · onda</b></div>
+  </div>
+
+  <div>
+    <div class="frame"><ltx-grafismo variant="03" motion="flow" opacity="1" bg speed="8600"></ltx-grafismo></div>
+    <div class="lbl"><b>03</b> — fechamento</div>
+  </div>
+  <div>
+    <div class="frame"><ltx-grafismo variant="03" motion="flow" opacity="1" bg flip speed="8600"></ltx-grafismo></div>
+    <div class="lbl"><b>03 · espelho</b></div>
+  </div>
+  <div>
+    <div class="frame"><ltx-grafismo variant="03" motion="wave" opacity="1" bg mono speed="7400"></ltx-grafismo></div>
+    <div class="lbl"><b>03 · mono</b></div>
+  </div>
+</div>
+</body>
+</html>
