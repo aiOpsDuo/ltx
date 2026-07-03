@@ -100,7 +100,18 @@
       "Bash(mkdir -p .claude/skills)",
       "Bash(git mv *)",
       "Bash(mv agent_context/skills/react-expert .claude/skills/react-expert)",
-      "Bash(mv agent_context/skills/typescript-pro .claude/skills/typescript-pro)"
+      "Bash(mv agent_context/skills/typescript-pro .claude/skills/typescript-pro)",
+      "Bash(npm install *)",
+      "PowerShell(npm install -D vite-plugin-singlefile 2>&1)",
+      "Bash(which node; which npm; node --version 2>&1; ls \"C:/Program Files/nodejs\" 2>&1; echo \"PATH=$PATH\")",
+      "PowerShell(Get-Command node -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command npm -ErrorAction SilentlyContinue)",
+      "PowerShell(wsl -e bash -lc \"which node && which npm && node --version\" 2>&1)",
+      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npm install -D vite-plugin-singlefile 2>&1 | tail -30\")",
+      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npm run build:single 2>&1\")",
+      "Bash(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && ls -la dist-single && du -sh dist-single/* && echo '---' && du -sh dist-single\")",
+      "Bash(python3 -c ' *)",
+      "Bash(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && grep -o './videos/video-dash.mov' dist-single/index.html | head -3 && echo '---checking no leftover absolute ref---' && grep -c '\\\\\"/videos/video-dash.mov\\\\\"' dist-single/index.html || echo 'none found \\(good\\)'\")"
     ]
   }
 }
