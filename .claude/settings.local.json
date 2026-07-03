@@ -117,7 +117,10 @@
       "PowerShell(wsl -d Ubuntu bash -lc \"cd /home/rodrigo/projetos/ltx && python3 scripts/_inspect_mountain.py\" 2>&1)",
       "PowerShell(wsl -d Ubuntu bash -lc \"cd /home/rodrigo/projetos/ltx && time python3 scripts/_inspect_mountain.py\" 2>&1)",
       "Bash(find \"//wsl.localhost/ubuntu/home/rodrigo/projetos/ltx/node_modules\" -maxdepth 1 -iname \"*sharp*\" -o -maxdepth 1 -iname \"*pngjs*\" -o -maxdepth 1 -iname \"*jimp*\" 2>/dev/null)",
-      "PowerShell(wsl -d Ubuntu bash -lc \"cd /home/rodrigo/projetos/ltx && git status --porcelain -- public/images/mountain.png scripts/\")"
+      "PowerShell(wsl -d Ubuntu bash -lc \"cd /home/rodrigo/projetos/ltx && git status --porcelain -- public/images/mountain.png scripts/\")",
+      "PowerShell(npx tsc --noEmit 2>&1)",
+      "PowerShell(Get-Command wsl -ErrorAction SilentlyContinue)",
+      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npx tsc --noEmit 2>&1 | head -60\")"
     ]
   }
 }

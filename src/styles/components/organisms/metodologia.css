@@ -12,7 +12,19 @@
 
 .metodologia {
   position: relative;
+  padding-top: var(--ltx-space-12);
+  padding-bottom: var(--ltx-space-8);
   border-top: 1px solid var(--ltx-border-soft);
+}
+
+.metodologia-header {
+  margin-bottom: var(--ltx-space-6);
+  text-align: center;
+}
+
+.metodologia-header .section-heading {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ── Base (mobile / reduced motion): fluxo normal, sem pin ───────────────── */
@@ -37,7 +49,7 @@
 .metodologia-pin-grid {
   display: flex;
   flex-direction: column;
-  gap: var(--ltx-space-10);
+  gap: var(--ltx-space-6);
 }
 
 .metodologia-wheel-col {
@@ -178,7 +190,7 @@
 .metodologia-cta {
   display: flex;
   justify-content: center;
-  margin-top: var(--ltx-space-6);
+  margin-top: var(--ltx-space-4);
 }
 
 /* ── Notas abaixo da roda ─────────────────────────────────────────────── */
@@ -214,13 +226,22 @@
   .metodologia-pin {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    padding-top: var(--ltx-space-16);
+  }
+
+  .metodologia-header {
+    margin-bottom: 0;
   }
 
   .metodologia-pin-inner {
+    flex: 1 1 auto;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--ltx-space-6);
+    justify-content: center;
   }
 
   .metodologia-pin-footer {
@@ -349,7 +370,7 @@
   .metodologia-panel-curto { font-size: 28px; line-height: 1.25; }
   .metodologia-panel-body { font-size: 16px; line-height: 1.6; }
 
-  .metodologia-cta { justify-content: flex-start; margin-top: var(--ltx-space-8); }
+  .metodologia-cta { justify-content: flex-start; margin-top: var(--ltx-space-6); }
 
   .metodologia-loop-note { justify-content: center; }
   .metodologia-fechamento { margin: var(--ltx-space-2) auto 0; }

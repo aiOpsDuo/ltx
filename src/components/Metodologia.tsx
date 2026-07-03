@@ -132,6 +132,9 @@ export function Metodologia() {
     <section className="section metodologia" id="metodologia">
       <div className="metodologia-scroller" ref={scrollerRef}>
         <div className="metodologia-pin" ref={pinRef}>
+          <div className="container metodologia-header">
+            <h2 className="h2 section-heading">Metodologia</h2>
+          </div>
           <div className="metodologia-pin-inner">
             <div className="container metodologia-pin-grid">
               <div className="metodologia-wheel-col">
