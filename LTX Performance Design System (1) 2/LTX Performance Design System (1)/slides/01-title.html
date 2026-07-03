@@ -1,0 +1,86 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="01 — Capa" subtitle="Stacked lockup + project title + date" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<script src="../assets/graphics/ltx-grafismo.js"></script>
+<style>
+  html, body { margin: 0; }
+  .slide {
+    width: 1280px; height: 720px;
+    background: #11161B;
+    color: #EDEEF4;
+    padding: 96px 128px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide > .grafismo {
+    position: absolute; inset: 0; z-index: 0;
+    -webkit-mask-image: radial-gradient(120% 80% at 50% 46%, transparent 30%, #000 78%);
+    mask-image: radial-gradient(120% 80% at 50% 46%, transparent 30%, #000 78%);
+  }
+  .slide > .center, .slide > .footer { position: relative; z-index: 1; }
+  .center {
+    display: flex; flex-direction: column; align-items: center; gap: 32px;
+  }
+  .mark {
+    width: 220px; height: auto;
+  }
+  .kicker {
+    font-family: var(--ltx-font-mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: #BCFFB7;
+    text-transform: uppercase;
+  }
+  .footer {
+    display: flex; justify-content: space-between; align-items: end;
+    font-family: var(--ltx-font-mono);
+    font-size: 14px;
+    color: #696F6D;
+    letter-spacing: 0.04em;
+  }
+  .title-block {
+    display: flex; flex-direction: column; gap: 10px;
+    max-width: 720px;
+  }
+  .title-block h1 {
+    font-family: var(--ltx-font-mono);
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: #EDEEF4;
+    margin: 0;
+  }
+  .title-block .sub {
+    font-family: var(--ltx-font-sans);
+    font-size: 15px;
+    color: #A9B5B5;
+  }
+  .page { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <ltx-grafismo class="grafismo" variant="03" motion="flow" opacity="0.1" speed="8400"></ltx-grafismo>
+  <div class="center">
+    <img class="mark" src="../assets/logo/lockup-stacked.svg" alt="LTX Performance">
+    <span class="kicker">lógica em movimento</span>
+  </div>
+  <div class="footer">
+    <div class="title-block">
+      <h1>Proposta de estruturação comercial</h1>
+      <span class="sub">Para o Hospital São Lucas · Março de 2026</span>
+    </div>
+    <span class="page">01 / 07</span>
+  </div>
+</div>
+</body>
+</html>

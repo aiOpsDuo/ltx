@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LTX Performance — Diagnóstico gratuito da sua operação comercial</title>
+<meta name="description" content="Consultorias entregam relatório. Ferramentas entregam dados. A LTX entrega resultado. Agende seu Diagnóstico Gratuito.">
+
+<!-- Early theme read to avoid flash of wrong theme -->
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('ltx-theme');
+      if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+
+<!-- Design System tokens -->
+<link rel="stylesheet" href="tokens/fonts.css">
+<link rel="stylesheet" href="tokens/colors.css">
+<link rel="stylesheet" href="tokens/typography.css">
+<link rel="stylesheet" href="tokens/spacing.css">
+<link rel="stylesheet" href="tokens/radius.css">
+<link rel="stylesheet" href="tokens/shadow.css">
+<link rel="stylesheet" href="tokens/motion.css">
+
+<!-- Page styles -->
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<a class="skip-link" href="#hero-headline">Pular para o conteúdo</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container site-header__inner">
+    <a href="#hero" class="site-header__logo" aria-label="LTX Performance — página inicial">
+      <img src="assets/logo/logo.svg" alt="LTX Performance" width="146" height="29">
+    </a>
+
+    <nav class="site-header__nav" aria-label="Navegação principal">
+      <a href="#metodologia" class="site-header__nav-link">Método</a>
+      <a href="#tecnologia" class="site-header__nav-link">Tecnologia X</a>
+      <a href="#clientes" class="site-header__nav-link">Resultados</a>
+      <a href="#fundadores" class="site-header__nav-link">Sobre nós</a>
+      <a href="#faq" class="site-header__nav-link">FAQ</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Alternar para modo claro" aria-pressed="false">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <button type="button" class="btn btn--primary btn--sm" data-modal-trigger data-cta-source="header">
+        Agendar Diagnóstico
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ SEÇÃO 1 — HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <img src="assets/graphics/ltx_graph01.svg" alt="" class="hero__grafismo">
+    </div>
+
+    <div class="container hero__inner">
+
+      <div class="hero__content">
+        <h1 class="hero__headline" id="hero-headline">
+          <span class="hero__line hero__line--muted">Consultorias entregam relatório. Ferramentas entregam dados.</span>
+          <span class="hero__line hero__line--emphasis">A LTX entrega
+            <span class="word-rotate" id="wordRotate" aria-hidden="true">
+              <span class="word-rotate__item is-active" data-slide-index="0">Resultado</span>
+              <span class="word-rotate__item" data-slide-index="1">Performance</span>
+              <span class="word-rotate__item" data-slide-index="2">Gestão</span>
+              <span class="word-rotate__item" data-slide-index="3">Visibilidade</span>
+              <span class="word-rotate__item" data-slide-index="4">Execução</span>
+              <span class="word-rotate__item" data-slide-index="5">Processos</span>
+              <span class="word-rotate__item" data-slide-index="6">Clareza</span>
+            </span><span class="sr-only">Resultado</span>.
+          </span>
+        </h1>
+
+        <p class="ltx-body-lg hero__subhead">A LTX mostra o que fazer agora.</p>
+
+        <div class="hero__cta">
+          <button type="button" class="btn btn--primary btn--lg" data-modal-trigger data-cta-source="hero">
+            Agendar Diagnóstico
+          </button>
+        </div>
+      </div>
+
+      <!-- Área visual dinâmica — telas, imagens e vídeos reais do produto X,
+           trocando em sincronia com a última palavra da headline. -->
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__visual-frame" id="heroVisual">
+
+          <div class="hero__slide is-active" data-slide-index="0">
+            <video class="hero__slide-media" muted loop playsinline preload="auto"
+                   poster="assets/images/hero-analises-poster.jpg"
+                   src="assets/video/hero-analises.mp4"></video>
+          </div>
+
+          <div class="hero__slide" data-slide-index="1">
+            <img class="hero__slide-media" src="assets/images/medicao.png" alt="">
+          </div>
+
+          <div class="hero__slide" data-slide-index="2">
+            <img class="hero__slide-media" src="assets/images/desenvolvimento.png" alt="">
+          </div>
+
+          <div class="hero__slide" data-slide-index="3">
+            <video class="hero__slide-media" muted loop playsinline preload="auto"
+                   poster="assets/images/hero-insights-poster.jpg"
+                   src="assets/video/hero-insights.mp4"></video>
+          </div>
+
+          <div class="hero__slide" data-slide-index="4">
+            <img class="hero__slide-media" src="assets/images/padrao.png" alt="">
+          </div>
+
+          <div class="hero__slide" data-slide-index="5">
+            <img class="hero__slide-media" src="assets/images/diagnostico.png" alt="">
+          </div>
+
+          <div class="hero__slide" data-slide-index="6">
+            <video class="hero__slide-media" muted loop playsinline preload="auto"
+                   poster="assets/images/hero-pergunte-poster.jpg"
+                   src="assets/video/hero-pergunte.mp4"></video>
+          </div>
+
+          <div class="hero__visual-chrome">
+            <span class="hero__visual-dot"></span>
+            <span class="hero__visual-dot"></span>
+            <span class="hero__visual-dot"></span>
+            <span class="hero__visual-label">X · plataforma LTX</span>
+          </div>
+        </div>
+
+        <div class="hero__visual-progress" id="heroVisualProgress">
+          <span class="hero__visual-progress-dot is-active"></span>
+          <span class="hero__visual-progress-dot"></span>
+          <span class="hero__visual-progress-dot"></span>
+          <span class="hero__visual-progress-dot"></span>
+          <span class="hero__visual-progress-dot"></span>
+          <span class="hero__visual-progress-dot"></span>
+          <span class="hero__visual-progress-dot"></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 2 — OS 4 PILARES ============ -->
+  <section class="pilares" id="pilares">
+    <div class="container">
+
+      <!-- Parte 1 — texto à esquerda, 4 pilares à direita -->
+      <div class="pilares__top">
+        <div class="pilares__intro reveal">
+          <h2 class="ltx-h2 pilares__headline">Melhoramos expressivamente o resultado comercial da sua empresa com uma metodologia pautada em 4 pilares.</h2>
+        </div>
+
+        <div class="pilares__grid">
+          <article class="pilar-card reveal">
+            <span class="feature-chip" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            <h3 class="ltx-h4 pilar-card__title">Pessoas</h3>
+          </article>
+
+          <article class="pilar-card reveal">
+            <span class="feature-chip" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </span>
+            <h3 class="ltx-h4 pilar-card__title">Execução</h3>
+          </article>
+
+          <article class="pilar-card reveal">
+            <span class="feature-chip" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            </span>
+            <h3 class="ltx-h4 pilar-card__title">Clareza</h3>
+          </article>
+
+          <article class="pilar-card reveal">
+            <span class="feature-chip" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9.5"></path><path d="M3 10h18"></path><path d="M17.5 17.5 22 22"></path><circle cx="17.5" cy="17.5" r="3.5"></circle></svg>
+            </span>
+            <h3 class="ltx-h4 pilar-card__title">Processos</h3>
+          </article>
+        </div>
+      </div>
+
+      <!-- Parte 2 — faixa de prova social: número de clientes + carrossel de logos.
+           Número e nomes abaixo são EXEMPLOS ilustrativos (não há dado real de
+           clientes nos materiais do projeto) — substituir pelos valores reais. -->
+      <div class="social-proof reveal">
+        <div class="social-proof__stat">
+          <span class="social-proof__number">+80</span>
+          <span class="social-proof__label">empresas já estruturaram sua operação comercial com a LTX</span>
+        </div>
+
+        <div class="social-proof__marquee" aria-hidden="true">
+          <div class="social-proof__track">
+            <span class="social-proof__logo">Norte</span>
+            <span class="social-proof__logo">Vértice</span>
+            <span class="social-proof__logo">Ápice</span>
+            <span class="social-proof__logo">Orbe</span>
+            <span class="social-proof__logo">Marco</span>
+            <span class="social-proof__logo">Alvo</span>
+            <span class="social-proof__logo">Rota</span>
+            <span class="social-proof__logo">Chave</span>
+            <span class="social-proof__logo">Norte</span>
+            <span class="social-proof__logo">Vértice</span>
+            <span class="social-proof__logo">Ápice</span>
+            <span class="social-proof__logo">Orbe</span>
+            <span class="social-proof__logo">Marco</span>
+            <span class="social-proof__logo">Alvo</span>
+            <span class="social-proof__logo">Rota</span>
+            <span class="social-proof__logo">Chave</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 3 — CICLO DE EVOLUÇÃO ============
+       Layout de 2 colunas: à esquerda um ciclo circular (4 quadrantes,
+       ligados por setas em sentido horário, com um elemento discreto no
+       centro); à direita o painel de conteúdo do quadrante ativo. O
+       quadrante ativo avança conforme o usuário rola a seção — o círculo
+       (coluna esquerda) fica fixo (sticky) enquanto os 4 blocos de
+       conteúdo (coluna direita) passam por ele. -->
+  <section class="ciclo" id="metodologia">
+    <div class="ciclo__bg" aria-hidden="true">
+      <img src="assets/graphics/ltx_graph01.svg" alt="" class="ciclo__grafismo">
+    </div>
+    <div class="container">
+      <h2 class="ltx-h2 ciclo__headline reveal">Ciclo de Evolução</h2>
+
+      <div class="ciclo__scroller" id="cicloScroller">
+
+        <div class="ciclo__circle-col">
+          <div class="ciclo__circle-sticky">
+            <div class="ciclo__circle" role="img" aria-label="Ciclo de Evolução em quatro etapas contínuas: Diagnóstico, Padrão, Medição e Desenvolvimento">
+              <svg class="ciclo__circle-svg" viewBox="0 0 200 200" aria-hidden="true">
+                <path class="ciclo__arc" data-quadrant="0" d="M 45.13 39.06 A 82 82 0 0 1 154.87 39.06"></path>
+                <path class="ciclo__arc" data-quadrant="1" d="M 160.94 45.13 A 82 82 0 0 1 160.94 154.87"></path>
+                <path class="ciclo__arc" data-quadrant="2" d="M 154.87 160.94 A 82 82 0 0 1 45.13 160.94"></path>
+                <path class="ciclo__arc" data-quadrant="3" d="M 39.06 154.87 A 82 82 0 0 1 39.06 45.13"></path>
+              </svg>
+
+              <span class="ciclo__arrow ciclo__arrow--ne" data-between="0-1" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+              <span class="ciclo__arrow ciclo__arrow--se" data-between="1-2" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+              <span class="ciclo__arrow ciclo__arrow--sw" data-between="2-3" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+              <span class="ciclo__arrow ciclo__arrow--nw" data-between="3-0" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </span>
+
+              <div class="ciclo__center" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </div>
+
+              <div class="ciclo__node ciclo__node--n" data-quadrant="0" aria-hidden="true">
+                <span class="ciclo__node-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
+                <span class="ciclo__node-label">Diagnóstico</span>
+              </div>
+              <div class="ciclo__node ciclo__node--e" data-quadrant="1" aria-hidden="true">
+                <span class="ciclo__node-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></span>
+                <span class="ciclo__node-label">Padrão</span>
+              </div>
+              <div class="ciclo__node ciclo__node--s" data-quadrant="2" aria-hidden="true">
+                <span class="ciclo__node-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span class="ciclo__node-label">Medição</span>
+              </div>
+              <div class="ciclo__node ciclo__node--w" data-quadrant="3" aria-hidden="true">
+                <span class="ciclo__node-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></span>
+                <span class="ciclo__node-label">Desenvolvimento</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ciclo__panel-col">
+
+          <article class="ciclo__panel-step" data-quadrant="0">
+            <span class="ciclo-card__index">01</span>
+            <h3 class="ltx-h3 ciclo__panel-title">Diagnóstico</h3>
+            <p class="ltx-body-lg ciclo__panel-desc">Diagnóstico: saber exatamente onde a venda vaza.</p>
+            <p class="ltx-body-md">Antes de mexer em qualquer coisa, a gente entende o que está acontecendo de verdade. Não no achismo, com call real avaliada ao vivo, raio-x da operação e o gargalo apontado.</p>
+            <p class="ltx-body-md ciclo-card__outcome">O resultado que você sente aqui: sai da discussão "o vendedor é ruim" e entra na discussão concreta, onde, em qual etapa, por quê.</p>
+          </article>
+
+          <article class="ciclo__panel-step" data-quadrant="1">
+            <span class="ciclo-card__index">02</span>
+            <h3 class="ltx-h3 ciclo__panel-title">Padrão</h3>
+            <p class="ltx-body-lg ciclo__panel-desc">Padrão: o time inteiro sabe o que é uma boa call.</p>
+            <p class="ltx-body-md">Com o gargalo na mesa, define-se o "como deveria ser", o jeito certo de abordar, qualificar, conduzir uma reunião, fechar. Pelo critério da própria empresa, não por uma fórmula genérica.</p>
+            <p class="ltx-body-md ciclo-card__outcome">É aqui que nasce a régua que separa "fez" de "fez direito". Sem ela, todo mundo faz do seu jeito e ninguém consegue cobrar nada.</p>
+          </article>
+
+          <article class="ciclo__panel-step" data-quadrant="2">
+            <span class="ciclo-card__index">03</span>
+            <h3 class="ltx-h3 ciclo__panel-title">Medição</h3>
+            <p class="ltx-body-lg ciclo__panel-desc">Medição: 100% das interações avaliadas, todo dia.</p>
+            <p class="ltx-body-md">Não adianta ter padrão se ninguém acompanha. Aqui as interações passam a ser avaliadas 24/7, ligação, reunião, WhatsApp, sem depender do gestor puxar relatório.</p>
+            <p class="ltx-body-md ciclo-card__outcome">Quem está seguindo a régua, quem não está, e se a régua que você definiu está realmente funcionando. Dado vira direção, não relatório.</p>
+          </article>
+
+          <article class="ciclo__panel-step" data-quadrant="3">
+            <span class="ciclo-card__index">04</span>
+            <h3 class="ltx-h3 ciclo__panel-title">Desenvolvimento</h3>
+            <p class="ltx-body-lg ciclo__panel-desc">Desenvolvimento: cada vendedor evolui na competência que move o ponteiro.</p>
+            <p class="ltx-body-md">Com os dados claros, fica óbvio onde agir. Quem não está performando recebe um plano (PDI), trilhas e coaching 1:1 sobre uma call real. Quem performa vira referência.</p>
+            <p class="ltx-body-md ciclo-card__outcome">Não é treinar tudo. É treinar o gap que está travando o resultado, na competência que move o ponteiro daquele vendedor específico.</p>
+          </article>
+
+        </div>
+      </div>
+
+      <p class="ltx-body-lg ciclo__fechamento reveal">E quando esse loop começa a rodar sozinho, com o gestor conduzindo o rito sem a LTX no colo, a operação ganha escala: o sistema passa a cobrar a execução e o gestor vira alavanca, não apagador de incêndio.</p>
+
+      <div class="ciclo__cta reveal">
+        <button type="button" class="btn btn--primary btn--lg" data-modal-trigger data-cta-source="ciclo">
+          Agendar Diagnóstico
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 4 — TECNOLOGIA X ============ -->
+  <section class="tech-x" id="tecnologia">
+    <div class="tech-x__bg" aria-hidden="true">
+      <img src="assets/graphics/ltx_graph02.svg" alt="" class="tech-x__grafismo">
+    </div>
+    <div class="container tech-x__inner">
+      <div class="tech-x__copy reveal">
+        <h2 class="ltx-h2 tech-x__title"><span class="tech-x__highlight">X</span>: uma <span class="tech-x__title-emphasis">central de comando</span> para sua operação comercial.</h2>
+        <p class="ltx-body-lg">O X é a tecnologia própria da LTX criada para aproximar gestão, vendedores e dados reais da operação.</p>
+        <p class="ltx-body-lg">Ele ajuda a transformar conversas, atividades e movimentações do funil em uma visão mais clara sobre o que está acontecendo — e sobre o que precisa ser feito.</p>
+        <p class="ltx-body-lg tech-x__punch">Menos ruído. Menos decisão baseada em impressão. Mais clareza para vender melhor.</p>
+        <button type="button" class="btn btn--secondary btn--lg" data-modal-trigger data-cta-source="tech-x">
+          Quero ver na prática
+        </button>
+      </div>
+
+      <div class="tech-x__media reveal">
+        <div class="device-frame device-frame--video">
+          <span class="device-frame__dot"></span>
+          <span class="device-frame__dot"></span>
+          <span class="device-frame__dot"></span>
+          <video class="tech-x__video" controls preload="metadata" playsinline
+                 poster="assets/images/tech-x-poster.jpg"
+                 aria-label="Demonstração em vídeo do X, a plataforma da LTX">
+            <source src="assets/video/video-plataforma.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 5 — DEPOIMENTOS ============ -->
+  <section class="depoimentos" id="clientes">
+    <div class="container">
+      <div class="depoimentos__grid">
+
+        <div class="depoimentos__intro reveal">
+          <span class="depoimentos__mark" aria-hidden="true">
+            <svg viewBox="0 0 479 445" xmlns="http://www.w3.org/2000/svg">
+              <path class="depoimentos__mark-ink" d="M0 445H58.8935L168.51 226.417C168.719 225.999 168.828 225.539 168.828 225.072V218.62C168.828 218.15 168.718 217.687 168.506 217.268L58.8935 0H0L110.915 217.263C111.131 217.685 111.243 218.153 111.243 218.627V225.064C111.243 225.536 111.132 226.001 110.918 226.422L0 445Z"></path>
+              <path class="depoimentos__mark-accent" d="M479 442.375H421.415L320.642 245.472H378.449L479 442.375Z"></path>
+              <path class="depoimentos__mark-accent" d="M377.779 198.215H321.391L320.642 196.903L421.415 0H479L377.779 198.215Z"></path>
+            </svg>
+          </span>
+          <h2 class="ltx-h2 depoimentos__headline">Quem já estruturou a operação com a <span class="depoimentos__highlight">LTX</span>:</h2>
+        </div>
+
+        <div class="depoimentos__slider reveal">
+          <div class="depoimentos__track" id="depoimentosTrack">
+            <article class="depo-card" data-index="0">
+              <span class="depo-card__avatar" aria-hidden="true">
+                <img src="assets/logo/favicon.svg" alt="" class="depo-card__favicon">
+              </span>
+              <p class="ltx-body-md depo-card__quote">Depoimento com resultado específico.</p>
+              <p class="ltx-caption depo-card__placeholder-tag">Aguardando depoimento real do cliente</p>
+            </article>
+
+            <article class="depo-card" data-index="1">
+              <span class="depo-card__avatar" aria-hidden="true">
+                <img src="assets/logo/favicon.svg" alt="" class="depo-card__favicon">
+              </span>
+              <p class="ltx-body-md depo-card__quote">Depoimento com ganho de performance.</p>
+              <p class="ltx-caption depo-card__placeholder-tag">Aguardando depoimento real do cliente</p>
+            </article>
+
+            <article class="depo-card" data-index="2">
+              <span class="depo-card__avatar" aria-hidden="true">
+                <img src="assets/logo/favicon.svg" alt="" class="depo-card__favicon">
+              </span>
+              <p class="ltx-body-md depo-card__quote">Depoimento com melhoria de processo.</p>
+              <p class="ltx-caption depo-card__placeholder-tag">Aguardando depoimento real do cliente</p>
+            </article>
+          </div>
+
+          <div class="depoimentos__dots" id="depoimentosDots">
+            <button type="button" class="depoimentos__dot is-active" data-target="0" aria-label="Ver depoimento 1"></button>
+            <button type="button" class="depoimentos__dot" data-target="1" aria-label="Ver depoimento 2"></button>
+            <button type="button" class="depoimentos__dot" data-target="2" aria-label="Ver depoimento 3"></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 6 — FUNDADORES ============ -->
+  <section class="founders" id="fundadores">
+    <div class="container">
+      <h2 class="ltx-h2 founders__headline reveal">A LTX foi criada por quem entende os dois lados da performance: gestão e tecnologia.</h2>
+
+      <div class="founders__grid">
+        <article class="founder-card reveal">
+          <div class="founder-card__portrait" aria-hidden="true">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice"><circle cx="50" cy="38" r="20"></circle><path d="M12 100c0-24 17-38 38-38s38 14 38 38"></path></svg>
+          </div>
+          <h3 class="ltx-h4 founder-card__name">Tiago</h3>
+          <p class="ltx-caption founder-card__role">Gestão &amp; Estratégia Comercial</p>
+          <blockquote class="ltx-body-md founder-card__quote">"Gestão comercial precisa de clareza. Sem ela, o time trabalha muito, mas a liderança decide tarde."</blockquote>
+        </article>
+
+        <article class="founder-card reveal">
+          <div class="founder-card__portrait" aria-hidden="true">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice"><circle cx="50" cy="38" r="20"></circle><path d="M12 100c0-24 17-38 38-38s38 14 38 38"></path></svg>
+          </div>
+          <h3 class="ltx-h4 founder-card__name">Leonardo</h3>
+          <p class="ltx-caption founder-card__role">Tecnologia &amp; Processos</p>
+          <blockquote class="ltx-body-md founder-card__quote">"Quando a tecnologia mostra o que realmente importa, a operação ganha velocidade para agir."</blockquote>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 7 — FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="faq__bg" aria-hidden="true">
+      <img src="assets/graphics/ltx_graph03.svg" alt="" class="faq__grafismo">
+    </div>
+    <div class="container container--reading">
+      <h2 class="ltx-h2 faq__title reveal">Perguntas frequentes</h2>
+
+      <div class="faq__list reveal">
+        <div class="faq-item">
+          <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-panel-1">
+            <span class="ltx-h4">O Diagnóstico é gratuito mesmo?</span>
+            <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-item__panel" id="faq-panel-1" role="region">
+            <p class="ltx-body-md">Sim. A conversa inicial serve para entender sua operação e apontar prioridades, sem custo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-panel-2">
+            <span class="ltx-h4">É uma reunião comercial disfarçada?</span>
+            <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-item__panel" id="faq-panel-2" role="region">
+            <p class="ltx-body-md">É uma conversa consultiva. Primeiro entendemos seu cenário; se fizer sentido continuar, mostramos como a LTX pode ajudar numa próxima etapa.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-panel-3">
+            <span class="ltx-h4">A LTX é consultoria ou tecnologia?</span>
+            <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-item__panel" id="faq-panel-3" role="region">
+            <p class="ltx-body-md">As duas coisas, juntas: tecnologia própria (X) + gestão comercial especializada + acompanhamento contínuo. Nosso compromisso é na entrega.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-panel-4">
+            <span class="ltx-h4">Preciso ter processo comercial estruturado antes de falar com a LTX?</span>
+            <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-item__panel" id="faq-panel-4" role="region">
+            <p class="ltx-body-md">Não. A LTX ajuda empresas com processo definido e empresas que ainda precisam estruturar a operação.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-panel-5">
+            <span class="ltx-h4">Para quem a LTX não é indicada?</span>
+            <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="faq-item__panel" id="faq-panel-5" role="region">
+            <p class="ltx-body-md">A LTX não é indicada para empresas que não pretendem iniciar uma operação comercial ou para quem busca apenas uma ferramenta isolada, sem interesse em gestão, acompanhamento e evolução do processo comercial.</p>
+            <p class="ltx-body-md">Se a empresa já vende, está começando a vender ou quer estruturar sua operação com mais método, a LTX pode ajudar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 8 — CTA FINAL ============ -->
+  <section class="cta-final" id="contato">
+    <div class="container container--reading">
+      <h2 class="ltx-display-lg cta-final__headline reveal">O que sua operação comercial está deixando de enxergar hoje?</h2>
+      <p class="ltx-body-lg cta-final__subhead reveal">Se sua empresa já vende, mas ainda não tem clareza de onde a receita trava, o próximo passo é simples.</p>
+      <div class="reveal">
+        <button type="button" class="btn btn--primary btn--lg" data-modal-trigger data-cta-source="cta-final">
+          Quero meu Diagnóstico Gratuito
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <img src="assets/logo/logoFooter.svg" alt="LTX Performance" width="120" height="24" class="site-footer__logo">
+    <p class="ltx-caption site-footer__copy">© <span id="footerYear"></span> LTX Performance. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- ============ MODAL — DIAGNÓSTICO GRATUITO ============ -->
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modalDialog">
+    <button type="button" class="modal__close" id="modalClose" aria-label="Fechar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <h2 class="ltx-h3" id="modalTitle">Vamos entender sua operação comercial</h2>
+    <p class="ltx-body-md modal__subtitle">A LTX entra em contato para agendar o melhor horário com você.</p>
+
+    <form class="modal__form" id="diagnosticoForm">
+      <div class="form-group">
+        <label for="fieldNome">Nome</label>
+        <input type="text" id="fieldNome" name="nome" required autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="fieldEmail">E-mail</label>
+        <input type="email" id="fieldEmail" name="email" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="fieldEmpresa">Empresa</label>
+        <input type="text" id="fieldEmpresa" name="empresa" required autocomplete="organization">
+      </div>
+      <div class="form-group">
+        <label for="fieldTelefone">Telefone</label>
+        <input type="tel" id="fieldTelefone" name="telefone" required autocomplete="tel">
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--lg btn--full">Quero meu Diagnóstico Gratuito</button>
+      <p class="ltx-caption modal__microcopy">Sem custo. Sem compromisso. Você recebe retorno em até 24h úteis.</p>
+    </form>
+
+    <div class="modal__success" id="modalSuccess" hidden>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      <p class="ltx-h4">Recebemos seu pedido.</p>
+      <p class="ltx-body-md">A LTX entra em contato em até 24h úteis para agendar seu Diagnóstico Gratuito.</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

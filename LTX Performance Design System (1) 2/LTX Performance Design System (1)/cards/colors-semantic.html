@@ -1,0 +1,28 @@
+<!-- @dsCard group="Colors" viewport="700x130" name="Semantic" subtitle="Success · Warn · Danger — used sparingly" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; }
+  .row { display: flex; gap: 12px; height: 88px; }
+  .sw { flex: 1; border-radius: var(--ltx-radius-md);
+    padding: 12px 14px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: var(--ltx-font-mono); }
+  .sw .n { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
+  .sw .h { font-size: 14px; font-weight: 700; }
+  .ok    { background: #1F9D6B; color: #FFFFFF; }
+  .warn  { background: #C08415; color: #FFFFFF; }
+  .err   { background: #C8382F; color: #FFFFFF; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="sw ok"><span class="n">SUCCESS / 600</span><span class="h">#1F9D6B</span></div>
+  <div class="sw warn"><span class="n">WARN / 600</span><span class="h">#C08415</span></div>
+  <div class="sw err"><span class="n">DANGER / 600</span><span class="h">#C8382F</span></div>
+</div>
+</body>
+</html>

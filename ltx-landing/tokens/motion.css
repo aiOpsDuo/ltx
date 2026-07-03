@@ -1,0 +1,24 @@
+/* LTX Performance — motion tokens
+ * Fade + ≤8px translate, 160/240/480ms. Never bounce, shake, parallax,
+ * scroll-jack, or typewriter.
+ */
+
+:root {
+  --ltx-dur-xs: 80ms;   /* @kind other */
+  --ltx-dur-sm: 160ms;  /* @kind other */
+  --ltx-dur-md: 240ms;  /* @kind other */
+  --ltx-dur-lg: 480ms;  /* @kind other */
+
+  --ltx-ease-out-expo:  cubic-bezier(0.22, 1, 0.36, 1);  /* @kind other */
+  --ltx-ease-in-out-ui: cubic-bezier(0.4, 0, 0.2, 1);    /* @kind other */
+  --ltx-ease-standard:  cubic-bezier(0.4, 0, 0.2, 1);    /* @kind other */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

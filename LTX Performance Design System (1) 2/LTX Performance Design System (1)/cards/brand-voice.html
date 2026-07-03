@@ -1,0 +1,30 @@
+<!-- @dsCard group="Brand" viewport="700x140" name="Voice cheatsheet" subtitle="Second-person, sentence case, real numbers" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px; background: #11161B; display: flex; flex-direction: column; gap: 10px; }
+  .row { display: grid; grid-template-columns: 50px 1fr; gap: 12px; align-items: center; }
+  .tag {
+    font-family: var(--ltx-font-mono); font-size: 10px;
+    letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px;
+    text-align: center; font-weight: 700;
+  }
+  .do { background: rgba(188,255,183,0.12); color: #BCFFB7; }
+  .dont { background: rgba(105,111,109,0.15); color: #A9B5B5; }
+  .copy {
+    font-family: var(--ltx-font-sans); font-size: 14px;
+    color: #EDEEF4; line-height: 1.45;
+  }
+  .copy s { color: #696F6D; text-decoration: line-through; }
+</style>
+</head>
+<body>
+<div class="row"><span class="tag dont">DON'T</span><span class="copy"><s>Supercharge your sales with our AI-powered platform.</s></span></div>
+<div class="row"><span class="tag do">DO</span><span class="copy">Reduza em 40% o ciclo médio de vendas em 6 semanas.</span></div>
+<div class="row"><span class="tag dont">DON'T</span><span class="copy"><s>Book a Demo Now!</s></span></div>
+<div class="row"><span class="tag do">DO</span><span class="copy">Analisar minha operação</span></div>
+</body>
+</html>

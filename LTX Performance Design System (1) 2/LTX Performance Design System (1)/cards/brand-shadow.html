@@ -1,0 +1,29 @@
+<!-- @dsCard group="Brand" viewport="700x160" name="Shadow — flat by default" subtitle="Use surface contrast first; sm only on hover" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 24px; background: #11161B; }
+  .row { display: flex; gap: 22px; align-items: center; justify-content: space-between; }
+  .col { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .sw { background: #1A1F26; border: 1px solid #282C2B; width: 110px; height: 70px; border-radius: 8px; }
+  .lbl { font-family: var(--ltx-font-mono); font-size: 10px; letter-spacing: 0.05em; color: #A9B5B5; }
+  .s-none {}
+  .s-xs { box-shadow: 0 1px 2px rgba(17, 22, 27, 0.4); }
+  .s-sm { box-shadow: 0 2px 4px rgba(17, 22, 27, 0.5); }
+  .s-md { box-shadow: 0 4px 8px rgba(17, 22, 27, 0.6); }
+  .s-lg { box-shadow: 0 12px 24px rgba(17, 22, 27, 0.8); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="col"><div class="sw s-none"></div><span class="lbl">NONE — default</span></div>
+  <div class="col"><div class="sw s-xs"></div><span class="lbl">XS — hover</span></div>
+  <div class="col"><div class="sw s-sm"></div><span class="lbl">SM — input focus</span></div>
+  <div class="col"><div class="sw s-md"></div><span class="lbl">MD — popover</span></div>
+  <div class="col"><div class="sw s-lg"></div><span class="lbl">LG — modal</span></div>
+</div>
+</body>
+</html>
