@@ -35,25 +35,6 @@
 }
 .header-brand img { height: 24px; width: auto; }
 
-.header-nav {
-  display: flex;
-  align-items: center;
-  gap: var(--ltx-space-6);
-}
-
-.header-nav-link {
-  font-family: var(--ltx-font-sans);
-  font-size: var(--ltx-size-body-sm);
-  font-weight: var(--ltx-weight-emphasis);
-  color: var(--ltx-text-body);
-  transition: color var(--ltx-dur-sm) var(--ltx-ease-out-expo);
-}
-.header-nav-link:hover { color: var(--ltx-text-title); }
-
-@media (max-width: 860px) {
-  .header-nav { display: none; }
-}
-
 .header-actions {
   display: flex;
   align-items: center;

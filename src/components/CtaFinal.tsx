@@ -9,13 +9,14 @@ export function CtaFinal() {
         <ltx-grafismo variant="03" motion="wave" opacity="0.1" mono speed="7200" />
       </div>
       <div className="container cta-final-inner">
-        <span className="section-kicker">Última chance</span>
-        {/* Headline de referência da call era mais longa — o próprio time pediu para
-            lapidar (PRD §6.9). Versão abaixo é o ponto de partida para refinar junto. */}
+        {/* Copy final — COPY.md, 8ª Sessão. PRD §6.9: headline não pode exceder a
+            extensão da versão de referência da call; CTA idêntico ao resto da página. */}
         <h2 className="cta-final-headline">
-          Sua operação está <span className="text-accent">perdendo receita</span> agora.
+          O que sua operação comercial está <span className="text-accent">deixando de enxergar</span> hoje?
         </h2>
-        <p className="text-lead">Cada semana sem diagnóstico é receita que já vazou.</p>
+        <p className="text-lead">
+          Se sua empresa já vende, mas ainda não tem clareza de onde a receita trava, o próximo passo é simples:
+        </p>
         <button type="button" className="btn btn-primary btn-lg" onClick={() => openModal('cta-final')}>
           Quero meu Diagnóstico Gratuito
         </button>

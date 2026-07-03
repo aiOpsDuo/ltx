@@ -23,6 +23,12 @@
  */
 (() => {
   const ACCENT = '#BCFFB7';
+  // Light-theme counterpart of --ltx-accent (tokens/_theme.css). The chevron
+  // fields are tuned for the dark canvas by default; on a light surface the
+  // pastel accent and low opacities read as invisible, so we swap in the
+  // dark-green accent and boost the ceiling to keep the same "quiet texture" feel.
+  const ACCENT_LIGHT = '#1F9E17';
+  const LIGHT_OPACITY_BOOST = 2.2;
   const VB = '0 0 1920 1080';
 
   // Each variant: solid bg color + ordered chevron paths {d, fill}.
@@ -127,7 +133,17 @@
 
   class Grafismo extends HTMLElement {
     static get observedAttributes() { return ['variant', 'motion', 'opacity', 'speed', 'bg', 'mono', 'flip']; }
-    connectedCallback() { this.render(); }
+
+    connectedCallback() {
+      this.render();
+      this._themeObserver = new MutationObserver(() => this.render());
+      this._themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }
+
+    disconnectedCallback() {
+      if (this._themeObserver) this._themeObserver.disconnect();
+    }
+
     attributeChangedCallback() { if (this.shadowRoot) this.render(); }
 
     render() {
@@ -143,16 +159,19 @@
 
       const dur = (speed || 6400) + 'ms';
       const n = def.paths.length;
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const accent = isLight ? ACCENT_LIGHT : ACCENT;
 
       // Reveal reads best low→high; loops read best pulsing from a dim floor.
       const lo = motion === 'wave' ? 0.30 : 0.42;
       const hi = 1;
 
-      this.style.opacity = opacity != null ? opacity : (this.style.opacity || '0.14');
+      const baseOpacity = parseFloat(opacity != null ? opacity : (this.style.opacity || '0.14'));
+      this.style.opacity = String(isLight ? Math.min(1, baseOpacity * LIGHT_OPACITY_BOOST) : baseOpacity);
 
       const bgRect = showBg ? `<rect width="1920" height="1080" fill="${def.bg}"></rect>` : '';
       const paths = def.paths.map(([d, fill], i) => {
-        const c = mono ? ACCENT : fill;
+        const c = mono ? accent : (fill === ACCENT ? accent : fill);
         // Traveling phase: successive chevrons offset across the cycle.
         const delay = motion === 'reveal'
           ? `${Math.min(i, 14) * 45}ms`

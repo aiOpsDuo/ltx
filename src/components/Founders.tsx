@@ -1,46 +1,59 @@
-// PRD 6.7 — fotos reais de Tiago e Leonardo ainda não recebidas (pendência §13).
-// Tratamento oficial enquanto isso: silhueta duotone (preto profundo + verde neon).
+import { useReveal } from '../hooks/useReveal';
+
+// COPY.md — 6ª Sessão (Fundadores). Nomes completos por Tiago Souza (liderança
+// comercial) e Leonardo dos Reis (processo/engenharia de dados) — ver
+// design_system readme.md, seção de contexto da marca.
+// PRD 6.7 — fotos reais ainda não recebidas (pendência §13). Tratamento
+// oficial enquanto isso: silhueta duotone (fundo verde neon + figura em preto
+// profundo), conforme design_system/cards/brand-silhouette.html.
 const FOUNDERS = [
   {
     name: 'Tiago Souza',
-    role: 'Liderança comercial',
-    quote: '[Citação de Tiago — importar o texto validado na copy da Etapa 1]',
+    role: 'Gestão & Estratégia Comercial',
+    quote:
+      'Gestão comercial precisa de clareza. Sem ela, o time trabalha muito, mas a liderança decide tarde.',
   },
   {
     name: 'Leonardo dos Reis',
-    role: 'Processo e engenharia de dados',
-    quote: '[Citação de Leonardo — importar o texto validado na copy da Etapa 1]',
+    role: 'Tecnologia & Processos',
+    quote: 'Quando a tecnologia mostra o que realmente importa, a operação ganha velocidade para agir.',
   },
 ];
 
 function SilhouetteIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 12c2.76 0 5-2.69 5-6s-2.24-6-5-6-5 2.69-5 6 2.24 6 5 6Zm0 2c-4.42 0-9 2.24-9 5v3h18v-3c0-2.76-4.58-5-9-5Z" />
+    <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+      <circle cx="50" cy="34" r="18" />
+      <path d="M8 100v-6c0-25 19-45 42-45s42 20 42 45v6H8Z" />
     </svg>
   );
 }
 
 export function Founders() {
+  const ref = useReveal<HTMLDivElement>({ stagger: 0.08 });
+
   return (
     <section className="section founders" id="founders">
       <div className="section-grafismo" aria-hidden="true">
         <ltx-grafismo variant="03" motion="flow" opacity="0.08" speed="9600" />
       </div>
-      <div className="container">
-        <span className="section-kicker">Quem está por trás</span>
-        <h2 className="h2 section-heading">Sócios que já viveram o problema do outro lado.</h2>
-        <div className="founders-grid">
+      <div className="container founders-container">
+        <h2 className="h2 section-heading">
+          A LTX foi criada por quem entende os dois lados da performance: gestão e tecnologia.
+        </h2>
+        <div className="founders-grid" ref={ref}>
           {FOUNDERS.map((founder) => (
             <article className="founder-card" key={founder.name}>
               <div className="founder-portrait">
                 <SilhouetteIcon />
               </div>
-              <div>
+              <div className="founder-info">
                 <h3 className="founder-name">{founder.name}</h3>
                 <p className="founder-role">{founder.role}</p>
               </div>
-              <p className="founder-quote">{founder.quote}</p>
+              <blockquote className="founder-quote">
+                <p>{founder.quote}</p>
+              </blockquote>
             </article>
           ))}
         </div>
