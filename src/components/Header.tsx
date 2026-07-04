@@ -2,6 +2,18 @@ import { useEffect, useState } from 'react';
 import { useDiagnosticoModal } from '../context/DiagnosticoModalContext';
 import { useTheme } from '../context/ThemeContext';
 
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const NAV_LINKS: NavLink[] = [
+  { label: 'Método', href: '#metodologia' },
+  { label: 'Tecnologia X', href: '#tecnologia-x' },
+  { label: 'Founders', href: '#founders' },
+  { label: 'FAQ', href: '#faq' },
+];
+
 export function Header() {
   const [isStuck, setIsStuck] = useState(false);
   const { openModal } = useDiagnosticoModal();
@@ -23,6 +35,14 @@ export function Header() {
             alt="LTX Performance"
           />
         </a>
+
+        <nav className="header-nav" aria-label="Navegação principal">
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} className="header-nav-link">
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
         <div className="header-actions">
           <button type="button" className="btn btn-secondary btn-md" onClick={() => openModal('header')}>

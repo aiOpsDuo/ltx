@@ -16,11 +16,12 @@ import { DURATION, EASE_OUT_EXPO, TRANSLATE_DISTANCE, prefersReducedMotion } fro
 //
 // Layout (PRD): roda com o nome das etapas à esquerda, texto em destaque
 // da etapa ativa + CTA à direita. Ao rolar a página a roda gira e o texto
-// troca para a etapa seguinte — só em telas grandes e com motion permitido;
-// no fallback (mobile ou prefers-reduced-motion), os mesmos pontos viram
-// botões estáticos que trocam o texto ao toque/clique (a "Escala" também
-// vira só um botão que troca pro formulário, sem a animação de expansão).
-const ENHANCED_QUERY = '(min-width: 1024px) and (prefers-reduced-motion: no-preference)';
+// troca para a etapa seguinte — em qualquer largura de tela, desde que
+// motion seja permitido; no fallback (só prefers-reduced-motion), os
+// mesmos pontos viram botões estáticos que trocam o texto ao toque/clique
+// (a "Escala" também vira só um botão que troca pro formulário, sem a
+// animação de expansão).
+const ENHANCED_QUERY = '(prefers-reduced-motion: no-preference)';
 
 // Um ícone por etapa — substitui o número dentro do nó da roda (PRD:
 // cada ponto do ciclo precisa se identificar visualmente, não só por índice).
@@ -178,9 +179,9 @@ export function Metodologia() {
   const isFirstRender = useRef(true);
 
   // A roda gira e a etapa ativa avança conforme o scroll vertical da página
-  // (PRD 6.4: navegação sem depender de clique). Só roda em telas ≥1024px
-  // com motion permitido — gsap.matchMedia cria/destrói o ScrollTrigger
-  // automaticamente ao cruzar o breakpoint ou mudar a preferência do SO.
+  // (PRD 6.4: navegação sem depender de clique). Roda em qualquer largura,
+  // desde que motion seja permitido — gsap.matchMedia cria/destrói o
+  // ScrollTrigger automaticamente ao mudar a preferência do SO.
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();

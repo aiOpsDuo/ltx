@@ -1,13 +1,15 @@
 /* ==========================================================================
    METODOLOGIA ORGANISM — Seção 3, looping comercial. PRD 6.4 (COPY.md 3ª
-   sessão). Roda com as 4 etapas à esquerda, texto em destaque + CTA à
-   direita. Rolar a página gira a roda e avança a etapa (sem depender de
-   clique) — só em telas ≥1024px com motion permitido.
+   sessão). Roda com as 4 etapas, texto em destaque + CTA. Rolar a página
+   gira a roda e avança a etapa (sem depender de clique) — em qualquer
+   largura de tela, desde que motion seja permitido.
 
-   Mobile-first: base = layout estático empilhado (roda vira lista de
-   botões). Enhanced (min-width:1024px + prefers-reduced-motion:no-preference,
-   mesma condição usada no JS via gsap.matchMedia) = roda girando presa
-   (pin) durante o scroll.
+   Mobile-first: base = fallback estático empilhado (roda vira lista de
+   botões), usado só quando prefers-reduced-motion:reduce. Enhanced
+   (prefers-reduced-motion:no-preference, mesma condição usada no JS via
+   gsap.matchMedia) = roda girando presa (pin) durante o scroll, em
+   qualquer largura; o breakpoint 1024px dentro do enhanced só reajusta
+   proporções (roda maior, grid em linha, labels visíveis nos nós).
    ========================================================================== */
 
 .metodologia {
@@ -27,7 +29,8 @@
   margin-right: auto;
 }
 
-/* ── Base (mobile / reduced motion): fluxo normal, sem pin ───────────────── */
+/* ── Base (fallback prefers-reduced-motion:reduce): fluxo normal, sem pin,
+   roda vira lista de botões estáticos ─────────────────────────────────── */
 
 .metodologia-scroller {
   height: auto;
@@ -63,7 +66,8 @@
 }
 
 .metodologia-ring,
-.metodologia-pointer {
+.metodologia-pointer,
+.metodologia-rotation-hints {
   display: none;
 }
 
@@ -250,9 +254,14 @@
 
 /* ── Enhanced: roda de verdade, presa (pin) e girando com o scroll ───────
    Mesma condição do gsap.matchMedia() em Metodologia.tsx (ENHANCED_QUERY) —
-   os dois precisam ficar em sincronia. */
+   os dois precisam ficar em sincronia. Sem min-width: roda em qualquer
+   largura. Os valores aqui são o tamanho mobile (roda menor, empilhada);
+   o bloco @media (min-width:1024px) logo abaixo só ajusta proporções pro
+   layout em linha. No anel pequeno o nome da etapa some do nó (some fica
+   ilegível/vaza pra fora da roda) — só o ícone marca o ponto; o nome
+   completo continua sempre visível no texto em destaque ao lado/abaixo. */
 
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   /* 340vh cobria as 3 transições entre os 4 pontos do anel (~113vh cada).
      Agora há uma 4ª transição até "Escala" (não fica no anel, mas ocupa o
      mesmo intervalo de scroll) — mantém o ritmo por transição. */
@@ -260,6 +269,8 @@
     height: 453vh;
   }
 
+  /* padding-top precisa cobrir o header fixo do site (~69px, ver
+     header.css) — senão o título da seção fica escondido atrás dele. */
   .metodologia-pin {
     height: 100vh;
     display: flex;
@@ -272,60 +283,63 @@
     margin-bottom: 0;
   }
 
+  /* flex-start (não center): o conteúdo começa logo abaixo do título, com
+     um respiro fixo e pequeno — centralizar verticalmente no espaço
+     sobrando abaixo do header criava um vão enorme entre título e roda. */
   .metodologia-pin-inner {
     flex: 1 1 auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: var(--ltx-space-5);
   }
 
   .metodologia-pin-footer {
     margin-top: 0;
     width: 100%;
-    max-width: 1360px;
     text-align: center;
   }
 
   .metodologia-pin .metodologia-pin-grid {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: var(--ltx-space-24);
+    gap: var(--ltx-space-8);
     width: 100%;
-    max-width: 1360px;
   }
 
   .metodologia-wheel-col {
-    flex: 0 0 520px;
+    flex: 0 0 auto;
   }
 
+  /* Roda confortável em telas ~360px de largura (container tem
+     --ltx-gutter-mobile de 16px de cada lado, sobrando ~40px de margem). */
   .metodologia-wheel {
-    width: 520px;
-    height: 520px;
+    width: 260px;
+    height: 260px;
   }
 
   .metodologia-text-col {
-    flex: 1 1 auto;
+    width: 100%;
   }
 
   .metodologia-ring {
     display: block;
     position: absolute;
-    inset: 84px;
+    inset: 42px;
     border-radius: var(--ltx-radius-full);
     border: 1px dashed var(--ltx-border);
     transition: opacity var(--ltx-dur-lg) var(--ltx-ease-out-expo);
   }
 
-  /* Marca fixa por onde as etapas "chegam" ao girar — o lado que aponta
-     para o texto em destaque. */
+  /* Marca fixa por onde as etapas "chegam" ao girar. */
   .metodologia-pointer {
     display: block;
     position: absolute;
     top: 50%;
-    right: 84px;
-    width: 18px;
+    right: 42px;
+    width: 12px;
     height: 2px;
     background: var(--ltx-accent);
     transform: translate(50%, -50%);
@@ -333,14 +347,15 @@
   }
 
   /* Setinhas indicando o sentido de giro do anel — 4 marcas fixas nos vãos
-     diagonais entre os nós, num raio (198px) entre o anel (176px) e a
-     órbita dos nós (220px), pra não ficar coladas na linha do anel.
+     diagonais entre os nós, num raio (99px) entre o anel (88px) e a
+     órbita dos nós (110px), pra não ficar coladas na linha do anel.
      Cada `.metodologia-rotation-hint--N` já gira o próprio elemento pro
-     ângulo da posição (rotate(A) translate(198px)) — o svg dentro dele
+     ângulo da posição (rotate(A) translate(99px)) — o svg dentro dele
      herda esse ângulo A, então só precisa girar +90° A MAIS (relativo,
      não o ângulo absoluto) pra ficar tangente e apontar no sentido
      horário, para a próxima etapa. */
   .metodologia-rotation-hints {
+    display: block;
     position: absolute;
     inset: 0;
     pointer-events: none;
@@ -361,15 +376,15 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     transform: translate(-50%, -50%) rotate(90deg);
   }
 
-  .metodologia-rotation-hint--0 { transform: rotate(45deg)  translate(198px); }
-  .metodologia-rotation-hint--1 { transform: rotate(135deg) translate(198px); }
-  .metodologia-rotation-hint--2 { transform: rotate(225deg) translate(198px); }
-  .metodologia-rotation-hint--3 { transform: rotate(315deg) translate(198px); }
+  .metodologia-rotation-hint--0 { transform: rotate(45deg)  translate(99px); }
+  .metodologia-rotation-hint--1 { transform: rotate(135deg) translate(99px); }
+  .metodologia-rotation-hint--2 { transform: rotate(225deg) translate(99px); }
+  .metodologia-rotation-hint--3 { transform: rotate(315deg) translate(99px); }
 
   .metodologia-hub-mark {
     position: absolute;
@@ -377,8 +392,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 88px;
-    height: 88px;
+    width: 52px;
+    height: 52px;
     padding: 0;
     margin: 0;
     transition: width var(--ltx-dur-lg) var(--ltx-ease-out-expo),
@@ -388,28 +403,28 @@
   }
 
   .metodologia-hub-mark img {
-    width: 46px;
+    width: 28px;
     transition: width var(--ltx-dur-lg) var(--ltx-ease-out-expo);
   }
 
   .metodologia-hub-mark-label {
-    font-size: 15px;
+    font-size: 11px;
   }
 
   /* Etapa "Escala": o hub central se expande até cobrir o anel inteiro
-     (352px de diâmetro) mantendo o ícone visível, agora sobre fundo verde,
-     com "Escala" escrito embaixo — translate(-50%,-50%) mantém o centro
-     fixo enquanto width/height crescem. */
+     mantendo o ícone visível, agora sobre fundo verde, com "Escala"
+     escrito embaixo — translate(-50%,-50%) mantém o centro fixo enquanto
+     width/height crescem. */
   .metodologia-hub-mark--expanded {
-    width: 380px;
-    height: 380px;
+    width: 190px;
+    height: 190px;
     border-radius: var(--ltx-radius-full);
     background: var(--ltx-accent);
     border-color: var(--ltx-accent);
   }
 
   .metodologia-hub-mark--expanded img {
-    width: 72px;
+    width: 36px;
   }
 
   .metodologia-wheel.is-escala-active .metodologia-ring,
@@ -422,7 +437,7 @@
 
   /* --rot é escrito via JS (ScrollTrigger onUpdate) direto no elemento —
      herda para .metodologia-node-label, que contra-rotaciona pra manter o
-     texto sempre na horizontal. */
+     conteúdo sempre na horizontal. */
   .metodologia-rotor {
     position: absolute;
     inset: 0;
@@ -442,10 +457,10 @@
     border-radius: 0;
   }
 
-  .metodologia-node--0 { transform: rotate(0deg) translate(220px); }
-  .metodologia-node--1 { transform: rotate(90deg) translate(220px); }
-  .metodologia-node--2 { transform: rotate(180deg) translate(220px); }
-  .metodologia-node--3 { transform: rotate(270deg) translate(220px); }
+  .metodologia-node--0 { transform: rotate(0deg) translate(110px); }
+  .metodologia-node--1 { transform: rotate(90deg) translate(110px); }
+  .metodologia-node--2 { transform: rotate(180deg) translate(110px); }
+  .metodologia-node--3 { transform: rotate(270deg) translate(110px); }
 
   /* "Escala" (índice 4) não é um ponto do anel — é alcançada expandindo o
      hub central (.metodologia-hub-mark--expanded), então some daqui. */
@@ -456,8 +471,9 @@
     top: 0;
     left: 0;
     flex-direction: column;
+    align-items: center;
     gap: var(--ltx-space-1);
-    padding: var(--ltx-space-2);
+    padding: 0;
   }
 
   .metodologia-node--0 .metodologia-node-label { transform: translate(-50%, -50%) rotate(0deg)   rotate(calc(-1 * var(--rot, 0deg))); }
@@ -465,9 +481,118 @@
   .metodologia-node--2 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-180deg) rotate(calc(-1 * var(--rot, 0deg))); }
   .metodologia-node--3 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-270deg) rotate(calc(-1 * var(--rot, 0deg))); }
 
+  .metodologia-node-index { width: 32px; height: 32px; }
+  .metodologia-node-index svg { width: 17px; height: 17px; }
+
+  /* Roda pequena demais pra caixa de texto ao lado de cada nó (vazaria pra
+     fora da tela) — nome da etapa some visualmente, mas continua
+     acessível a leitor de tela; o texto em destaque abaixo da roda já
+     repete o nome por extenso a cada troca de etapa. */
+  .metodologia-node-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .metodologia-panel { gap: var(--ltx-space-3); }
+  .metodologia-cta { margin-top: var(--ltx-space-6); }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .metodologia-pin-footer {
+    max-width: 1360px;
+  }
+
+  .metodologia-pin .metodologia-pin-grid {
+    flex-direction: row;
+    gap: var(--ltx-space-24);
+    max-width: 1360px;
+  }
+
+  .metodologia-wheel-col {
+    flex: 0 0 520px;
+  }
+
+  .metodologia-wheel {
+    width: 520px;
+    height: 520px;
+  }
+
+  .metodologia-text-col {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  .metodologia-ring {
+    inset: 84px;
+  }
+
+  .metodologia-pointer {
+    right: 84px;
+    width: 18px;
+  }
+
+  /* Raio (198px) entre o anel (176px) e a órbita dos nós (220px), pra não
+     ficar coladas na linha do anel — ver explicação completa acima. */
+  .metodologia-rotation-hint svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .metodologia-rotation-hint--0 { transform: rotate(45deg)  translate(198px); }
+  .metodologia-rotation-hint--1 { transform: rotate(135deg) translate(198px); }
+  .metodologia-rotation-hint--2 { transform: rotate(225deg) translate(198px); }
+  .metodologia-rotation-hint--3 { transform: rotate(315deg) translate(198px); }
+
+  .metodologia-hub-mark {
+    width: 88px;
+    height: 88px;
+  }
+
+  .metodologia-hub-mark img {
+    width: 46px;
+  }
+
+  .metodologia-hub-mark-label {
+    font-size: 15px;
+  }
+
+  /* 352px de diâmetro cobrindo o anel inteiro. */
+  .metodologia-hub-mark--expanded {
+    width: 380px;
+    height: 380px;
+  }
+
+  .metodologia-hub-mark--expanded img {
+    width: 72px;
+  }
+
+  .metodologia-node--0 { transform: rotate(0deg) translate(220px); }
+  .metodologia-node--1 { transform: rotate(90deg) translate(220px); }
+  .metodologia-node--2 { transform: rotate(180deg) translate(220px); }
+  .metodologia-node--3 { transform: rotate(270deg) translate(220px); }
+
+  .metodologia-node-label {
+    align-items: normal;
+    padding: var(--ltx-space-2);
+  }
+
   .metodologia-node-index { width: 34px; height: 34px; font-size: 13px; }
   .metodologia-node-index svg { width: 18px; height: 18px; }
-  .metodologia-node-title { font-size: 16px; }
+
+  /* Roda grande o bastante pra caber o nome da etapa ao lado de cada nó —
+     mostra o rótulo (escondido no anel pequeno do mobile, ver acima). */
+  .metodologia-node-title {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    font-size: 16px;
+  }
 
   .metodologia-panel { text-align: left; margin: 0; max-width: none; gap: var(--ltx-space-4); }
   .metodologia-panel-step { font-size: 13px; }

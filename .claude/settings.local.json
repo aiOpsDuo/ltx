@@ -143,7 +143,15 @@
       "Bash(grep -n \"ltx-space-1:\\\\|ltx-space-2:\\\\|ltx-space-3:\\\\|ltx-space-4:\" src/styles/tokens/_theme.css)",
       "Bash(cd \"//wsl.localhost/ubuntu/home/rodrigo/projetos/ltx\" && ls node_modules/.bin | grep -i tsc; cat package.json | head -30)",
       "Bash(node ./node_modules/typescript/bin/tsc -b)",
-      "Bash(grep -rln \"A9B5B5\" .)"
+      "Bash(grep -rln \"A9B5B5\" .)",
+      "Bash(git branch *)",
+      "Bash(git filter-branch *)",
+      "Bash(git stash *)",
+      "Bash(git ls-tree *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"exit origin: $?\")",
+      "Bash(git -c core.protectNTFS=false filter-branch -f --index-filter 'git rm --cached --ignore-unmatch ltx.rar' -- origin/rx..HEAD)",
+      "Bash(ls /home/rodrigo/projetos/ 2>&1; echo \"---\"; pwd)"
     ]
   }
 }

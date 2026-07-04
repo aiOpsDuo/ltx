@@ -35,6 +35,34 @@
 }
 .header-brand img { height: 24px; width: auto; }
 
+.header-nav {
+  display: none;
+  align-items: center;
+  gap: var(--ltx-space-10);
+}
+
+@media (min-width: 1024px) {
+  .header-nav {
+    display: flex;
+  }
+}
+
+.header-nav-link {
+  font-family: var(--ltx-font-mono);
+  font-weight: var(--ltx-weight-bold);
+  font-size: 11px;
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--ltx-dur-sm) var(--ltx-ease-out-expo);
+}
+.header-nav-link:hover,
+.header-nav-link:focus-visible {
+  color: var(--ltx-text-title);
+}
+
 .header-actions {
   display: flex;
   align-items: center;
