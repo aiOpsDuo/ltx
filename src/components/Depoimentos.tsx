@@ -192,7 +192,7 @@ export function Depoimentos() {
   return (
     <section className="section depoimentos" id="depoimentos">
       <div className="section-grafismo" aria-hidden="true">
-        <ltx-grafismo variant="03" motion="flow" opacity="0.07" flip speed="10200" />
+        <ltx-grafismo variant="03" motion="flow" opacity="0.07" flip speed="10200" theme="light" />
       </div>
       <div className="container depoimentos-layout">
         <div className="depoimentos-intro">

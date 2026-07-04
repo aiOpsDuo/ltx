@@ -1,7 +1,7 @@
 /* ==========================================================================
-   TECNOLOGIA X ORGANISM — Seção 4. Enxuta: print + texto curto. PRD 6.5
-   Layout centralizado: kicker + headline no topo, print centralizado, CTA
-   abaixo do print.
+   TECNOLOGIA X ORGANISM — Seção 4. PRD 6.5
+   Layout em duas colunas: copy à esquerda (headline + texto + CTA), vídeo
+   do produto à direita, replicando a referência de design aprovada.
    ========================================================================== */
 
 .tecnologia-x {
@@ -22,7 +22,7 @@
 }
 
 /* Grafismo 01 de fundo, bem contido — textura de canto, não compete com o
-   glow local (02) atrás do print nem com o contraste do texto. */
+   glow local (02) atrás do vídeo nem com o contraste do texto. */
 .tecnologia-x .section-grafismo {
   mask-image: radial-gradient(ellipse 70% 60% at 100% 0%, black 0%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 100% 0%, black 0%, transparent 70%);
@@ -31,20 +31,56 @@
 .tecnologia-x-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--ltx-space-8);
+  gap: var(--ltx-space-10);
+}
+
+@media (min-width: 1024px) {
+  .tecnologia-x-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ltx-space-16);
+  }
+
+  .tecnologia-x-copy {
+    flex: 0 0 460px;
+  }
+
+  .tecnologia-x-media-wrap {
+    flex: 1 1 auto;
+  }
+}
+
+.tecnologia-x-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-4);
 }
 
 .tecnologia-x-heading {
-  max-width: 760px;
+  max-width: 640px;
+}
+
+.tecnologia-x-heading-x {
+  color: var(--ltx-accent);
+}
+
+.tecnologia-x-text {
+  max-width: 56ch;
+}
+
+.tecnologia-x-highlight {
+  font-family: var(--ltx-font-sans);
+  font-size: var(--ltx-size-body-md);
+  font-weight: var(--ltx-weight-emphasis);
+  color: var(--ltx-text-title);
+  max-width: 56ch;
 }
 
 .tecnologia-x-media-wrap {
   position: relative;
   width: 100%;
   max-width: 920px;
-  margin-top: var(--ltx-space-4);
+  margin-top: 0;
 }
 
 /* Grafismo 02 bleeding out from behind the media frame — mesma técnica do
@@ -67,19 +103,95 @@
 .tecnologia-x-media {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
   border-radius: var(--ltx-radius-lg);
   border: 1px solid var(--ltx-border-soft);
   background: var(--ltx-surface);
   overflow: hidden;
-  aspect-ratio: 2248 / 1013;
 }
 
-.tecnologia-x-media-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+/* Barra de janela — três pontos discretos, sem cor de semáforo, só para
+   ancorar o vídeo como "tela do produto" dentro de um frame de browser. */
+.tecnologia-x-media-chrome {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--ltx-space-2);
+  padding: var(--ltx-space-3) var(--ltx-space-4);
+  border-bottom: 1px solid var(--ltx-border-soft);
+}
+
+.tecnologia-x-media-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--ltx-radius-full);
+  background: var(--ltx-border);
+}
+
+.tecnologia-x-video-wrap {
+  position: relative;
+}
+
+.tecnologia-x-media-video {
   display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ltx-surface);
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* Controles custom (em vez dos nativos do <video>) — necessário porque os
+   controles nativos exibiriam o tempo/duração reais do arquivo, revelando os
+   TRIM_START_SECONDS de intro que devem ficar invisíveis na UI. */
+.tecnologia-x-video-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--ltx-space-3);
+  padding: var(--ltx-space-2) var(--ltx-space-3);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+}
+
+.tecnologia-x-video-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity var(--ltx-dur-sm) var(--ltx-ease-out-expo);
+}
+
+.tecnologia-x-video-btn:hover { opacity: 1; }
+.tecnologia-x-video-btn svg { width: 16px; height: 16px; }
+
+.tecnologia-x-video-time {
+  flex: 0 0 auto;
+  font-family: var(--ltx-font-mono);
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.tecnologia-x-video-seek {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 3px;
+  margin: 0;
+  accent-color: var(--ltx-accent);
+  cursor: pointer;
 }
 
 .tecnologia-x-cta {

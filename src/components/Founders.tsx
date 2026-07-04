@@ -10,13 +10,11 @@ import { useDiagnosticoModal } from '../context/DiagnosticoModalContext';
 const FOUNDERS = [
   {
     name: 'Tiago Souza',
-    role: 'Gestão & Estratégia Comercial',
     quote:
       'Gestão comercial precisa de clareza. Sem ela, o time trabalha muito, mas a liderança decide tarde.',
   },
   {
-    name: 'Leonardo dos Reis',
-    role: 'Tecnologia & Processos',
+    name: 'Leonardo Machado',
     quote: 'Quando a tecnologia mostra o que realmente importa, a operação ganha velocidade para agir.',
   },
 ];
@@ -41,7 +39,8 @@ export function Founders() {
       </div>
       <div className="container founders-container">
         <h2 className="h2 section-heading">
-          A LTX foi criada por quem entende os dois lados da performance: gestão e tecnologia.
+          A LTX foi criada por quem entende os dois lados da performance:{' '} <br />
+          <span className="text-accent">gestão e tecnologia</span>.
         </h2>
         <div className="founders-grid" ref={ref}>
           {FOUNDERS.map((founder) => (
@@ -51,7 +50,7 @@ export function Founders() {
               </div>
               <div className="founder-info">
                 <h3 className="founder-name">{founder.name}</h3>
-                <p className="founder-role">{founder.role}</p>
+                <span className="founder-role">Founder</span>
               </div>
               <blockquote className="founder-quote">
                 <p>{founder.quote}</p>

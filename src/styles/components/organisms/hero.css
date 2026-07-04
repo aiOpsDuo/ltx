@@ -4,43 +4,38 @@
    left-aligned in its original position with more room to breathe right.
    ========================================================================== */
 
-/* How far the mountain bleeds past the hero's own bottom edge into Pilares
-   — capped at .pilares-proof's own height (border-box, not counting its
-   margin-bottom), measured empirically per breakpoint since that block's
-   layout flips from stacked to a single row at 768px. Consumed by
-   .hero-bg below and by .pilares' background in pilares.css — keep both
-   read from this variable so they can't drift out of sync. */
+/* How far the photo bleeds past the hero's own bottom edge into Pilares,
+   and how long that section's own background then takes to fade in over
+   it. Consumed by .hero-bg below and by .pilares' background in
+   pilares.css — keep both read from this variable so they can't drift out
+   of sync. .pilares' own padding-top is set past this distance at every
+   breakpoint so its heading never sits inside the fade. */
 :root {
-  --ltx-hero-mountain-bleed: 136px;
+  --ltx-hero-mountain-bleed: 48px;
 }
 
 @media (min-width: 768px) {
-  :root { --ltx-hero-mountain-bleed: 93px; }
+  :root { --ltx-hero-mountain-bleed: 56px; }
 }
 
 .hero {
-  padding: 148px var(--ltx-gutter-mobile) var(--ltx-space-24);
+  padding: 148px var(--ltx-gutter-mobile) var(--ltx-space-10);
   position: relative;
   overflow: visible;
+  background: var(--ltx-bg);
 }
 
 @media (min-width: 768px) {
-  .hero { padding: 168px var(--ltx-gutter-desktop) var(--ltx-space-32); }
+  .hero { padding: 168px var(--ltx-gutter-desktop) var(--ltx-space-16); }
 }
 
 /* Photo fills the entire section (100% × 100%, object-fit: cover — no
    letterboxing gaps) at every breakpoint, one single treatment, no media
    queries, so there's no jump in size/crop/opacity as the viewport changes.
-   mountain.png used to have ~180px of fully-transparent canvas above the
-   actual peak; on a wide/short container that margin could land entirely
-   inside the crop window and hide the mountain outright. Fixed at the
-   source (the asset itself was re-cropped so row 0 is the peak) instead of
-   fighting it with object-position math, so object-position: Y 0% now
-   reliably means "peak", full stop — cover keeps that top edge in frame at
-   every resolution and only ever crops from the bottom. X is right-biased
-   so the visible rock reads on the right half, never the left. Faded out
-   toward the left via mask (not a color gradient) so the copy keeps its
-   contrast. */
+   object-position keeps faces (upper third of the source photo) in frame
+   at every resolution — cover only ever crops from the bottom/sides.
+   Faded out toward the left via mask (not a color gradient) so the copy
+   keeps its contrast. */
 /* Bleeds past the hero's own bottom edge so the mountain keeps going into
    the top of the Pilares section (the client-logo marquee sits right
    there) instead of cutting off hard at the section boundary. Requires
@@ -74,7 +69,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 75% 0%;
+  object-position: 50% 20%;
   display: block;
   opacity: 0.5;
   filter: brightness(0.85);
@@ -163,5 +158,81 @@
   align-items: center;
   gap: var(--ltx-space-4);
   margin-top: var(--ltx-space-4);
+}
+
+/* ── Prova social: contador + marquee de logos ───────────────────────────────
+   Faixa de confiança logo abaixo do CTA — antes vivia no topo da Pilares,
+   mas essa seção agora abre com fundo escuro (pilares.css) e os tokens de
+   tema escuro padrão (--ltx-accent, --ltx-text-body etc.) já são os certos
+   aqui no Hero, sem precisar de overrides. .hero-inner's own gap handles
+   all the spacing above — no divider against the CTA button on purpose. */
+.hero-proof {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ltx-space-6);
+}
+
+@media (min-width: 768px) {
+  .hero-proof {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ltx-space-10);
+  }
+}
+
+.hero-proof-stat {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: var(--ltx-space-2);
+}
+
+.hero-proof-number {
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: var(--ltx-size-display-lg);
+  line-height: 1;
+  color: var(--ltx-accent);
+}
+
+.hero-proof-label {
+  font-size: 14px;
+  color: var(--ltx-text-body);
+  white-space: nowrap;
+}
+
+.hero-marquee {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.hero-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--ltx-space-12);
+  animation: hero-marquee-scroll 26s linear infinite;
+}
+
+.hero-marquee:hover .hero-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes hero-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.hero-logo {
+  flex: 0 0 auto;
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-text-muted);
+  white-space: nowrap;
 }
 

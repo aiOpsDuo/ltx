@@ -1,23 +1,41 @@
 /* ==========================================================================
    PILARES ORGANISM — Seção 2, Credibilidade / Pilares. PRD 6.3
-   Prova social (logos em marquee) + headline + 4 pilares com destaque no hover.
+   Headline + 4 pilares com destaque no hover. A prova social (contador +
+   marquee de logos) mora no Hero (hero.css/.hero-proof) — funciona como
+   faixa de confiança logo abaixo do CTA, não como abertura desta seção.
    ========================================================================== */
 
 /* Top fades in from transparent (instead of a flat fill) so the mountain
-   bleeding down from .hero-bg (hero.css) stays visible through the marquee
-   area instead of being covered by this section's own background. Reads
-   --ltx-hero-mountain-bleed (defined in hero.css) so it can't drift out of
-   sync with the bleed distance. */
+   bleeding down from .hero-bg (hero.css) stays visible right at the section
+   boundary instead of being covered by a flat fill. Settles on --ltx-ink-100
+   (#EDEEF4, "Branco Gelo") instead of a dark-canvas surface token so this
+   section reads as a deliberate light break against .hero's near-black
+   --ltx-bg. Reads --ltx-hero-mountain-bleed (defined in hero.css) so it
+   can't drift out of sync with the photo's own bleed distance — padding-top
+   below is set past that distance (with room to spare) at every breakpoint
+   so .pilares-body never sits inside the fade. The text/accent tokens
+   below are dark-theme aliases (light-colored, meant for dark backgrounds)
+   — re-pointed here to their light-theme values from colors.css so copy
+   stays legible on the light canvas. */
 .pilares {
   position: relative;
   overflow: hidden;
-  padding-top: 10px;
+  padding-top: var(--ltx-section-y-mobile);
+  --ltx-text-title: var(--ltx-ink-900);
+  --ltx-text-body: var(--ltx-ink-600);
+  --ltx-accent: var(--ltx-brand-800);
   background: linear-gradient(
     to bottom,
     transparent 0,
-    var(--ltx-surface-soft) var(--ltx-hero-mountain-bleed),
-    var(--ltx-surface-soft) 100%
+    var(--ltx-ink-100) var(--ltx-hero-mountain-bleed),
+    var(--ltx-ink-100) 100%
   );
+}
+
+@media (min-width: 768px) {
+  .pilares {
+    padding-top: var(--ltx-section-y-desktop);
+  }
 }
 
 .pilares > .container {
@@ -33,82 +51,11 @@
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 55%);
 }
 
-/* ── Prova social: contador + marquee de logos ───────────────────────────── */
-
-.pilares-proof {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ltx-space-6);
-  padding-bottom: var(--ltx-space-10);
-  margin-bottom: var(--ltx-space-16);
-  border-bottom: 1px solid var(--ltx-border-soft);
-}
-
-@media (min-width: 768px) {
-  .pilares-proof {
-    flex-direction: row;
-    align-items: center;
-    gap: var(--ltx-space-10);
-  }
-}
-
-.pilares-proof-stat {
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--ltx-space-3);
-}
-
-.pilares-proof-number {
-  font-family: var(--ltx-font-mono);
-  font-weight: 700;
-  font-size: var(--ltx-size-h2);
-  color: var(--ltx-accent);
-}
-
-.pilares-proof-label {
-  font-size: 14px;
-  color: var(--ltx-text-body);
-  white-space: nowrap;
-}
-
-.pilares-marquee {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-}
-
-.pilares-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: var(--ltx-space-12);
-  animation: pilares-marquee-scroll 26s linear infinite;
-}
-
-.pilares-marquee:hover .pilares-marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes pilares-marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-.pilares-logo {
-  flex: 0 0 auto;
-  font-family: var(--ltx-font-mono);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: var(--ltx-track-overline);
-  text-transform: uppercase;
-  color: var(--ltx-text-muted);
-  white-space: nowrap;
-}
-
 /* ── Headline + grid dos 4 pilares ────────────────────────────────────────── */
+
+.pilares-copy .section-heading {
+  font-size: var(--ltx-size-h3);
+}
 
 .pilares-body {
   display: flex;

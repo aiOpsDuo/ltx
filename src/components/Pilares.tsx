@@ -14,9 +14,6 @@ const PILARES: { title: string; icon: IconName }[] = [
   { title: 'Processos', icon: 'workflow' },
 ];
 
-// Clientes fictícios — pendente lista real e logos autorizados (PRD §11).
-const LOGOS = ['Vórtice Capital', 'Praxis Digital', 'Cedro Partners', 'Andaime Group', 'Norvix', 'Aliança Comercial'];
-
 const ICON_PATHS: Record<IconName, ReactNode> = {
   users: (
     <>
@@ -70,23 +67,6 @@ export function Pilares() {
         <ltx-grafismo variant="01" motion="flow" opacity="0.09" speed="9200" />
       </div>
       <div className="container">
-        <div className="pilares-proof">
-          <div className="pilares-proof-stat">
-            <span className="pilares-proof-number">+80</span>
-            <span className="pilares-proof-label">clientes atendidos</span>
-          </div>
-
-          <div className="pilares-marquee" aria-hidden="true">
-            <div className="pilares-marquee-track">
-              {[...LOGOS, ...LOGOS].map((logo, index) => (
-                <span className="pilares-logo" key={`${logo}-${index}`}>
-                  {logo}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
         <div className="pilares-body">
           <div className="pilares-copy">
             <h2 className="h2 section-heading">

@@ -1,15 +1,27 @@
 /* ==========================================================================
    DEPOIMENTOS ORGANISM — Seção 5, prova social. PRD 6.6
-   Layout: painel escuro (kicker + heading) à esquerda, carrossel de cards +
-   dots à direita — referência Clari, adaptada aos tokens de cor/card do DS
-   (cards seguem o mesmo --ltx-surface do resto do site, sem introduzir um
-   padrão de "card claro" fora do vocabulário já formalizado).
+   Layout: painel (kicker + heading) à esquerda, carrossel de cards + dots à
+   direita — referência Clari. Quebra clara proposital no meio do tema escuro
+   (mesmo padrão da seção Pilares): fundo em --ltx-ink-100 e os tokens de
+   texto/borda/accent/surface repontados para as versões claras do DS, para
+   que cards, dots, avatar e setas acompanhem o fundo em vez de manterem o
+   vocabulário escuro do resto do site.
    ========================================================================== */
 
 .depoimentos {
   position: relative;
   overflow: hidden;
-  background: var(--ltx-surface-soft);
+  --ltx-surface: #FFFFFF;
+  --ltx-text-title: var(--ltx-ink-900);
+  --ltx-text-body: var(--ltx-ink-600);
+  --ltx-text-muted: var(--ltx-ink-400);
+  --ltx-accent: var(--ltx-brand-800);
+  --ltx-line: #D9DCE3;
+  --ltx-border: #D9DCE3;
+  --ltx-border-soft: #D9DCE3;
+  --ltx-chip-bg: #D9DCE3;
+  --ltx-focus-ring: rgba(31, 158, 23, 0.25);
+  background: var(--ltx-ink-100);
   border-top: 1px solid var(--ltx-border-soft);
 }
 

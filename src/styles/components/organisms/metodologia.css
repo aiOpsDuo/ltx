@@ -69,19 +69,48 @@
 
 .metodologia-hub-mark {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: var(--ltx-space-1);
   width: 48px;
   height: 48px;
   margin: 0 auto var(--ltx-space-4);
   border-radius: var(--ltx-radius-full);
   background: var(--ltx-surface);
   border: 1px solid var(--ltx-border-soft);
+  transition: background-color var(--ltx-dur-lg) var(--ltx-ease-out-expo),
+              border-color var(--ltx-dur-lg) var(--ltx-ease-out-expo);
 }
 
 .metodologia-hub-mark img {
   width: 28px;
   height: auto;
+}
+
+/* Etapa "Escala": o hub fica verde e ganha a legenda embaixo do ícone — o
+   ícone (X/avatar) continua visível, só muda o fundo. */
+.metodologia-hub-mark-label {
+  display: none;
+  font-family: var(--ltx-font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: var(--ltx-track-overline);
+  text-transform: uppercase;
+  color: var(--ltx-text-on-accent);
+}
+
+.metodologia-hub-mark--expanded {
+  width: auto;
+  height: auto;
+  padding: var(--ltx-space-2) var(--ltx-space-4);
+  border-radius: var(--ltx-radius-lg);
+  background: var(--ltx-accent);
+  border-color: var(--ltx-accent);
+}
+
+.metodologia-hub-mark--expanded .metodologia-hub-mark-label {
+  display: block;
 }
 
 .metodologia-rotor {
@@ -224,8 +253,11 @@
    os dois precisam ficar em sincronia. */
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  /* 340vh cobria as 3 transições entre os 4 pontos do anel (~113vh cada).
+     Agora há uma 4ª transição até "Escala" (não fica no anel, mas ocupa o
+     mesmo intervalo de scroll) — mantém o ritmo por transição. */
   .metodologia-scroller {
-    height: 340vh;
+    height: 453vh;
   }
 
   .metodologia-pin {
@@ -283,6 +315,7 @@
     inset: 84px;
     border-radius: var(--ltx-radius-full);
     border: 1px dashed var(--ltx-border);
+    transition: opacity var(--ltx-dur-lg) var(--ltx-ease-out-expo);
   }
 
   /* Marca fixa por onde as etapas "chegam" ao girar — o lado que aponta
@@ -296,7 +329,47 @@
     height: 2px;
     background: var(--ltx-accent);
     transform: translate(50%, -50%);
+    transition: opacity var(--ltx-dur-lg) var(--ltx-ease-out-expo);
   }
+
+  /* Setinhas indicando o sentido de giro do anel — 4 marcas fixas nos vãos
+     diagonais entre os nós, num raio (198px) entre o anel (176px) e a
+     órbita dos nós (220px), pra não ficar coladas na linha do anel.
+     Cada `.metodologia-rotation-hint--N` já gira o próprio elemento pro
+     ângulo da posição (rotate(A) translate(198px)) — o svg dentro dele
+     herda esse ângulo A, então só precisa girar +90° A MAIS (relativo,
+     não o ângulo absoluto) pra ficar tangente e apontar no sentido
+     horário, para a próxima etapa. */
+  .metodologia-rotation-hints {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: opacity var(--ltx-dur-lg) var(--ltx-ease-out-expo);
+  }
+
+  .metodologia-rotation-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    color: var(--ltx-text-muted);
+    opacity: 0.85;
+  }
+
+  .metodologia-rotation-hint svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .metodologia-rotation-hint--0 { transform: rotate(45deg)  translate(198px); }
+  .metodologia-rotation-hint--1 { transform: rotate(135deg) translate(198px); }
+  .metodologia-rotation-hint--2 { transform: rotate(225deg) translate(198px); }
+  .metodologia-rotation-hint--3 { transform: rotate(315deg) translate(198px); }
 
   .metodologia-hub-mark {
     position: absolute;
@@ -306,11 +379,45 @@
     transform: translate(-50%, -50%);
     width: 88px;
     height: 88px;
+    padding: 0;
     margin: 0;
+    transition: width var(--ltx-dur-lg) var(--ltx-ease-out-expo),
+                height var(--ltx-dur-lg) var(--ltx-ease-out-expo),
+                background-color var(--ltx-dur-lg) var(--ltx-ease-out-expo),
+                border-color var(--ltx-dur-lg) var(--ltx-ease-out-expo);
   }
 
   .metodologia-hub-mark img {
     width: 46px;
+    transition: width var(--ltx-dur-lg) var(--ltx-ease-out-expo);
+  }
+
+  .metodologia-hub-mark-label {
+    font-size: 15px;
+  }
+
+  /* Etapa "Escala": o hub central se expande até cobrir o anel inteiro
+     (352px de diâmetro) mantendo o ícone visível, agora sobre fundo verde,
+     com "Escala" escrito embaixo — translate(-50%,-50%) mantém o centro
+     fixo enquanto width/height crescem. */
+  .metodologia-hub-mark--expanded {
+    width: 380px;
+    height: 380px;
+    border-radius: var(--ltx-radius-full);
+    background: var(--ltx-accent);
+    border-color: var(--ltx-accent);
+  }
+
+  .metodologia-hub-mark--expanded img {
+    width: 72px;
+  }
+
+  .metodologia-wheel.is-escala-active .metodologia-ring,
+  .metodologia-wheel.is-escala-active .metodologia-pointer,
+  .metodologia-wheel.is-escala-active .metodologia-rotation-hints,
+  .metodologia-wheel.is-escala-active .metodologia-rotor {
+    opacity: 0;
+    pointer-events: none;
   }
 
   /* --rot é escrito via JS (ScrollTrigger onUpdate) direto no elemento —
@@ -321,6 +428,7 @@
     inset: 0;
     display: block;
     transform: rotate(var(--rot, 0deg));
+    transition: opacity var(--ltx-dur-lg) var(--ltx-ease-out-expo);
   }
 
   .metodologia-node {
@@ -338,6 +446,10 @@
   .metodologia-node--1 { transform: rotate(90deg) translate(220px); }
   .metodologia-node--2 { transform: rotate(180deg) translate(220px); }
   .metodologia-node--3 { transform: rotate(270deg) translate(220px); }
+
+  /* "Escala" (índice 4) não é um ponto do anel — é alcançada expandindo o
+     hub central (.metodologia-hub-mark--expanded), então some daqui. */
+  .metodologia-node--4 { display: none; }
 
   .metodologia-node-label {
     position: absolute;

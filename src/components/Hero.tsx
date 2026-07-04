@@ -5,7 +5,10 @@ import { DURATION, EASE_OUT_EXPO, TRANSLATE_DISTANCE, prefersReducedMotion } fro
 
 // COPY.md — 1ª Sessão: "A LTX entrega resultado (palavra altera para
 // -performance, gestão, visibilidade, execução, processos, clareza)."
-const ROTATING_WORDS = ['resultado', 'performance', 'gestão', 'visibilidade', 'execução', 'processos', 'clareza'];
+const ROTATING_WORDS = ['resultado comercial', 'performance comercial', 'gestão comercial', 'visibilidade comercial', 'execução comercial', 'processo comercial', 'clareza comercial'];
+
+// Clientes fictícios — pendente lista real e logos autorizados (PRD §11).
+const LOGOS = ['Vórtice Capital', 'Praxis Digital', 'Cedro Partners', 'Andaime Group', 'Norvix', 'Aliança Comercial'];
 
 // Each word holds for HOLD_SECONDS, then cross-fades over DURATION.lg —
 // same ~2.4s-per-word cadence as the previous CSS-driven version.
@@ -61,7 +64,7 @@ export function Hero() {
   return (
     <section className="hero" id="topo">
       <div className="hero-bg" aria-hidden="true">
-        <img className="hero-bg-img" src="/images/mountain.png" alt="" />
+        <img className="hero-bg-img" src="/images/pessoas.png" alt="" />
       </div>
       <div className="hero-inner">
         <div className="hero-copy">
@@ -89,6 +92,23 @@ export function Hero() {
             <button type="button" className="btn btn-primary btn-lg" onClick={() => openModal('hero')}>
               Agendar Diagnóstico
             </button>
+          </div>
+        </div>
+
+        <div className="hero-proof">
+          <div className="hero-proof-stat">
+            <span className="hero-proof-number">+80</span>
+            <span className="hero-proof-label">clientes atendidos</span>
+          </div>
+
+          <div className="hero-marquee" aria-hidden="true">
+            <div className="hero-marquee-track">
+              {[...LOGOS, ...LOGOS].map((logo, index) => (
+                <span className="hero-logo" key={`${logo}-${index}`}>
+                  {logo}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

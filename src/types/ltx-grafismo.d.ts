@@ -14,6 +14,7 @@ declare module 'react' {
         bg?: boolean;
         mono?: boolean;
         flip?: boolean;
+        theme?: 'light' | 'dark';
       };
     }
   }

@@ -132,7 +132,7 @@
   `;
 
   class Grafismo extends HTMLElement {
-    static get observedAttributes() { return ['variant', 'motion', 'opacity', 'speed', 'bg', 'mono', 'flip']; }
+    static get observedAttributes() { return ['variant', 'motion', 'opacity', 'speed', 'bg', 'mono', 'flip', 'theme']; }
 
     connectedCallback() {
       this.render();
@@ -159,7 +159,13 @@
 
       const dur = (speed || 6400) + 'ms';
       const n = def.paths.length;
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      // `theme` lets one instance opt into the light-canvas treatment (e.g. a
+      // section with its own light background break) without flipping the
+      // page-wide [data-theme] used by every other instance of this element.
+      const themeOverride = this.getAttribute('theme');
+      const isLight = themeOverride
+        ? themeOverride === 'light'
+        : document.documentElement.getAttribute('data-theme') === 'light';
       const accent = isLight ? ACCENT_LIGHT : ACCENT;
 
       // Reveal reads best low→high; loops read best pulsing from a dim floor.

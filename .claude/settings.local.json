@@ -133,7 +133,17 @@
       "Bash(wsl.exe -d Ubuntu -- bash -lc \"cd /home/rodrigo/projetos/ltx && ls tsconfig*.json && cat package.json | grep -A2 '\\\\\"build\\\\\"'\")",
       "Bash(wsl.exe -d Ubuntu -- bash -lc \"cd /home/rodrigo/projetos/ltx && ls node_modules/.bin/tsc 2>&1 && ./node_modules/.bin/tsc -b --noEmit 2>&1 | tail -100\")",
       "Bash(wsl.exe -d Ubuntu -- bash -lc \"cd /home/rodrigo/projetos/ltx && ./node_modules/.bin/tsc --noEmit -p tsconfig.app.json 2>&1 | tail -150\")",
-      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npx tsc --noEmit 2>&1 | head -80\")"
+      "PowerShell(wsl -e bash -lc \"cd /home/rodrigo/projetos/ltx && npx tsc --noEmit 2>&1 | head -80\")",
+      "Bash(cd \"//wsl.localhost/ubuntu/home/rodrigo/projetos/ltx\" && grep -rn \"data-theme\" src --include=\"*.tsx\" --include=\"*.css\" | grep -v node_modules)",
+      "PowerShell(npx tsc --noEmit -p tsconfig.app.json)",
+      "Bash(ffmpeg -version)",
+      "PowerShell(Get-Command ffmpeg -ErrorAction SilentlyContinue)",
+      "Bash(cd \"//wsl.localhost/ubuntu/home/rodrigo/projetos/ltx/design_system/LTX Performance Design System \\(1\\)/cards\" && cat type-pairing-light.html)",
+      "Bash(cd \"//wsl.localhost/ubuntu/home/rodrigo/projetos/ltx/design_system/LTX Performance Design System \\(1\\)/cards\" && cat colors-contrast.html; echo \"=====INK=====\"; cat colors-ink.html)",
+      "Bash(grep -n \"ltx-space-1:\\\\|ltx-space-2:\\\\|ltx-space-3:\\\\|ltx-space-4:\" src/styles/tokens/_theme.css)",
+      "Bash(cd \"//wsl.localhost/ubuntu/home/rodrigo/projetos/ltx\" && ls node_modules/.bin | grep -i tsc; cat package.json | head -30)",
+      "Bash(node ./node_modules/typescript/bin/tsc -b)",
+      "Bash(grep -rln \"A9B5B5\" .)"
     ]
   }
 }
