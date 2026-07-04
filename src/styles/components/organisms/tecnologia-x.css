@@ -131,14 +131,22 @@
 
 .tecnologia-x-video-wrap {
   position: relative;
+  overflow: hidden;
 }
 
+/* Zoom fixo no centro do vídeo — enquadra o conteúdo mais de perto em vez de
+   mostrar o frame inteiro (com as bordas do próprio app na gravação). Escala
+   estática, não uma transição, então não conflita com a regra de marca de
+   nunca animar scale (src/lib/motion.ts). */
 .tecnologia-x-media-video {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   background: var(--ltx-surface);
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.15);
+  transform-origin: center;
   cursor: pointer;
 }
 

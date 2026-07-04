@@ -95,7 +95,7 @@ const STAGES: Stage[] = [
     titulo: 'Escala',
     icon: 'expand',
     headline: 'Escale seu comercial conosco',
-    subcopy: 'Diagnóstico, padrão, medição e desenvolvimento rodando junto, toda semana, é o que abre espaço pra crescer o time sem perder o padrão. Se faz sentido pra sua operação, é só chamar a gente.',
+    subcopy: 'Diagnóstico, padrão, medição e desenvolvimento rodando juntos, toda semana. Entendemos o que limita os resultados, definimos um novo modelo de atuação, acompanhamos a performance e desenvolvemos o time com base em dados. Repetimos esse ciclo continuamente para escalar a operação comercial e a receita da empresa.',
   },
 ];
 

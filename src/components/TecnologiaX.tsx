@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { ChangeEvent, SyntheticEvent } from 'react';
+import { gsap } from 'gsap';
+import { EASE_OUT_EXPO, prefersReducedMotion } from '../lib/motion';
 import { useDiagnosticoModal } from '../context/DiagnosticoModalContext';
 
 // COPY.md — 4ª Sessão (Produto/X). PRD §6.5: X como central de comando da
@@ -12,6 +14,18 @@ import { useDiagnosticoModal } from '../context/DiagnosticoModalContext';
 // aqui: playback e barra de progresso são travados nesse limite (pausa e
 // trava em TRIM_END_SECONDS ao chegar lá; duração exibida nunca passa disso).
 const TRIM_END_SECONDS = 13;
+
+// Exceção pontual ao token padrão de reveal (fade + até 8px, ver
+// src/lib/motion.ts / src/hooks/useReveal.ts) a pedido do cliente para este
+// bloco: o vídeo precisa "vir de baixo e parar no lugar" — mesma lógica da
+// exceção já documentada em pilares.css para o hover do pilar-card.
+// Threshold baixo (dispara com só 5% do bloco visível) de propósito: o
+// bloco ainda está quase todo abaixo da viewport nesse momento, então a
+// subida de MEDIA_REVEAL_DISTANCE inteira acontece visivelmente enquanto o
+// usuário rola a página, em vez de já ter completado antes dele reparar.
+const MEDIA_REVEAL_DISTANCE = 64;
+const MEDIA_REVEAL_DURATION = 0.7;
+const MEDIA_REVEAL_THRESHOLD = 0.05;
 
 function formatTime(seconds: number): string {
   const total = Math.max(0, Math.floor(seconds));
@@ -64,9 +78,10 @@ function FullscreenIcon() {
 
 export function TecnologiaX() {
   const { openModal } = useDiagnosticoModal();
+  const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [durationCap, setDurationCap] = useState(0);
 
@@ -97,6 +112,59 @@ export function TecnologiaX() {
       video.removeEventListener('pause', handlePause);
       video.removeEventListener('ended', handlePause);
     };
+  }, []);
+
+  // Reveal-on-scroll (uma vez só, via IntersectionObserver) + autoplay
+  // disparado no mesmo instante em que o vídeo entra na tela. Autoplay
+  // programático só é permitido pelo navegador com o vídeo mudo — por isso
+  // força `muted` aqui; o usuário liga o som pelo botão de volume.
+  // useLayoutEffect (não useEffect) para aplicar o estado inicial oculto
+  // antes do primeiro paint, evitando o flash do vídeo em opacidade 1.
+  useLayoutEffect(() => {
+    const node = mediaRef.current;
+    const video = videoRef.current;
+    if (!node) return;
+
+    const reduced = prefersReducedMotion();
+    if (!reduced) {
+      gsap.set(node, { opacity: 0, y: MEDIA_REVEAL_DISTANCE });
+    }
+
+    const reveal = () => {
+      if (!reduced) {
+        gsap.to(node, {
+          opacity: 1,
+          y: 0,
+          duration: MEDIA_REVEAL_DURATION,
+          ease: EASE_OUT_EXPO,
+          clearProps: 'opacity,transform',
+        });
+      }
+      if (video) {
+        video.muted = true;
+        setIsMuted(true);
+        void video.play();
+      }
+    };
+
+    if (typeof IntersectionObserver === 'undefined') {
+      reveal();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            reveal();
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: MEDIA_REVEAL_THRESHOLD, rootMargin: '0px 0px -10% 0px' }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
   }, []);
 
   const handleLoadedMetadata = (event: SyntheticEvent<HTMLVideoElement>) => {
@@ -164,7 +232,7 @@ export function TecnologiaX() {
           </div>
         </div>
 
-        <div className="tecnologia-x-media-wrap">
+        <div className="tecnologia-x-media-wrap" ref={mediaRef}>
           <div className="tecnologia-x-media-glow" aria-hidden="true">
             <ltx-grafismo variant="02" motion="wave" opacity="0.4" mono speed="7800" />
           </div>
@@ -180,7 +248,7 @@ export function TecnologiaX() {
                 className="tecnologia-x-media-video"
                 src="/videos/video-dash.mov"
                 playsInline
-                preload="metadata"
+                preload="auto"
                 onLoadedMetadata={handleLoadedMetadata}
                 onClick={togglePlay}
               >
