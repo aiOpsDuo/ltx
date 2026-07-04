@@ -151,7 +151,10 @@
       "Bash(echo \"exit: $?\")",
       "Bash(echo \"exit origin: $?\")",
       "Bash(git -c core.protectNTFS=false filter-branch -f --index-filter 'git rm --cached --ignore-unmatch ltx.rar' -- origin/rx..HEAD)",
-      "Bash(ls /home/rodrigo/projetos/ 2>&1; echo \"---\"; pwd)"
+      "Bash(ls /home/rodrigo/projetos/ 2>&1; echo \"---\"; pwd)",
+      "Bash(./node_modules/.bin/tsc -b --noEmit)",
+      "Bash(node node_modules/typescript/bin/tsc -b --noEmit)",
+      "Bash(wsl -d Ubuntu bash -lc \"cd /home/rodrigo/projetos/ltx && ./node_modules/.bin/tsc -b --noEmit\")"
     ]
   }
 }

@@ -213,6 +213,13 @@ export function Metodologia() {
       };
     });
 
+    // As fontes (font-display:swap) podem terminar de carregar depois do
+    // ScrollTrigger já ter medido a posição do pin — o texto troca da fonte
+    // fallback pra Space Mono/Sora, a altura das seções muda, e o pin fica
+    // preso num ponto de scroll que não bate mais com o topo da seção
+    // (roda aparece cortada). Recalcula assim que as fontes carregarem.
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
     return () => mm.revert();
   }, []);
 

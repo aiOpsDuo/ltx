@@ -115,27 +115,37 @@
   margin-top: var(--ltx-space-4);
   color: var(--ltx-text-title);
   font-weight: 700;
-  font-size: clamp(36px, 4.6vw, 60px);
+  /* Piso mais baixo que o original (36px) — mesmo com o container do
+     .hero-rotator agora dimensionado corretamente (ver abaixo), a palavra
+     mais longa ("visibilidade comercial.") em nowrap continua mais larga
+     que a tela em telas bem estreitas (~320-360px); precisa de uma fonte
+     menor pra caber sem quebrar no meio da palavra. */
+  font-size: clamp(20px, 4.6vw, 60px);
   line-height: 1.1;
   letter-spacing: var(--ltx-track-display);
 }
 
+/* inline-grid com todas as palavras na mesma grid-area (abaixo) — o grid
+   dimensiona a coluna pela palavra mais larga entre TODAS elas (mesmo as
+   escondidas), não só a que está visível. Isso corrige o cálculo de quebra
+   de linha do navegador: antes (position:absolute + min-width:13ch), a
+   caixa só "contava" 13ch pra decidir se cabia na linha, mas a palavra
+   renderizada podia ter o dobro disso — o texto vazava e estourava a
+   largura da página em telas estreitas/médias. */
 .hero-rotator {
   position: relative;
-  display: inline-block;
-  min-width: 13ch;
+  display: inline-grid;
   height: 1.2em;
   vertical-align: top;
   text-align: left;
   color: var(--ltx-accent);
 }
 
-/* Cross-fade is driven by GSAP (src/lib/motion.ts) — it sets opacity/transform
-   inline. This only covers the very first paint, before that effect runs. */
+/* Cross-fade é feito pelo GSAP (src/lib/motion.ts) — ele seta
+   opacity/transform inline. Isso só cobre o primeiro paint, antes do
+   efeito rodar. */
 .hero-rotator-item {
-  position: absolute;
-  left: 0;
-  top: 0;
+  grid-area: 1 / 1;
   white-space: nowrap;
   opacity: 0;
 }

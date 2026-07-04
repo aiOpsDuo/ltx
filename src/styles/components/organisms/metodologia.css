@@ -270,13 +270,20 @@
   }
 
   /* padding-top precisa cobrir o header fixo do site (~69px, ver
-     header.css) — senão o título da seção fica escondido atrás dele. */
+     header.css) com folga — senão o título da seção fica parcialmente
+     escondido atrás dele. 100dvh (com fallback 100vh pra browsers sem
+     suporte) em vez de 100vh puro: no mobile, 100vh conta a altura da
+     tela com a barra de endereço/toolbar recolhida, maior que o espaço
+     realmente visível quando a barra está à mostra — dvh acompanha a
+     altura visível de verdade, evitando que o conteúdo de baixo (CTA)
+     fique empurrado pra fora da área visível. */
   .metodologia-pin {
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: var(--ltx-space-16);
+    padding-top: var(--ltx-space-20);
   }
 
   .metodologia-header {
@@ -285,7 +292,10 @@
 
   /* flex-start (não center): o conteúdo começa logo abaixo do título, com
      um respiro fixo e pequeno — centralizar verticalmente no espaço
-     sobrando abaixo do header criava um vão enorme entre título e roda. */
+     sobrando abaixo do header criava um vão enorme entre título e roda.
+     Tamanhos desse bloco todo (roda, gaps, fonte do painel) calculados pra
+     caber com folga até em telas curtas (~667px de altura, ex. iPhone SE)
+     dentro do espaço que sobra depois do padding-top acima. */
   .metodologia-pin-inner {
     flex: 1 1 auto;
     width: 100%;
@@ -293,7 +303,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: var(--ltx-space-5);
+    padding-top: var(--ltx-space-3);
   }
 
   .metodologia-pin-footer {
@@ -305,7 +315,7 @@
   .metodologia-pin .metodologia-pin-grid {
     flex-direction: column;
     align-items: center;
-    gap: var(--ltx-space-8);
+    gap: var(--ltx-space-5);
     width: 100%;
   }
 
@@ -313,11 +323,9 @@
     flex: 0 0 auto;
   }
 
-  /* Roda confortável em telas ~360px de largura (container tem
-     --ltx-gutter-mobile de 16px de cada lado, sobrando ~40px de margem). */
   .metodologia-wheel {
-    width: 260px;
-    height: 260px;
+    width: 190px;
+    height: 190px;
   }
 
   .metodologia-text-col {
@@ -327,7 +335,7 @@
   .metodologia-ring {
     display: block;
     position: absolute;
-    inset: 42px;
+    inset: 31px;
     border-radius: var(--ltx-radius-full);
     border: 1px dashed var(--ltx-border);
     transition: opacity var(--ltx-dur-lg) var(--ltx-ease-out-expo);
@@ -338,8 +346,8 @@
     display: block;
     position: absolute;
     top: 50%;
-    right: 42px;
-    width: 12px;
+    right: 31px;
+    width: 11px;
     height: 2px;
     background: var(--ltx-accent);
     transform: translate(50%, -50%);
@@ -347,10 +355,10 @@
   }
 
   /* Setinhas indicando o sentido de giro do anel — 4 marcas fixas nos vãos
-     diagonais entre os nós, num raio (99px) entre o anel (88px) e a
-     órbita dos nós (110px), pra não ficar coladas na linha do anel.
+     diagonais entre os nós, num raio (73px) entre o anel (64px) e a
+     órbita dos nós (80px), pra não ficar coladas na linha do anel.
      Cada `.metodologia-rotation-hint--N` já gira o próprio elemento pro
-     ângulo da posição (rotate(A) translate(99px)) — o svg dentro dele
+     ângulo da posição (rotate(A) translate(73px)) — o svg dentro dele
      herda esse ângulo A, então só precisa girar +90° A MAIS (relativo,
      não o ângulo absoluto) pra ficar tangente e apontar no sentido
      horário, para a próxima etapa. */
@@ -376,15 +384,15 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     transform: translate(-50%, -50%) rotate(90deg);
   }
 
-  .metodologia-rotation-hint--0 { transform: rotate(45deg)  translate(99px); }
-  .metodologia-rotation-hint--1 { transform: rotate(135deg) translate(99px); }
-  .metodologia-rotation-hint--2 { transform: rotate(225deg) translate(99px); }
-  .metodologia-rotation-hint--3 { transform: rotate(315deg) translate(99px); }
+  .metodologia-rotation-hint--0 { transform: rotate(45deg)  translate(73px); }
+  .metodologia-rotation-hint--1 { transform: rotate(135deg) translate(73px); }
+  .metodologia-rotation-hint--2 { transform: rotate(225deg) translate(73px); }
+  .metodologia-rotation-hint--3 { transform: rotate(315deg) translate(73px); }
 
   .metodologia-hub-mark {
     position: absolute;
@@ -392,8 +400,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 52px;
-    height: 52px;
+    width: 38px;
+    height: 38px;
     padding: 0;
     margin: 0;
     transition: width var(--ltx-dur-lg) var(--ltx-ease-out-expo),
@@ -403,12 +411,12 @@
   }
 
   .metodologia-hub-mark img {
-    width: 28px;
+    width: 21px;
     transition: width var(--ltx-dur-lg) var(--ltx-ease-out-expo);
   }
 
   .metodologia-hub-mark-label {
-    font-size: 11px;
+    font-size: 9px;
   }
 
   /* Etapa "Escala": o hub central se expande até cobrir o anel inteiro
@@ -416,15 +424,15 @@
      escrito embaixo — translate(-50%,-50%) mantém o centro fixo enquanto
      width/height crescem. */
   .metodologia-hub-mark--expanded {
-    width: 190px;
-    height: 190px;
+    width: 139px;
+    height: 139px;
     border-radius: var(--ltx-radius-full);
     background: var(--ltx-accent);
     border-color: var(--ltx-accent);
   }
 
   .metodologia-hub-mark--expanded img {
-    width: 36px;
+    width: 26px;
   }
 
   .metodologia-wheel.is-escala-active .metodologia-ring,
@@ -457,10 +465,10 @@
     border-radius: 0;
   }
 
-  .metodologia-node--0 { transform: rotate(0deg) translate(110px); }
-  .metodologia-node--1 { transform: rotate(90deg) translate(110px); }
-  .metodologia-node--2 { transform: rotate(180deg) translate(110px); }
-  .metodologia-node--3 { transform: rotate(270deg) translate(110px); }
+  .metodologia-node--0 { transform: rotate(0deg) translate(80px); }
+  .metodologia-node--1 { transform: rotate(90deg) translate(80px); }
+  .metodologia-node--2 { transform: rotate(180deg) translate(80px); }
+  .metodologia-node--3 { transform: rotate(270deg) translate(80px); }
 
   /* "Escala" (índice 4) não é um ponto do anel — é alcançada expandindo o
      hub central (.metodologia-hub-mark--expanded), então some daqui. */
@@ -481,8 +489,8 @@
   .metodologia-node--2 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-180deg) rotate(calc(-1 * var(--rot, 0deg))); }
   .metodologia-node--3 .metodologia-node-label { transform: translate(-50%, -50%) rotate(-270deg) rotate(calc(-1 * var(--rot, 0deg))); }
 
-  .metodologia-node-index { width: 32px; height: 32px; }
-  .metodologia-node-index svg { width: 17px; height: 17px; }
+  .metodologia-node-index { width: 23px; height: 23px; }
+  .metodologia-node-index svg { width: 12px; height: 12px; }
 
   /* Roda pequena demais pra caixa de texto ao lado de cada nó (vazaria pra
      fora da tela) — nome da etapa some visualmente, mas continua
@@ -497,8 +505,13 @@
     white-space: nowrap;
   }
 
-  .metodologia-panel { gap: var(--ltx-space-3); }
-  .metodologia-cta { margin-top: var(--ltx-space-6); }
+  /* Texto centralizado no mobile pra acompanhar a roda centralizada acima —
+     no desktop (bloco 1024px abaixo) volta a ser alinhado à esquerda, ao
+     lado da roda. Gap/margin ficam no valor base (compactos) de propósito
+     — telas curtas (~667px de altura) já apertam pra caber roda + texto +
+     CTA sem cortar nada dentro da área pinada. */
+  .metodologia-panel { text-align: center; align-items: center; }
+  .metodologia-panel-body { line-height: 1.45; }
 }
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
@@ -594,7 +607,7 @@
     font-size: 16px;
   }
 
-  .metodologia-panel { text-align: left; margin: 0; max-width: none; gap: var(--ltx-space-4); }
+  .metodologia-panel { text-align: left; align-items: normal; margin: 0; max-width: none; gap: var(--ltx-space-4); }
   .metodologia-panel-step { font-size: 13px; }
   .metodologia-panel-curto { font-size: 28px; line-height: 1.25; }
   .metodologia-panel-body { font-size: 16px; line-height: 1.6; }
